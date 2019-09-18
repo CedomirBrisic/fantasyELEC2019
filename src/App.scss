@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&display=swap&subset=cyrillic,cyrillic-ext,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Fondamento:400,400i&display=swap');
+@import url('./style/logIn.scss');
+@import url('./style/register.scss');
+@import url('./style/rules.scss');
+@import url('./style/signInWrapper.scss');
+@import url('./style/screenWelcome.scss');
+@import url('./style/totalPointsByDay.scss');
+@import url('./style/header.scss');
+@import url('./style/dashboardSelectDay.scss');
+@import url('./style/dashboardSelectTeam.scss');
+@import url('./style/playersOnField.scss');
+@import url('./style/selectPlayer.scss');
+@import url('./style/playerCardModal.scss');
+@import url('./style/screenUser.scss');
+@import url('./style/hallOfFameF1WCList.scss');
+@import url('./style/hallOfFameTotalPointsList.scss');
+@import url('./style/hallOfFameUserStatsModal.scss');
+@import url('./style/screenHallOfFame.scss');
+@import url('./style/f1wcPointsCalcModal.scss');
+@import url('./style/roundPointsCalcModal.scss');
+@import url('./style/teamPickSuccessfullySubmitedModal.scss');
+@import url('./style/hallOfFamePlayerListStats.scss');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+a:hover {
+    text-decoration: none;
+    color: steelblue;
+}
+
+.modal-backdrop {
+    background-color: #000000;
+}
+
+.loader-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+
+    h1 {
+        margin-bottom: 3vw;
+        font-size: 2.4vw;
+        color: #ffffff;
+    }
+
+    .spinner-border {
+        width: 4vw;
+        height: 5vw;
+    }
+
+    .credits-container {
+        font-size: 0.9vw;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.79);
+        margin-top: 1vw;
+
+        .credits {
+            margin-left: 9vw;
+        }
+    }
+
+    .made-in {
+        font-weight: 300;
+        color: #ffffff;
+        font-size: 1vw;
+        margin-left: auto;
+        margin-top: 1vw;
+    }
+}
+
+.loader-container-calculating{
+    position: fixed;
+    width: 100vw;
+    height: 93vh;
+    left: 0;
+    z-index: 1;
+    background-color: #000000;
+
+    h1 {
+        margin-bottom: 3vw;
+        font-size: 2.4vw;
+        color: #ffffff;
+    }
+
+    .spinner-border {
+        width: 4vw;
+        height: 5vw;
+    }
+
+    .credits-container {
+        font-size: 0.9vw;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.79);
+        margin-top: 1vw;
+
+        .credits {
+            margin-left: 9vw;
+        }
+    }
+
+    .made-in {
+        font-weight: 300;
+        color: #ffffff;
+        font-size: 1vw;
+        margin-left: auto;
+        margin-top: 1vw;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0.5vw;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: red;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.landscape-message {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./images/left-297787.svg");
+    background-position: 50% 20%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+
+    h3 {
+        width: 80%;
+        position: absolute;
+        bottom: 32vh;
+        text-align: center;
+        left: 10%;
+        font-size: 7vw;
+    }
+
+    h1 {
+        width: 80%;
+        position: absolute;
+        bottom: 10vh;
+        text-align: center;
+        left: 10%;
+        font-size: 5vw;
+    }
+}
+
+.exit-fullscreen-button {
+    position: fixed;
+    top: 0.5vw;
+    left: 1.2vw;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 1);
+    font-size: 1.2vw;
+    font-weight: 800;
+    transition: transform 0.2s;
+    margin-right: 1vw;
+    border: 0.2vw double red;
+    background-color: rgba(0, 0, 0, 0.79);
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+.userscreen-exit-fullscreen {
+    padding: 0 3vw;
+}
+
+.halloffame-exit-fullscreen {
+    padding: 0.1vw 1.8vw;
+}
+
+.bannertest {
+ display: none;
+}

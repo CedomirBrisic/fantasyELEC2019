@@ -1,0 +1,149 @@
+.dashboard-select-team-container {
+    background-color: rgba(0, 0, 0, 0.79);
+    height: 87.5vh;
+    color: #ffffff;
+    width: 16vw;
+    padding: 1vw;
+    overflow: hidden;
+    animation: hideSelectedTeam 0.2s ease-in-out forwards;
+
+    @media (max-width:996px) {
+        height: 83vh;
+        margin-top: -5.5vh;
+        overflow-x: hidden;
+    }
+
+    @-webkit-keyframes hideSelectedTeam {
+        0% {
+            width: 16vw;
+            padding: 1vw;
+        }
+
+        100% {
+            width: 0;
+            padding: 0;
+        }
+    }
+
+    @keyframes hideSelectedTeam {
+        0% {
+            width: 16vw;
+            padding: 1vw;
+        }
+
+        100% {
+            width: 0;
+            padding: 0;
+        }
+    }
+
+    .select-all {
+        width: 100%;
+        margin-bottom: 1vw;
+        border-bottom: 2px solid #ffffff;
+        font-size: 1vw;
+
+        @media (max-width:996px) {
+            font-size: 1vw;
+            padding: 1vw;
+        }
+    }
+
+    .is-selected {
+        background: #ffffff;
+        color: black;
+        transform: scale(1.05);
+    }
+
+    .dashboard-select-team-list-wrapper {
+        height: 95%;
+        width: 100%;
+
+        @media (max-width:996px) {
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        input {
+            outline: #ffffff;
+            padding: 0.5vw 0.5vw;
+            font-size: 0.79vw;
+            color: #ffffff;
+            background-color: black;
+            border: 1px solid rgba(255, 255, 255, 0.79);
+
+            @media (max-width:996px) {
+                padding: 1vw;
+                font-size: 1vw;
+                margin-bottom: 1.5vw;
+                border-radius: 1vw;
+            }
+
+            &::placeholder {
+                color: #ffffff;
+            }
+        }
+
+        .btn {
+            font-size: 1vw;
+            padding: 0;
+            width: 100%;
+            transition: transform 0.2s;
+
+            @media (max-width:996px) {
+                padding: 1.2vw;
+            }
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        .team-image-wrapper {
+            margin-left: 1vw;
+            margin-right: 1vw;
+            width: 1.6vw;
+        }
+
+        .team-title {
+            text-align: start;
+        }
+
+        .na-message {
+            font-size: 0.9vw;
+
+            @media (max-width: 996px) {
+                font-size: 1.15vw;
+            }
+        }
+    }
+}
+
+.show-selected-team {
+    animation: showSelectedTeams 0.2s ease-in-out forwards;
+}
+
+@-webkit-keyframes showSelectedTeams {
+    0% {
+        padding: 0;
+        width: 0;
+    }
+
+    100% {
+        width: 16vw;
+        padding: 1vw;
+    }
+}
+
+@keyframes showSelectedTeams {
+    0% {
+        padding: 0;
+        width: 0;
+    }
+
+    100% {
+        width: 16vw;
+        padding: 1vw;
+    }
+}

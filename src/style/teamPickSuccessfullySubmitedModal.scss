@@ -1,0 +1,44 @@
+.team-pick-modal-successfully-submited-container {
+    text-align: center;
+    .modal-dialog {
+        max-width: 60%;
+        min-height: 80%;
+        background-color:rgba(0, 0, 0, 0);
+        padding: 2vw 4vw;
+        .modal-content {
+        background-color:rgba(0, 0, 0, 0);
+        // min-height: 40vw;
+            
+            .message{
+                background-color: rgba(0,0,0,0.79);
+                -webkit-box-shadow: 0px 0px 1vw 0px greenyellow;
+                -moz-box-shadow: 0px 0px 1vw 0px greenyellow;
+                box-shadow: 0px 0px 1vw 0px greenyellow;
+                border-radius: 1vw;
+                border: 4px double greenyellow;
+                padding: 1vw 2vw;
+                margin: 12vw auto 0 auto;
+                h3{
+                    color: greenyellow;
+                    font-weight: 800;
+                    font-size: 2vw;       
+                    
+                }         
+                &:hover .check-mark-wrapper{
+                    transform: scale(1.5);
+                }
+            }
+            .check-mark-wrapper{
+                color: greenyellow;
+                font-size: 4vw;
+                font-weight: 800;
+                margin-left: 2vw;
+                transition: transform 0.2s;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,88 @@
+.rules-container {
+    background-color: rgba(0, 0, 0, 0.1);
+    background-size: 100% 100%;
+    color: #ffffff;
+    padding: 2vw 1vw;
+    text-align: justify;
+    width: 32vw;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(50, 50, 50, 0.75);
+    height: 42vw;
+    overflow: hidden;
+    animation: openRules 2.4s ease-in-out forwards;
+
+    position: relative;
+    .made-in {
+        color: #ffffff;
+        position: absolute;
+        bottom: 0;
+        right: 1vw;
+        font-weight: 300;
+        font-size: 1vw;
+    }
+    h3 {
+        font-size: 1.8vw;
+        font-weight: 800;
+        margin-bottom: 0;
+    }
+
+    h5 {
+        font-size: 1vw;
+        margin-top: 1vw;
+        margin-bottom: 0;
+        font-weight: 300;
+    }
+
+    h6 {
+        font-size: 0.9vw;
+        margin-bottom: 0;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        font-weight: 300;
+    }
+
+    .rule-numer-order {
+        font-size: 1.1vw;
+    }
+
+    .first-do-not-talk {
+        font-weight: 300;
+        color:red;
+    }
+
+    .second-do-not-talk {
+        font-weight: 500;
+        color: red;
+    }
+
+    .buttons-container{
+        width: 27vw;
+        margin: 0 auto;
+        margin-top: 2vw;
+    }
+    .btn{
+        font-size: 1vw;
+        padding: 0.4vw 1vw;
+    }
+    a{
+        color: #ffffff;
+        font-weight: 600;
+    }
+    @-webkit-keyframes openRules {
+        0% {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        100% {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+    }
+    @keyframes openRules {
+        0% {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        100% {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+    }
+}

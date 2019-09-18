@@ -1,0 +1,48 @@
+.register-container {
+    padding: 1vw 4vw;
+
+    .form-group {
+        -webkit-box-shadow: 0px 0px 0.5vw 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0px 0px 0.5vw 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 0px 0.5vw 0px rgba(0, 0, 0, 0.1);
+        padding: 0.5vw 1vw;
+        transition: transform 0.5s;
+        margin-bottom: 0;
+        .form-control{
+            height: auto;
+            padding: 0.5vw 1vw;
+        }
+
+        small {
+            color: #ffffff !important;
+            font-size: 0.79vw;
+        }
+
+        label {
+            color: #ffffff;
+            font-size: 1.1vw;
+            margin-bottom: 0.5vw;
+        }
+
+        input {
+            outline: none !important;
+            font-size: 1.2vw;
+        }
+
+        &:hover {
+            -webkit-box-shadow: 0px 0px 0.5vw 0px rgba(255, 255, 255, 0.2);
+            -moz-box-shadow: 0px 0px 0.5vw 0px rgba(255, 255, 255, 0.2);
+            box-shadow: 0px 0px 0.5vw 0px rgba(255, 255, 255, 0.2);
+        }
+        .red-letters{
+            color: rgb(255, 230, 0);
+        }
+    }
+
+    .btn-outline-secondary {
+        color: #ffffff;
+        border-color: #ffffff;
+        font-size: 1.2vw;
+        padding: 1vw;
+    }
+}

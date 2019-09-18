@@ -1,0 +1,308 @@
+.show-players-on-field-container {
+    width: 100%;
+    height: 100%;
+    padding: 0.5vw 0.5vw 0.5vw 0;
+
+    .screen-title {
+        color: #ffffff;
+        font-size: 1vw;
+        background-color: rgba(0, 0, 0, 0.79);
+        padding: 0.5vw 1vw;
+        margin-bottom: 0.2vw;
+
+        .round-points {
+            text-shadow: 0px 0px 2px rgba(255, 255, 255, 1);
+            border: 1px solid rgba(255, 255, 255, 0.79);
+            border-radius: 0.5vw;
+            padding: 0.5vw;
+        }
+
+        .clockify-wrapper {
+            color: rgba(255, 255, 255, 0.79);
+            width: 16vw;
+            font-size: 0.9vw;
+            padding-right: 0.5vw;
+        }
+    }
+
+    .picked-players-container {
+        position: relative;
+        height: 80%;
+        padding-top: 1vw;
+        padding-bottom: 10vw;
+        background-color: rgba(0, 0, 0, 0.85);
+
+        .three-players-container {
+            height: 12vw;
+        }
+
+        .two-players-container {
+            margin: 0 auto;
+            width: 66%;
+            height: 12vw;
+        }
+
+        .first-five-player-wrapper {
+            height: 12vw;
+            width: 8vw;
+
+
+
+            .not-selected-player {
+                width: 100%;
+
+                img {
+                    height: 12vw;
+                    filter: drop-shadow(16px 16px 20px red) invert(75%);
+                }
+
+                .pick-player-title {
+                    font-size: 1vw;
+                    transition: transform 0.2s;
+                    color: rgba(255, 255, 255, 0.79);
+                    position: relative;
+                    left: 1vw;
+                }
+
+                &:hover img {
+                    cursor: pointer;
+                    filter: drop-shadow(16px 16px 20px green) invert(75%);
+                }
+
+                &:hover .pick-player-title {
+                    transform: scale(1.2)
+                }
+            }
+        }
+
+        .bench-players-container {
+            position: absolute;
+            bottom: 0.5vw;
+            left: 0.5vw;
+            height: 10vw;
+            width: 100%;
+            padding-right: 0.5vw;
+
+            .bench-player-wrapper {
+                margin-right: 1vw;
+                height: 100%;
+                width: 7.5vw;
+
+
+                .not-selected-player-b-1 {
+                    position: relative;
+                    bottom: 1vw;
+
+                    img {
+                        width: 5vw;
+                        margin-left: 1vw;
+                        filter: drop-shadow(16px 16px 20px red) invert(75%);
+                    }
+
+                    .pick-player-title {
+                        font-size: 1vw;
+                        color: rgba(255, 255, 255, 0.79);
+                        position: relative;
+                        // bottom: 1vw;
+                        left: 1vw;
+                    }
+
+                    &:hover img {
+                        cursor: pointer;
+                        filter: drop-shadow(16px 16px 20px green) invert(75%);
+                    }
+
+                }
+
+
+                .not-selected-player-b-2 {
+                    position: relative;
+                    top: 2vw;
+
+                    img {
+                        filter: drop-shadow(16px 16px 20px red) invert(75%);
+                    }
+
+                    .pick-player-title {
+                        font-size: 1vw;
+                        color: rgba(255, 255, 255, 0.79);
+                        position: relative;
+                        bottom: -0.25vw;
+                        left: 1vw;
+                    }
+
+                    &:hover img {
+                        cursor: pointer;
+                        filter: drop-shadow(16px 16px 20px green) invert(75%);
+                    }
+                }
+
+
+            }
+
+            .btn {
+                font-size: 1vw;
+                padding: 0 1vw;
+                height: 20%;
+                margin-right: 0.5vw;
+            }
+        }
+
+        .glow {
+            -webkit-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 0.79);
+            -moz-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 0.79);
+            box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 0.79);
+        }
+
+        .first-five-player-wrapper-selected {
+            border: 4px double #ffffff;
+            border-radius: 1vw;
+            width: 12vw;
+            padding: 0.5vw 0.2vw 0.2vw 0.5vw;
+            position: relative;
+            &:hover{
+                cursor: pointer;
+                -webkit-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
+                -moz-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
+                box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
+            }
+
+            .change-player {
+                position: absolute;
+                font-size: 0.79vw;
+                bottom: -2.24vw;
+                z-index: 1;
+                @media (max-width:996px){
+                    bottom: -3.6vw;
+                    color: #ffffff;
+                }
+            }
+
+            .shirt-number {
+                color: #ffffff;
+                font-size: 2.4vw;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.79);
+
+                .pt {
+                    font-size: 1vw;
+                }
+            }
+
+            .player-name {
+                color: #ffffff;
+                font-size: 1vw;
+                text-align: center;
+            }
+
+            .player-team-wrapper {
+                .team-image-wrapper {
+                    width: 1.5vw;
+                    margin-right: 0.2vw;
+                }
+
+                .team-name {
+                    color: #ffffff;
+                    font-size: 0.79vw;
+                }
+            }
+        }
+
+        .glow {
+            -webkit-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 0.79);
+            -moz-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 0.79);
+            box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 0.79);
+        }
+
+        .bench-player-wrapper-selected {
+            border: 4px double #ffffff;
+            border-radius: 1vw;
+            width: 10vw;
+            padding: 0.5vw 0.2vw 0.2vw 0.5vw;
+            &:hover{
+                cursor: pointer;
+                -webkit-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
+                -moz-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
+                box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
+            }
+
+            .change-player {
+                position: absolute;
+                font-size: 0.79vw;
+                top: -2vw;
+                z-index: 1;
+                @media (max-width:996px){
+                    top: -2.5vw;
+                    color: #ffffff;
+                }
+            }
+
+            .shirt-number {
+                color: #ffffff;
+                font-size: 2.4vw;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.79);
+
+                .pt {
+                    font-size: 1vw;
+                }
+            }
+
+            .player-name {
+                color: #ffffff;
+                font-size: 0.79vw;
+                text-align: center;
+            }
+
+            .player-team-wrapper {
+                .team-image-wrapper {
+                    width: 1.2vw;
+                    margin-right: 0.2vw;
+                }
+
+                .team-name {
+                    color: #ffffff;
+                    font-size: 0.66vw;
+                }
+            }
+        }
+    }
+
+
+
+
+
+    .points-container {
+        color: #ffffff;
+        font-size: 0.79vw;
+        background-color: rgba(0, 0, 0, 0.79);
+        margin-top: 0.5vw;
+        width: 100%;
+        @media (max-width:996px){
+            font-size: 1vw;
+        }
+
+        th {
+            color: #000000;
+            text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5);
+            font-size: 0.79vw;
+            border-bottom: 1px solid #ffffff;
+            height: 2vw;
+            background-color: rgba(255, 255, 255, 0.79);
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .points-good {
+            color: rgba(0, 255, 0, 0.79);
+        }
+
+        .points-not-good {
+            color: rgba(255, 0, 0, 0.79);
+        }
+        .darker{
+            background-color: rgba(0,0,0,0.96);
+        }
+    }
+}

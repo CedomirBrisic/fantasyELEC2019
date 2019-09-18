@@ -1,0 +1,115 @@
+.dashboard-select-day-container {
+    background-color: rgba(0, 0, 0, 0.79);
+    height: 87.5vh;
+    margin-top: 0.5vw;
+    color: #ffffff;
+    padding: 0;
+    width: 0;
+    overflow: hidden;
+    animation: hideSelectedDay 0.2s ease-in-out forwards;
+    @media (max-width: 996px) {
+        margin-top: -5vh;
+        height: 82vh;
+    }
+    
+    @-webkit-keyframes hideSelectedDay {
+        0% {
+            width: 16vw;
+            padding: 1vw;
+        }
+    
+        100% {
+            width: 0;
+            padding: 0;
+        }
+    }
+    
+    @keyframes hideSelectedDay {
+        0% {
+            width: 16vw;
+            padding: 1vw;
+        }
+    
+        100% {
+            width: 0;
+            padding: 0;
+        }
+    }
+
+    p {
+        font-size: 1vw;
+        text-align: center;
+        @media (max-width: 996px) {
+            font-size: 1.5vw;
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+        }
+        
+    }
+
+    .dashboard-select-day-list-wrapper {
+        height: 95%;
+        width: 100%;
+        @media (max-width: 996px) {
+            height: 100%;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .btn {
+            font-size: 1vw;
+            padding: 0.5vh 0;
+            width: 100%;
+            transition: transform 0.2s;
+            @media (max-width: 996px) {
+                font-size: 1.5vw;
+                padding: 1.2vw;
+            }
+            &:hover{
+                transform: scale(1.1);
+                @media (max-width: 996px) {
+                    transform: scale(1);
+                }
+            }
+        }
+
+        .is-selected {
+            background: #ffffff;
+            color: black;
+            transform: scale(1.05);
+        }
+    }
+
+
+
+}
+
+.show-selected-day {
+    animation: showSelectedDay 0.2s ease-in-out forwards;
+}
+
+@-webkit-keyframes showSelectedDay {
+    0% {
+        padding: 0;
+        width: 0;
+    }
+
+    100% {
+        width: 16vw;
+        padding: 1vw;
+
+    }
+}
+
+@keyframes showSelectedDay {
+    0% {
+        padding: 0;
+        width: 0;
+    }
+
+    100% {
+        width: 16vw;
+        padding: 1vw;
+    }
+}

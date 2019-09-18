@@ -1,0 +1,103 @@
+.round-points-calc-modal-container {
+    .modal-dialog {
+        max-width: 80%;
+        min-height: 40vw;
+        background-color: rgba(0, 0, 0, 0.92);
+        color: rgba(255, 255, 255, 1);
+        padding: 2vw 4vw;
+
+        .modal-content {
+            min-height: 40vw;
+            background-color: rgba(0, 0, 0, 0);
+
+            .close {
+                color: #ffffff;
+                font-size: 4.5vw;
+                position: absolute;
+                right: -3vw;
+                top: -4vw;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            h3 {
+                background-color: rgba(0, 0, 0, 0);
+                margin: 0;
+                padding: 0 0 1vw 0;
+                font-size: 1.4vw;
+                line-height: 2vw;
+            }
+
+            .label-wrapper {
+                -webkit-box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+                -moz-box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+                box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.5);
+                width: 96%;
+                margin-bottom: 2vw;
+                padding-bottom: 0.5vw;
+
+                p {
+                    font-size: 1vw;
+                    margin: 0;
+                    padding: 0;
+                    margin-bottom: 0.5vw;
+                }
+            }
+
+            .stats-calc-container {
+                .left-container {
+                    width: 40%;
+                    height: 20vw;
+
+                    .rule-item {
+                        width: 100%;
+                        -webkit-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.45);
+                        -moz-box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.45);
+                        box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.45);
+                        padding: 0.1vw 1vw;
+
+                        p {
+                            font-size: 1vw;
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+
+                .right-container {
+                    width: 56%;
+                    height: 27vw;
+                    overflow-y: scroll;
+                    scroll-behavior: smooth;
+
+                    .set-rules-wrapper {
+                        .rule-label {
+                            font-size: 0.9vw;
+                            margin: 0;
+                            margin-top: 3vw;
+                            padding: 0;
+                            border-bottom: 1px solid rgba(255,255,255,0.5);
+                        }
+                        .rule-explanation {
+                            margin: 0;
+                            margin-top: 1vw;
+                            padding: 0;
+                            font-size: 0.79vw;
+                            line-height: 1.2vw;
+                        }
+                    }
+                }
+
+                .container-label {
+                    font-size: 1vw;
+                    padding: 0;
+                    margin: 0;
+                    margin-bottom: 2vw;
+                    text-align: center;
+                    text-shadow: 0px 0px 1px rgba(255, 255, 255, 1);
+                }
+            }
+        }
+    }
+}
