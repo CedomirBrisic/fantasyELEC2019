@@ -162,7 +162,7 @@ class Register extends React.Component {
                         {this.checkUsernameValidationMessage()}
                     </label>
                     <input value={this.state.username} onChange={this.depositUsername} onKeyDown={this.checkBlur} type="text" className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required />
-                    <small id="usernameHelp" className="form-text text-muted">It's your username for this game<br/>It needs to be unique and it has to be 16 characters max.
+                    <small id="usernameHelp" className="form-text text-muted">It's your username for this game.<br/>It needs to be unique and it has to be 16 characters max.
                         </small>
                 </div>
                 <div className="form-group">
@@ -178,7 +178,7 @@ class Register extends React.Component {
                         {this.checkPasswordConfirmValidationMessage()}
                     </label>
                     <input value={this.state.passwordConfirm} onChange={this.depositPasswordConfirm} onKeyDown={this.checkBlur} type="password" className="form-control" id="passwordConfirm" aria-describedby="passwordComfirmHelp" placeholder="Confirm password" required />
-                    <small id="passwordHelp" className="form-text text-muted">Retype your password once again so you can be sure that you didn't misspelled it
+                    <small id="passwordHelp" className="form-text text-muted">Retype your password once again so you can be sure that you didn't misspelled it.
                         </small>
                 </div>
                 <div className="form-group">
@@ -186,8 +186,12 @@ class Register extends React.Component {
                         {this.checkEmailValidationMessage()}
                     </label>
                     <input value={this.state.email} onChange={this.depositEmail} onKeyDown={this.checkIsEnter} type="email" className="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email" required />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.<br />
-                        We actually don't know why do we need it at all :-) ... except if you'll need to reset password
+                    <small id="emailHelp" className="form-text text-muted">
+                        Better put your real email address.
+                        <br/>
+                        You will need it in case you gonna want to reset password or something like that.
+                        <br/>
+                        Once a week you can expect to recive round overview, but you can cancel it at any time.
                         </small>
                 </div>
                 <button onClick={this.sendRegistration} type="submit" className="btn btn-outline-secondary">Submit</button>

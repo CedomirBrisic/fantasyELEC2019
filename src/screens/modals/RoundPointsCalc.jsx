@@ -12,11 +12,8 @@ class RoundPointsCalc extends React.Component {
         return (
             <Modal className="round-points-calc-modal-container" visible={this.props.showRoundPointsCalc} onClickBackdrop={this.props.closeRoundPointsCalcModal}>
                 <div className="close" onClick={this.props.closeRoundPointsCalcModal}>&times;</div>
-                <h3>Game is composed of 16 days / 16 rounds...    First round is on 31st-August and last one is on 15th-September 2019</h3>
                 <div className="label-wrapper">
-                    <p>At the end of every round, top 10 Sportske Fantasy users for that day are awarded with TD points</p>
-                    <p>But to be in that top 10, you first need to submit your team composed of 7 basketball players</p>
-                    <p>Once when they finish their matches, their real life stats are their basis and points from first five are included in your team points for that round<br />Other two are going to the bench...</p>
+                    <p>Once when basketball players finish their matches, their real life stats are their basis and points from first five are included in your team points for that round<br />Other two are going to the bench...</p>
                 </div>
                 <div className="stats-calc-container d-flex justify-content-between align-items-center">
                     <div className="left-container d-flex flex-column justify-content-between">
@@ -31,7 +28,7 @@ class RoundPointsCalc extends React.Component {
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Block</p>
-                            <p>+1 pt</p>
+                            <p>+2 pt</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Steal</p>
@@ -42,8 +39,12 @@ class RoundPointsCalc extends React.Component {
                             <p>-1 pt</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
+                            <p>1 Recived Foul</p>
+                            <p>+1 pt</p>
+                        </div>
+                        <div className="d-flex justify-content-between rule-item">
                             <p>Game won</p>
-                            <p>+4 pt</p>
+                            <p>+3 pt</p>
                         </div>
                     </div>
                     <div className="right-container">

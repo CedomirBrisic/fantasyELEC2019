@@ -12,12 +12,8 @@ class SRBRoundPointsCalc extends React.Component {
         return (
             <Modal className="round-points-calc-modal-container" visible={this.props.showRoundPointsCalc} onClickBackdrop={this.props.closeRoundPointsCalcModal}>
                 <div className="close" onClick={this.props.closeRoundPointsCalcModal}>&times;</div>
-                <h3>Igra traje 16 dana / 16 runda... Prva runda je 31-og avgusta a poslednja 15-og septembra 2019
-                </h3>
                 <div className="label-wrapper">
-                    <p>Na kraju svake runde, 10 prvoplasiranih Sportske Fantazi igrača tog dana su nagrađeni TD poenima</p>
-                    <p>Ali da bi bio u 10 prvoplasiranih, prvo moraš da izabereš svoju ekipu sačinjenu od 7 košarkaša</p>
-                    <p>Onda kada završe svoje mečeve, njihova statistika u stvarnosti postaje njihova baza a poeni prve petorke se računa u poene tvog tima za aktuelnu rundu<br />Preostala dvojica idu na klupu...</p>
+                    <p>Onda kada košarkaši završe svoje mečeve, njihova statistika u stvarnosti postaje njihova baza a poeni prve petorke se računa u poene tvog tima za aktuelnu rundu<br />Preostala dvojica idu na klupu...</p>
                 </div>
                 <div className="stats-calc-container d-flex justify-content-between align-items-center">
                     <div className="left-container d-flex flex-column justify-content-between">
@@ -32,7 +28,7 @@ class SRBRoundPointsCalc extends React.Component {
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Blokada</p>
-                            <p>+1 poen</p>
+                            <p>+2 poen</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Ukradena lopta</p>
@@ -43,8 +39,12 @@ class SRBRoundPointsCalc extends React.Component {
                             <p>-1 poen</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
+                            <p>1x Fauliran</p>
+                            <p>+1 poen</p>
+                        </div>
+                        <div className="d-flex justify-content-between rule-item">
                             <p>Pobeda</p>
-                            <p>+4 poena</p>
+                            <p>+3 poena</p>
                         </div>
                     </div>
                     <div className="right-container">

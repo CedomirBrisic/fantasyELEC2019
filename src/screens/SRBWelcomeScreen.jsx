@@ -16,7 +16,7 @@ class SRBWelcomeScreen extends React.Component {
             <div className="w-100 welcome-screen-container d-flex flex-column justify-content-between">
                 <div className="d-flex justify-content-center align-items-center">
                     <h1>
-                        Sportske Fantazi - Svetsko Prvenstvo u košarci 2019
+                        Sportske Fantazi - Virtuelna košarka
                     </h1>
                     <Link className="jezik" to={`/`}>
                         English please

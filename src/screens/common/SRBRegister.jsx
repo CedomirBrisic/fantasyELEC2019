@@ -186,8 +186,10 @@ class SRBRegister extends React.Component {
                         {this.checkEmailValidationMessage()}
                     </label>
                     <input value={this.state.email} onChange={this.depositEmail} onKeyDown={this.checkIsEnter} type="email" className="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Unesi svoju emejl adresu" required />
-                    <small id="emailHelp" className="form-text text-muted">Nikada je nećemo podeliti sa nekim drugim.<br />
-                        Nismo baš ni sigurni zašto nam treba :-) ... osim ako budeš hteo da promeniš lozinku
+                    <small id="emailHelp" className="form-text text-muted">
+                        Biće ti potrebna ukoliko zaboraviš lozinku.
+                        <br />
+                        Takođe jednom nedeljno možeš očekivati izveštaj ali ne brini, možeš ga otkazati kada god to poželiš.
                         </small>
                 </div>
                 <button onClick={this.sendRegistration} type="submit" className="btn btn-outline-secondary">Pošalji registraciju</button>

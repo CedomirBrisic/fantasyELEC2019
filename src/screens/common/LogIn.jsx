@@ -115,7 +115,7 @@ class LogIn extends React.Component {
                     <h6 className={`${this.state.badUsernameOrPassword ? "d-block" : "d-none"}`}>
                         If you forgot your user name or password, send us an email (<a href="mailto:admin@sportskefantasy.com">admin@sportskefantasy.com</a>) and we'll help...<br/>
                         We are good guys :-) <br />
-                        But you need to send it from email address you used for registration <br />
+                        But you need to send it from email address you used for registration. <br />
                     </h6>
                     <button onClick={this.sendLogIn} type="submit" className="w-100 btn btn-outline-secondary">Log In</button>
                     <div className="criticism-mail">

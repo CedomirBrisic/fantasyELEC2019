@@ -16,7 +16,7 @@ class WelcomeScreen extends React.Component {
             <div className="w-100 welcome-screen-container d-flex flex-column justify-content-between">
                 <div className="d-flex justify-content-center align-items-center">
                     <h1>
-                        Sportske Fantasy - Virtual basketball manager game - World Cup 2019 edition
+                        Sportske Fantasy - Virtual basketball game
                     </h1>
                     <Link className="jezik" to={`/srb`}>
                         Daj na srpskom
