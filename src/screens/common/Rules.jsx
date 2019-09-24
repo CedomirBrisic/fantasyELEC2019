@@ -38,7 +38,7 @@ class Rules extends React.Component {
                     <h5><span className="rule-numer-order">#5 -</span> Only stats from <a href="https://www.euroleague.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer">EuroLeague</a> and<a href="https://www.eurocupbasketball.com/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer"> EuroCup </a>webistes  are relevant.</h5>
                     <h5><span className="rule-numer-order">#6 -</span> EuroLeague and EuroCup are two separate competitions but if you want to compete in both - no body can forbid you!</h5>
                     <h5><span className="rule-numer-order">#7 -</span> Who accumulates the most Sportske Fantasy points is Ultimate Grand Winner. (counts for each competition separately)</h5>
-                    <h5><span className="rule-numer-order">#8 -</span> Last but not least - You can create your own league and invite friends to join.</h5>
+                    <h5><span className="rule-numer-order">#8 -</span> Last but not least - You can create your own league and invite friends to join you.</h5>
                     <h6><i>#8-a That's smart, right? ;-)</i></h6>                   
                     <div className="d-flex justify-content-center buttons-container">
                         <button type="button" className="btn btn-outline-light" onClick={this.openRoundPointsCalcModal}>Sportske Fantasy points explanation</button>

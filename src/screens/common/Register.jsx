@@ -17,7 +17,9 @@ class Register extends React.Component {
             validateUsernameAlert: false,
             validatePasswordAlert: false,
             validatePasswordConfirmAlert: false,
-            validateEmailAlert: false
+            validateEmailAlert: false,
+
+            isDisabled: false
         }
     }
 
@@ -42,7 +44,7 @@ class Register extends React.Component {
     }
     depositEmail = (event) => {
         const email = event.target.value;
-        
+
         this.setState({
             email
         })
@@ -104,7 +106,9 @@ class Register extends React.Component {
         }
 
         if (isValidated) {
-
+            this.setState({
+                isDisabled: true
+            })
             const data = {
                 username: this.state.username,
                 password: this.state.password,
@@ -119,7 +123,8 @@ class Register extends React.Component {
                     })
                 } else {
                     this.setState({
-                        isUsernameOccupied: true
+                        isUsernameOccupied: true,
+                        isDisabled: false
                     })
                 }
             })
@@ -162,7 +167,7 @@ class Register extends React.Component {
                         {this.checkUsernameValidationMessage()}
                     </label>
                     <input value={this.state.username} onChange={this.depositUsername} onKeyDown={this.checkBlur} type="text" className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required />
-                    <small id="usernameHelp" className="form-text text-muted">It's your username for this game.<br/>It needs to be unique and it has to be 16 characters max.
+                    <small id="usernameHelp" className="form-text text-muted">It's your username for this game.<br />It needs to be unique and it has to be 16 characters max.
                         </small>
                 </div>
                 <div className="form-group">
@@ -188,13 +193,18 @@ class Register extends React.Component {
                     <input value={this.state.email} onChange={this.depositEmail} onKeyDown={this.checkIsEnter} type="email" className="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email" required />
                     <small id="emailHelp" className="form-text text-muted">
                         Better put your real email address.
-                        <br/>
+                        <br />
                         You will need it in case you gonna want to reset password or something like that.
-                        <br/>
+                        <br />
                         Once a week you can expect to recive round overview, but you can cancel it at any time.
                         </small>
                 </div>
-                <button onClick={this.sendRegistration} type="submit" className="btn btn-outline-secondary">Submit</button>
+                {this.state.isDisabled &&
+                    <button type="submit" disabled className="btn btn-outline-secondary">Waiting for verification...</button>
+                }
+                {!this.state.isDisabled &&
+                    <button onClick={this.sendRegistration} type="submit" className="btn btn-outline-secondary">Submit</button>
+                }
             </section>
         )
     }

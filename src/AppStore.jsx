@@ -8,6 +8,7 @@ import checkEligibilityForPickTeam from "./services/checkEligibilityForPickTeam"
 
 export default class AppStore extends Component {
     state = {
+        selectedLeague: null,
         basketballPlayers: null,
         dropdowns: null,
         fantasyUsers: null,
@@ -98,6 +99,11 @@ export default class AppStore extends Component {
                 isSerbische: false
             })
         }
+    }
+    depositSelectedLeague = (data) => {
+        this.setState({
+            selectedLeague: data
+        })
     }
     depositIsHallOfFame = () => {
         this.setState({
@@ -340,21 +346,22 @@ export default class AppStore extends Component {
     //         console.log(usersUsernames.length, "---", fantasyUsers.length)
     //     }
     // }
-    checkSubmitedTeamsForNextDay = () => {
-        if (this.state.fantasyUsers !== null) {
-            eligibleDays.forEach((day) => {
-                let isSubmitted = 0
-                this.state.fantasyUsers.forEach((user) => {
-                    if (user[day].Player1Id !== null)
-                    isSubmitted++
-                })
-                console.log(day, "----", isSubmitted)
-            })
-        }
-    }
+    // checkSubmitedTeamsForNextDay = () => {
+    //     if (this.state.fantasyUsers !== null) {
+    //         eligibleDays.forEach((day) => {
+    //             let isSubmitted = 0
+    //             this.state.fantasyUsers.forEach((user) => {
+    //                 if (user[day].Player1Id !== null)
+    //                 isSubmitted++
+    //             })
+    //             console.log(day, "----", isSubmitted)
+    //         })
+    //     }
+    // }
     render() {
         // this.checkDoubleUsers()
-        this.checkSubmitedTeamsForNextDay()
+        // this.checkSubmitedTeamsForNextDay()
+        // console.log(this.state.selectedLeague)
         return (
             <>
                 {this.state.isLandscape &&
@@ -376,6 +383,7 @@ export default class AppStore extends Component {
                             depositHallOfFameSelectedDay: this.depositHallOfFameSelectedDay,
                             depositIsHallOfFame: this.depositIsHallOfFame,
                             depositIsNotHallOfFame: this.depositIsNotHallOfFame,
+                            depositSelectedLeague: this.depositSelectedLeague
                         }}>
 
                             {this.props.children}

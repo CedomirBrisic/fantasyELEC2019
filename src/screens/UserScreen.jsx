@@ -53,126 +53,140 @@ class UserScreen extends React.Component {
         }
         return (
             <>
-                {this.context.isInitialLoading &&
-                    <div className="loader-container d-flex justify-content-center align-items-center">
+                {!this.context.isInitialLoading &&
+                    <div className="loader-container d-flex justify-content-center align-items-start">
                         <div className="d-flex flex-column align-items-center">
-                            <h1>Loading . . .</h1>
-                            <div className="crveno d-flex">
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
+                            <div className="d-flex align-items-center">
+                                <h1>Game is Setting Up </h1>
+                                <div class="spinner-grow text-light" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div class="spinner-grow text-light" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div class="spinner-grow text-light" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
                             </div>
-                            <div className="d-flex">
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
+                            <div className="club-logos-container d-flex flex-column justify-content-around">
+                                <div className="d-flex justify-content-around h-25 w-100">
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=BER&seasoncode=E2?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/Alba_Berlin_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=IST&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/Anadolu_Efes_SK_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=MCO&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/AS_Monaco_Basket_Logo.png")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=SOP&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/Arka_Gdynia_(basketball)_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=MIL&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/Pallacanestro_Olimpia_Milano_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=BUD&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/KK_Budućnost_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=LJU&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/Cedevita_Olimpija_Ljubljana_logo.png")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=RED&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/KK_Crvena_zvezda_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=CSK&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/PBC_CSKA_Moscow_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=DAR&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/Darüşşafaka_SK_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
                                 </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div className="d-flex justify-content-around h-25 w-100">
+                                <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=TRN&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/Aquila_Basket_Trento_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=OLD&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/EWE_Baskets_Oldenburg_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=BAR&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/FC_Barcelona_Bàsquet_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=MUN&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/FC_Bayern_Munich_(basketball)_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=ULK&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/Fenerbahçe_Men's_Basketball_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=GAL&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/Galatasaray_SK_logo.svg")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=BRE&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/Basket_Brescia_Leonessa_Logo.png")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.eurocupbasketball.com/eurocup/competition/teams/showteam?clubcode=JOV&seasoncode=U2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroCup/Joventut_Badalona_logo.png")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=KHI&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/BC_Khimki_2016_logo.png")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=BAS&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/Saski_Baskonia.png")} alt="teamLogo" />
+                                        </a>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <a href="https://www.euroleague.net/competition/teams/showteam?clubcode=ASV&seasoncode=E2019?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank">
+                                            <img src={require("../images/logos/euroLeague/LDLC_ASVEL_Basket_logo.png")} alt="teamLogo" />
+                                        </a>
+                                    </div>
                                 </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div className="d-flex justify-content-around h-25 w-100">
+
                                 </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div className="d-flex justify-content-around h-25 w-100">
+
                                 </div>
                             </div>
-                            <div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                            </div>
-                            <div className="made-in"><i>Made in Land of Basketball</i></div>
                             <div className="credits-container w-100 d-flex flex-column">
+                                <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank"><b>Fair Use</b> of teams' logos.</a>
                                 <i>We thank to Pixabay for letting us borrow some of theirs images</i>
                                 <i>SPECIAL THANKS TO:</i>
                                 <i className="credits">David Mark from Pixabay</i>

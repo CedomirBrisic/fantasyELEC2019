@@ -17,7 +17,10 @@ class SRBRegister extends React.Component {
             validateUsernameAlert: false,
             validatePasswordAlert: false,
             validatePasswordConfirmAlert: false,
-            validateEmailAlert: false
+            validateEmailAlert: false,
+
+            isDisabled: false
+
         }
     }
 
@@ -42,7 +45,7 @@ class SRBRegister extends React.Component {
     }
     depositEmail = (event) => {
         const email = event.target.value;
-        
+
         this.setState({
             email
         })
@@ -99,12 +102,14 @@ class SRBRegister extends React.Component {
             isValidated = false
         } else {
             this.setState({
-                validateEmailAlert: false
+                validateEmailAlert: false,
             })
         }
 
         if (isValidated) {
-
+            this.setState({
+                isDisabled: true
+            })
             const data = {
                 username: this.state.username,
                 password: this.state.password,
@@ -119,7 +124,8 @@ class SRBRegister extends React.Component {
                     })
                 } else {
                     this.setState({
-                        isUsernameOccupied: true
+                        isUsernameOccupied: true,
+                        isDisabled: false
                     })
                 }
             })
@@ -162,7 +168,7 @@ class SRBRegister extends React.Component {
                         {this.checkUsernameValidationMessage()}
                     </label>
                     <input value={this.state.username} onChange={this.depositUsername} onKeyDown={this.checkBlur} type="text" className="form-control" id="username" aria-describedby="usernameHelp" placeholder="Unesi željeno korisničko ime" required />
-                    <small id="usernameHelp" className="form-text text-muted">Ovo je tvoje korisničko ime za igru.<br/>Treba da bude jedinstveno i da nema više od 16 karaktera
+                    <small id="usernameHelp" className="form-text text-muted">Ovo je tvoje korisničko ime za igru.<br />Treba da bude jedinstveno i da nema više od 16 karaktera
                         </small>
                 </div>
                 <div className="form-group">
@@ -192,7 +198,12 @@ class SRBRegister extends React.Component {
                         Takođe jednom nedeljno možeš očekivati izveštaj ali ne brini, možeš ga otkazati kada god to poželiš.
                         </small>
                 </div>
-                <button onClick={this.sendRegistration} type="submit" className="btn btn-outline-secondary">Pošalji registraciju</button>
+                {this.state.isDisabled &&
+                    <button type="submit" disabled className="btn btn-outline-secondary">Verifikacija naloga u toku...</button>
+                }
+                {!this.state.isDisabled &&
+                    <button onClick={this.sendRegistration} type="submit" className="btn btn-outline-secondary">Pošalji registraciju</button>
+                }
             </section>
         )
     }

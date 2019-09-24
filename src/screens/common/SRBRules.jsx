@@ -38,7 +38,7 @@ class SRBRules extends React.Component {
                     <h5><span className="rule-numer-order">#5 -</span> Merodavna je samo statistike sa sajtova <a href="https://www.euroleague.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer">EuroLeague</a> i<a href="https://www.eurocupbasketball.com/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer"> EuroCup</a>.</h5>
                     <h5><span className="rule-numer-order">#6 -</span> EuroLeague i EuroCup su dva različita takmičenja ali ako želiš da se takmičiš u oba - niko ti ne može zabraniti!</h5>
                     <h5><span className="rule-numer-order">#7 -</span> Ultimativni veliki pobednik je onaj ko sakupi najviše Sportske Fantazi poena. (takmičenja su odvojena i ne sabiraju se)</h5>
-                    <h5><span className="rule-numer-order">#8 -</span> Na kraju ono najbitnije - Možeš napraviti svoju ligu i pozvati prijatelje da se priduže.</h5>
+                    <h5><span className="rule-numer-order">#8 -</span> Na kraju ono najbitnije - Možeš napraviti svoju ligu i pozvati prijatelje da ti se priduže.</h5>
                     <h6><i>#8-a Nije ni loše? ;-)</i></h6>
                     <div className="d-flex justify-content-center buttons-container">
                         <button type="button" className="btn btn-outline-light" onClick={this.openRoundPointsCalcModal}>Sportske Fantazi poeni - objašnjenje</button>
