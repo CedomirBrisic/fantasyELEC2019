@@ -100,7 +100,8 @@ class SRBHallOfFameScreen extends React.Component {
             "Nejsmitovo originalno pravilo #10 - Posrednik će biti sudija igračima i beležiće prekršaje, i obaveštavati arbitra kada su počinjena 3 uzastopna prekršaja.",
             "Nejsmitovo originalno pravilo #11 - Arbitar će biti sudija zadužen za loptu i odlučivaće kada je lopta u igri, i kojoj strani pripada, i meriće vreme. On će odlučivati kada je postignut pogodak i vodiće računa o rezultatu kao što će i biti zadužen za sve ostale aktivnosti koje inače obavlja arbitar.",
             "Nejsmitovo originalno pravilo #12 - Vreme će biti 15-minutne polovine, sa 5-minutnom pauzom za odmor između.",
-            "Nejsmitovo originalno pravilo #13 - Strana koja postigne najviše pogodaka se proglašava pobednikom. U slučaju nerešenog rezultata, igra se može, dogovorom kapitena, nastaviti dok se ne postigne sledeći pogodak.",            "The first basketball game took place in 1892, where the court was half the size of today's courts. The game was played for 30 minutes, and only one point was scored in the match.",
+            "Nejsmitovo originalno pravilo #13 - Strana koja postigne najviše pogodaka se proglašava pobednikom. U slučaju nerešenog rezultata, igra se može, dogovorom kapitena, nastaviti dok se ne postigne sledeći pogodak.",
+            "Prva košarkaška utakmica se odigrala 1892. godine, teren je bio polovina današnjih dimenzija. Meč je trajao 30 minuta, i postignut je samo jedan poen.",
             "Razlog za uvođenje table iza obruča je taj što se publika na balkonu mešala (posredovala) u igru dodirivajući loptu.",
             "Prvi koševi su bili korpe i svaki put kada bi bio postignut pogodak, arbitar bi se penjao na merdevine kako bi dohvatio loptu."
         ]

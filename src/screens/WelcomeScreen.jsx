@@ -26,6 +26,14 @@ class WelcomeScreen extends React.Component {
                     <SignInWrapper />
                     <Rules />
                 </div>
+                <div className="powered-by-wrapper d-flex justify-content-between">
+                    <div className="sportske d-flex justify-content-between align-items-end">
+                        <i>Made by</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer"><img src={require("../images/logo-sportske.png")} alt="Belgrade Institute of Technology" /></a>
+                    </div>
+                    <div className="bit d-flex justify-content-between align-items-end">
+                        <i>Powered by</i> <a href="https://www.bgit.rs/en/" target="_blank" rel="noopener noreferrer"><img src={require("../images/logo-bit.png")} alt="Belgrade Institute of Technology" /></a>
+                    </div>
+                </div>
             </div>
         )
     }

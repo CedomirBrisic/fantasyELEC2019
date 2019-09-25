@@ -119,13 +119,16 @@ a:hover {
             bottom: 2.4vh;
             width: 36vw;
             margin-left: auto;
+
             .sportske {
                 width: 32%;
-                i{
+
+                i {
                     font-size: 0.79vw;
                     color: #ffffff;
                 }
-                img{
+
+                img {
                     width: 7.9vw;
                 }
 
@@ -133,11 +136,13 @@ a:hover {
 
             .bit {
                 width: 36%;
-                i{
+
+                i {
                     font-size: 0.79vw;
                     color: #ffffff;
                 }
-                img{
+
+                img {
                     width: 7.9vw;
                 }
 
@@ -219,6 +224,7 @@ a:hover {
             }
         }
     }
+
     .right-container {
         width: 50vw;
         margin-top: 1vw;
@@ -237,13 +243,16 @@ a:hover {
             bottom: 2.4vh;
             width: 36vw;
             margin-left: auto;
+
             .sportske {
                 width: 32%;
-                i{
+
+                i {
                     font-size: 0.79vw;
                     color: #ffffff;
                 }
-                img{
+
+                img {
                     width: 7.9vw;
                 }
 
@@ -251,11 +260,13 @@ a:hover {
 
             .bit {
                 width: 36%;
-                i{
+
+                i {
                     font-size: 0.79vw;
                     color: #ffffff;
                 }
-                img{
+
+                img {
                     width: 7.9vw;
                 }
 
@@ -376,7 +387,45 @@ a:hover {
     }
 }
 
-.calc-logos{
+.calc-logos {
     background-image: url("./images//calcScreen.png");
     background-size: cover;
+}
+
+.welcome-screen-container {
+    .powered-by-wrapper {
+        width: 24vw;
+        position: fixed;
+        left: 2vw;
+        bottom: 2vh;
+        color: #ffffff;
+
+        .sportske {
+            width: 47%;
+
+            i {
+                font-size: 0.79vw;
+                color: #ffffff;
+            }
+
+            img {
+                width: 7.9vw;
+            }
+
+        }
+
+        .bit {
+            width: 53%;
+
+            i {
+                font-size: 0.79vw;
+                color: #ffffff;
+            }
+
+            img {
+                width: 7.9vw;
+            }
+
+        }
+    }
 }
