@@ -4,14 +4,14 @@ import getFantasyData from "./webhooks/getFantasyData";
 import humanReadDateAndTime from "./services/humanReadDateAndTime";
 import eligibleDays from "./services/eligibleDays";
 import checkEligibilityForPickTeam from "./services/checkEligibilityForPickTeam";
-
+import calculateNowRound from "./services/calculateNowRound";
 
 export default class AppStore extends Component {
     state = {
-        selectedLeague: null,
-        basketballPlayers: null,
-        dropdowns: null,
-        fantasyUsers: null,
+        selectedLeague: "",
+        // basketballPlayers: null,
+        // dropdowns: null,
+        // fantasyUsers: null,
         bitrulez: null,
         bitrulez2: null,
 
@@ -124,7 +124,7 @@ export default class AppStore extends Component {
         } else {
             this.setState({
                 hallOfFameSelectedDay: dayToDeposit,
-                selectedDay: "31st-August"
+                selectedDay: "ROUND-1"
             })
 
         }
@@ -231,12 +231,12 @@ export default class AppStore extends Component {
 
     calculateUsersRoundPoints = () => {
         let roundsPlayed = null
-        const dayIndex = eligibleDays.indexOf(this.state.nowDateAndTime.humanDate)
-        if (dayIndex === -1 && this.state.nowDateAndTime.humanDate.split("-")[1] !== "August") {
-            roundsPlayed = 16
-        } else {
-            roundsPlayed = eligibleDays.indexOf(this.state.nowDateAndTime.humanDate) + 1
-        }
+        // const dayIndex = eligibleDays.indexOf(this.state.nowDateAndTime.humanDate)
+        // if (dayIndex === -1 && this.state.nowDateAndTime.humanDate.split("-")[1] !== "August") {
+        //     roundsPlayed = 16
+        // } else {
+        //     roundsPlayed = eligibleDays.indexOf(this.state.nowDateAndTime.humanDate) + 1
+        // }
 
         let userTotalRoundPoints = 0;
         for (let i = 0; i < roundsPlayed; i++) {
@@ -244,28 +244,24 @@ export default class AppStore extends Component {
         }
         this.setState({
             userTotalRoundPoints,
-            userAvgRoundPointsPerGame: userTotalRoundPoints / roundsPlayed
+            userAvgRoundPointsPerGame: "XXX"
         })
     }
 
     componentDidMount() {
         let data = sessionStorage.getItem("bitrulez")
         let data2 = sessionStorage.getItem("bitrulez2")
-        let selectedDay = null
-        let hallOfFameSelectedDay = null
+        let data3 = sessionStorage.getItem("bitrulez3")
+
         const nowDate = humanReadDateAndTime().humanDate
-        if (eligibleDays.indexOf(nowDate) !== -1) {
-            selectedDay = nowDate
-            hallOfFameSelectedDay = nowDate
-        } else {
-            selectedDay = "31st-August"
-            hallOfFameSelectedDay = "31st-August"
-        }
+        const nowRound = calculateNowRound(nowDate,data3)
+
         this.setState({
             bitrulez: data,
             bitrulez2: data2,
-            selectedDay,
-            hallOfFameSelectedDay
+            selectedDay: nowRound,
+            selectedLeague: data3,
+            hallOfFameSelectedDay: nowRound
         })
 
         this.checkLandscape()
@@ -283,14 +279,14 @@ export default class AppStore extends Component {
     }
 
     checkPlayersOnField = () => {
-        const calculatedPickData = checkEligibilityForPickTeam(this.state.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.dropdowns[0].teamsByDay, this.state.basketballPlayers)
-        this.setState({
-            teamPickData: calculatedPickData.teamPickData,
-            teamPickLockData: calculatedPickData.teamPickLockData,
-            teamPickDayTotal: calculatedPickData.totalSummaSummarum,
-            calculatedFirstFiveRealLifeStatsTotals: calculatedPickData.calculatedFirstFiveRealLifeStatsTotals,
-            calculatedFirstFiveFantasyPointsStatsTotals: calculatedPickData.calculatedFirstFiveFantasyPointsStatsTotals,
-        })
+        // const calculatedPickData = checkEligibilityForPickTeam(this.state.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.dropdowns[0].teamsByDay, this.state.basketballPlayers)
+        // this.setState({
+        //     teamPickData: calculatedPickData.teamPickData,
+        //     teamPickLockData: calculatedPickData.teamPickLockData,
+        //     teamPickDayTotal: calculatedPickData.totalSummaSummarum,
+        //     calculatedFirstFiveRealLifeStatsTotals: calculatedPickData.calculatedFirstFiveRealLifeStatsTotals,
+        //     calculatedFirstFiveFantasyPointsStatsTotals: calculatedPickData.calculatedFirstFiveFantasyPointsStatsTotals,
+        // })
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -302,6 +298,15 @@ export default class AppStore extends Component {
             this.calculateUsersRoundPoints()
         }
         this.checkLandscape()
+
+        if (prevState.selectedLeague !== this.state.selectedLeague){
+            let data3 = this.state.selectedLeague
+            const nowDate = humanReadDateAndTime().humanDate
+            const nowRound = calculateNowRound(nowDate,data3)
+            this.setState({
+                selectedDay: nowRound
+            })
+        }
     }
     checkLandscape = () => {
         if (this.state.isLandscape) {
@@ -325,43 +330,8 @@ export default class AppStore extends Component {
         })
     }
 
-    // checkDoubleUsers = () => {
-    //     const fantasyUsers = this.state.fantasyUsers
-    //     const usersUsernames = []
-    //     const checkedUsers = []
-    //     if (fantasyUsers !== null) {
-    //         fantasyUsers.forEach((user) => {
-    //             usersUsernames.push(user.username)
-    //         })
-
-    //         checkedUsers.forEach((username) => {
-    //             const index = usersUsernames.indexOf(username)
-    //             if (index == -1) {
-    //                 checkedUsers.push(username)
-    //             } else {
-    //                 console.log("DUPLI USER", username)
-    //             }
-    //         })
-    //         console.log(checkedUsers)
-    //         console.log(usersUsernames.length, "---", fantasyUsers.length)
-    //     }
-    // }
-    // checkSubmitedTeamsForNextDay = () => {
-    //     if (this.state.fantasyUsers !== null) {
-    //         eligibleDays.forEach((day) => {
-    //             let isSubmitted = 0
-    //             this.state.fantasyUsers.forEach((user) => {
-    //                 if (user[day].Player1Id !== null)
-    //                 isSubmitted++
-    //             })
-    //             console.log(day, "----", isSubmitted)
-    //         })
-    //     }
-    // }
     render() {
-        // this.checkDoubleUsers()
-        // this.checkSubmitedTeamsForNextDay()
-        // console.log(this.state.selectedLeague)
+console.log("CONTEXT", this.state.selectedDay)
         return (
             <>
                 {this.state.isLandscape &&

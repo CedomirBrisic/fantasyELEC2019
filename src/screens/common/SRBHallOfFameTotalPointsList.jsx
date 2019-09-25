@@ -133,10 +133,6 @@ class SRBHallOfFameTotalPointsList extends React.Component {
             this.calculateAllUsers()
         }, 240);
         this.trivia()
-        this.interval = setInterval(
-            () => this.trivia(),
-            7900
-        );
     }
     componentDidUpdate(prevProps) {
         if (prevProps.selectedDay !== this.props.selectedDay) {
@@ -187,14 +183,14 @@ class SRBHallOfFameTotalPointsList extends React.Component {
                         <div className="d-flex flex-column align-items-center">
                             <div className="d-flex align-items-center">
                                 <h1>Računanje Sportske Fantazi poena {this.context.fantasyUsers.length} korisnika za {serbischeDatum(this.context.hallOfFameSelectedDay)}</h1>
-                                <div class="spinner-grow text-light" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <div className="spinner-grow text-light" role="status">
+                                    <span className="sr-only">Loading...</span>
                                 </div>
-                                <div class="spinner-grow text-light" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <div className="spinner-grow text-light" role="status">
+                                    <span className="sr-only">Loading...</span>
                                 </div>
-                                <div class="spinner-grow text-light" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <div className="spinner-grow text-light" role="status">
+                                    <span className="sr-only">Loading...</span>
                                 </div>
                             </div>
                             <div className="club-logos-container calc-logos">
@@ -202,7 +198,7 @@ class SRBHallOfFameTotalPointsList extends React.Component {
                             </div>
                             <div className="d-flex justify-content-between w-100">
                                 <div className="credits-container w-100 d-flex flex-column">
-                                    <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank"><b>Fair Use</b> of teams' logos.</a>
+                                    <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank" rel="noopener noreferrer"><b>Fair Use</b> of teams' logos.</a>
                                     <i>Zahvaljujemo se PIXABAY-u što nam je omogućio da pozajmimo neke od njihovih slika</i>
                                     <i>POSEBNO SE ZAHVALJUJEMO:</i>
                                     <i className="credits">David Mark iz Pixabay-a</i>
@@ -219,10 +215,10 @@ class SRBHallOfFameTotalPointsList extends React.Component {
                                     </div>
                                     <div className="powered-by-wrapper d-flex justify-content-between">
                                         <div className="sportske d-flex justify-content-between align-items-end">
-                                            <i>Napravili</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank"><img src={require("../../images/logo-sportske.png")} alt="Belgrade Institute of Technology" /></a>
+                                            <i>Napravili</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer"><img src={require("../../images/logo-sportske.png")} alt="Belgrade Institute of Technology" /></a>
                                         </div>
                                         <div className="bit d-flex justify-content-between align-items-end">
-                                            <i>Pokreće ga</i> <a href="https://www.bgit.rs/en/" target="_blank"><img src={require("../../images/logo-bit.png")} alt="Belgrade Institute of Technology" /></a>
+                                            <i>Powered by</i> <a href="https://www.bgit.rs/en/" target="_blank" rel="noopener noreferrer"><img src={require("../../images/logo-bit.png")} alt="Belgrade Institute of Technology" /></a>
                                         </div>
                                     </div>
                                 </div>

@@ -77,7 +77,7 @@ class SRBSignInWrapper extends React.Component {
                         <button data-league="euroCup" onClick={this.selectLeague} type="submit" className="w-100 btn btn-light">EuroCup</button>
                         <h4>...ali ne brini, pri samom vrhu ekrana primetićeš dugme za prebacivanje između liga<br />
                             (možeš promeniti igru kada god to poželiš)<br/>
-                            a ako želiš da igaš oba takmičenja, to ti niko ne može zabraniti ! :-)</h4>
+                            a ako želiš da igaš oba takmičenja, niko ti ne može zabraniti ! :-)</h4>
                     </div>
                 }
             </section>

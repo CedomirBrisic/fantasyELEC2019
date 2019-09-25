@@ -131,10 +131,6 @@ class HallOfFameTotalPointsList extends React.Component {
             this.calculateAllUsers()
         }, 240);
         this.trivia()
-        this.interval = setInterval(
-            () => this.trivia(),
-            7900
-        );
     }
 
     componentDidUpdate(prevProps) {
@@ -188,21 +184,21 @@ class HallOfFameTotalPointsList extends React.Component {
                         <div className="d-flex flex-column align-items-center">
                             <div className="d-flex align-items-center">
                                 <h1>Calculating Sportske Fantasy points of {this.context.fantasyUsers.length} Users for {this.context.hallOfFameSelectedDay}</h1>
-                                <div class="spinner-grow text-light" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <div className="spinner-grow text-light" role="status">
+                                    <span className="sr-only">Loading...</span>
                                 </div>
-                                <div class="spinner-grow text-light" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <div className="spinner-grow text-light" role="status">
+                                    <span className="sr-only">Loading...</span>
                                 </div>
-                                <div class="spinner-grow text-light" role="status">
-                                    <span class="sr-only">Loading...</span>
+                                <div className="spinner-grow text-light" role="status">
+                                    <span className="sr-only">Loading...</span>
                                 </div>
                             </div>
                             <div className="club-logos-container calc-logos">
                             </div>
                             <div className="d-flex justify-content-between w-100">
                                 <div className="credits-container d-flex flex-column">
-                                    <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank"><b>Fair Use</b> of teams' logos.</a>
+                                    <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank" rel="noopener noreferrer"><b>Fair Use</b> of teams' logos.</a>
                                     <i>We thank to Pixabay for letting us borrow some of theirs images</i>
                                     <i>SPECIAL THANKS TO:</i>
                                     <i className="credits">David Mark from Pixabay</i>
@@ -219,10 +215,10 @@ class HallOfFameTotalPointsList extends React.Component {
                                     </div>
                                     <div className="powered-by-wrapper d-flex justify-content-between">
                                         <div className="sportske d-flex justify-content-between align-items-end">
-                                            <i>Made by</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank"><img src={require("../../images/logo-sportske.png")} alt="Belgrade Institute of Technology" /></a>
+                                            <i>Made by</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer"><img src={require("../../images/logo-sportske.png")} alt="Belgrade Institute of Technology" /></a>
                                         </div>
                                         <div className="bit d-flex justify-content-between align-items-end">
-                                            <i>Powered by</i> <a href="https://www.bgit.rs/en/" target="_blank"><img src={require("../../images/logo-bit.png")} alt="Belgrade Institute of Technology" /></a>
+                                            <i>Powered by</i> <a href="https://www.bgit.rs/en/" target="_blank" rel="noopener noreferrer"><img src={require("../../images/logo-bit.png")} alt="Belgrade Institute of Technology" /></a>
                                         </div>
                                     </div>
                                 </div>

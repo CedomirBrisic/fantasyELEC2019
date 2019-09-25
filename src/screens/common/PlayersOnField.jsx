@@ -277,6 +277,7 @@ class PlayersOnField extends React.Component {
                 <div className="show-players-on-field-container d-flex flex-column justify-content-between">
                     <div className="screen-title d-flex justify-content-between align-items-center">
                         <div>{this.context.bitrulez}'s Team for {this.context.selectedDay}</div>
+                        <div className="text-success">You are playing <b>{this.context.selectedLeague}</b> edition</div>
                         <div>Round points total: <span className="round-points">{isNaN(this.context.teamPickDayTotal) ? "0.00" : this.context.teamPickDayTotal}</span></div>
                         <div className="clockify-wrapper d-flex justify-content-between">
                             <span>

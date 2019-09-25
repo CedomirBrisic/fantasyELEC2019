@@ -6,6 +6,11 @@
     background-color: #ffffff;
     .back-button{
         font-size: 1.2vw;
+        padding: 0 2vw;
+        transition: transform 0.2s;
+        &:hover{
+            transform: scale(1.1);
+        }
     }
 
     .username-wrapper {

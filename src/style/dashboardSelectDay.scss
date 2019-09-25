@@ -6,54 +6,67 @@
     padding: 0;
     width: 0;
     overflow: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
     animation: hideSelectedDay 0.2s ease-in-out forwards;
+
     @media (max-width: 996px) {
         margin-top: -5vh;
         height: 82vh;
     }
-    
+
     @-webkit-keyframes hideSelectedDay {
         0% {
             width: 16vw;
             padding: 1vw;
         }
-    
+
         100% {
             width: 0;
             padding: 0;
         }
     }
-    
+
     @keyframes hideSelectedDay {
         0% {
             width: 16vw;
             padding: 1vw;
         }
-    
+
         100% {
             width: 0;
             padding: 0;
         }
     }
 
+    .stick-it {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        background-color: rgba(255, 255, 255, 1);
+        width: 100%;
+        padding: 1vw 0;
+        color: #000000;
+    }
+
     p {
         font-size: 1vw;
         text-align: center;
+
         @media (max-width: 996px) {
             font-size: 1.5vw;
             margin-top: 1vh;
             margin-bottom: 1vh;
         }
-        
+
     }
 
     .dashboard-select-day-list-wrapper {
         height: 95%;
         width: 100%;
+
         @media (max-width: 996px) {
             height: 100%;
-            overflow-y: scroll;
-            scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
@@ -62,20 +75,27 @@
             padding: 0.5vh 0;
             width: 100%;
             transition: transform 0.2s;
+
             @media (max-width: 996px) {
                 font-size: 1.5vw;
                 padding: 1.2vw;
             }
-            &:hover{
+
+            &:hover {
                 transform: scale(1.1);
+
                 @media (max-width: 996px) {
                     transform: scale(1);
                 }
             }
+            i{
+                font-weight: 300;
+                font-size: 0.79vw;
+            }
         }
 
         .is-selected {
-            background: #ffffff;
+            background: rgba(255,255,255,0.79);
             color: black;
             transform: scale(1.05);
         }

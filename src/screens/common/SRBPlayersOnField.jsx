@@ -277,7 +277,8 @@ class SRBPlayersOnField extends React.Component {
             <>
                 <div className="show-players-on-field-container d-flex flex-column justify-content-between">
                     <div className="screen-title d-flex justify-content-between align-items-center">
-                        <div>{this.context.bitrulez} ekipa za {serbischeDatum(this.context.selectedDay)}</div>
+                        <div>{this.context.bitrulez} ekipa za RUNDU - {this.context.selectedDay.split("-")[1]}</div>
+                        <div className="text-success">Trenutno igraš <b>{this.context.selectedLeague}</b> izdanje</div>
                         <div>Sportske Fantazi poena: <span className="round-points">{isNaN(this.context.teamPickDayTotal) ? "0.00" : this.context.teamPickDayTotal}</span></div>
                         <div className="clockify-wrapper d-flex justify-content-between">
                             <span>
