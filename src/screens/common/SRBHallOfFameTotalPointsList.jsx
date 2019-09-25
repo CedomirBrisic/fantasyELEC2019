@@ -131,7 +131,12 @@ class SRBHallOfFameTotalPointsList extends React.Component {
         this.props.clearSearchValue()
         setTimeout(() => {
             this.calculateAllUsers()
-        }, 100);
+        }, 240);
+        this.trivia()
+        this.interval = setInterval(
+            () => this.trivia(),
+            7900
+        );
     }
     componentDidUpdate(prevProps) {
         if (prevProps.selectedDay !== this.props.selectedDay) {
@@ -143,138 +148,84 @@ class SRBHallOfFameTotalPointsList extends React.Component {
             }, 100);
         }
     }
+    trivia() {
+        const triviaContainer = [
+            "Prvi “koševi” su zapravo bile korpe za breskve dok su prve table bile napravljene od žice",
+            "Košarka je postala zvanična kao Olimpijski sport na letnjim Olimpijskim igrama u Berlinu u Nemčkoj 1936 godine",
+            "Kareem Abdul-Jabbar, koji je odigrao 20 sezona u NBA, drži rekord sa najviše postignutih poena u karijeri - 38,387.",
+            "2. Marta 1962 godine, Filadelfijin centar Wilt Chamberlain postigao je 100 poena na jednoj utakmici i ujedno je to rekord za jednog igrača. Bilo je to protiv New York-a.",
+            "Nejsmitova kuća slavnih se nalazi u Springfildu- Masačusets, a Sportske Fantasy kuća slavnih je u gornjem desnom uglu ;-)",
+            "Košarka se do 1929. godine igrala loptom za fudbal",
+            "U periodu od 1967 do 1976 godine, u NCAA ligi zakucavanje je bilo zabranjeno",
+            "Nejsmitovo originalno pravilo #1 - Lopta se može baciti u bilo kom pravcu koristeći jednu ili obe šake.",
+            "Nejsmitovo originalno pravilo #2 - Lopta se može tapkati u bilo kom pravcu koristeći jednu ili obe šake.",
+            "Nejsmitovo originalno pravilo #3 - Igrač ne može trčati sa loptom u naručju, igrač je mora baciti sa mesta na kojem ju je uhvatio, izuzetak se može napraviti za igrača koji je u trenutku hvatanja lopte trčao značajnom brzinom.",
+            "Nejsmitovo originalno pravilo #4 - Lopta se mora držati jednom ili sa obe šake, ruke ili telo se ne smeju koristiti prilikom držanja.",
+            "Nejsmitovo originalno pravilo #5 - Hvatanje za ramena, držanje, guranje, saplitanje ili udaranje protivničkog igrača, u bilo kom smislu nije dopušteno. Prvi prekršaj ovog pravila od strane bilo kog igrača će se karakterisati kao faul, drugi prekršaj će ga diskvalifikovati dok se ne postigne sledeći pogodak, ili ako je očigledna namera da se povredi protivnički igrač, za celu utakmicu, bez prava na izmenu.",
+            "Nejsmitovo originalno pravilo #6 - Prekršaj je udaranje lopte pesnicom, kršenje pravila #3 i #4, i kao što je opisano u pravilu #5.",
+            "Nejsmitovo originalno pravilo #7 - Ako bilo koja strana napravi 3 uzastopna prekršaja računaće se kao pogodak za protivničku ekipu.",
+            "Nejsmitovo originalno pravilo #8 - Pogodak se računa ukoliko je lopta bačena ili udarena sa zemlje u korpu gde je i ostala. Ukoliko se lopta zadrži na ivici korpe i protivnički igrač pomeri korpu takođe se računa kao pogodak.",
+            "Nejsmitovo originalno pravilo #9 - Kada lopta izađe van granice terena biće bačena nazad u teren i iskorišćena od strane prvog igrača koji je dodirne. U slučaju rasprave, posrednik će je baciti pravo u teren. Onaj koji je ubacuje nazad u teren ima 5 sekundi za to. Ukoliko je zadrži duže od toga lopta će pripasti drugoj ekipi. Ukoliko bilo koja strana bude uporna u zadržavanju igre, posrednik će svirati prekršaj.",
+            "Nejsmitovo originalno pravilo #10 - Posrednik će biti sudija igračima i beležiće prekršaje, i obaveštavati arbitra kada su počinjena 3 uzastopna prekršaja.",
+            "Nejsmitovo originalno pravilo #11 - Arbitar će biti sudija zadužen za loptu i odlučivaće kada je lopta u igri, i kojoj strani pripada, i meriće vreme. On će odlučivati kada je postignut pogodak i vodiće računa o rezultatu kao što će i biti zadužen za sve ostale aktivnosti koje inače obavlja arbitar.",
+            "Nejsmitovo originalno pravilo #12 - Vreme će biti 15-minutne polovine, sa 5-minutnom pauzom za odmor između.",
+            "Nejsmitovo originalno pravilo #13 - Strana koja postigne najviše pogodaka se proglašava pobednikom. U slučaju nerešenog rezultata, igra se može, dogovorom kapitena, nastaviti dok se ne postigne sledeći pogodak.", "The first basketball game took place in 1892, where the court was half the size of today's courts. The game was played for 30 minutes, and only one point was scored in the match.",
+            "Razlog za uvođenje table iza obruča je taj što se publika na balkonu mešala (posredovala) u igru dodirivajući loptu.",
+            "Prvi koševi su bili korpe i svaki put kada bi bio postignut pogodak, arbitar bi se penjao na merdevine kako bi dohvatio loptu."
+        ]
+        const index = Math.floor(Math.random() * Math.floor(23));
+        const trivia = triviaContainer[index]
+        this.setState({
+            trivia
+        });
+    }
     render() {
         return (
             <>
                 {this.state.isCalculating &&
-                    <div className="loader-container-calculating d-flex justify-content-center align-items-center">
+                    <div className="loader-container-calculating d-flex justify-content-center align-items-start">
                         <div className="d-flex flex-column align-items-center">
-                            <h1>Računanje Sportske Fantazi poena {this.context.fantasyUsers.length} korisnika za {serbischeDatum(this.context.hallOfFameSelectedDay)}</h1>
-                            <div className="crveno d-flex">
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
+                            <div className="d-flex align-items-center">
+                                <h1>Računanje Sportske Fantazi poena {this.context.fantasyUsers.length} korisnika za {serbischeDatum(this.context.hallOfFameSelectedDay)}</h1>
+                                <div class="spinner-grow text-light" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div class="spinner-grow text-light" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-danger" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div class="spinner-grow text-light" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
                             </div>
-                            <div className="d-flex">
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-primary" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
+                            <div className="club-logos-container calc-logos">
+
                             </div>
-                            <div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
+                            <div className="d-flex justify-content-between w-100">
+                                <div className="credits-container w-100 d-flex flex-column">
+                                    <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank"><b>Fair Use</b> of teams' logos.</a>
+                                    <i>Zahvaljujemo se PIXABAY-u što nam je omogućio da pozajmimo neke od njihovih slika</i>
+                                    <i>POSEBNO SE ZAHVALJUJEMO:</i>
+                                    <i className="credits">David Mark iz Pixabay-a</i>
+                                    <i className="credits">Dimitris Vetsikas iz Pixabay-a</i>
+                                    <i className="credits">Pexels iz Pixabay-a</i>
+                                    <i className="credits">Clker-Free-Vector-Images iz Pixabay-a</i>
+                                    <i className="credits">mohamed Hassan iz Pixabay-a</i>
+                                    <i className="credits">BedexpStock iz Pixabay-a</i>
+                                    <i className="credits">OpenClipart-Vectors iz Pixabay-a </i>
                                 </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
+                                <div className="right-container d-flex flex-column justify-content-between">
+                                    <div className="trivia">
+                                        {this.state.trivia}
+                                    </div>
+                                    <div className="powered-by-wrapper d-flex justify-content-between">
+                                        <div className="sportske d-flex justify-content-between align-items-end">
+                                            <i>Napravili</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank"><img src={require("../../images/logo-sportske.png")} alt="Belgrade Institute of Technology" /></a>
+                                        </div>
+                                        <div className="bit d-flex justify-content-between align-items-end">
+                                            <i>Pokreće ga</i> <a href="https://www.bgit.rs/en/" target="_blank"><img src={require("../../images/logo-bit.png")} alt="Belgrade Institute of Technology" /></a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                            </div>
-                            <div className="made-in"><i>Iskliktano u zemlji košarke</i></div>
-                            <div className="credits-container w-100 d-flex flex-column">
-                                <i>Zahvaljujemo se PIXABAY-u što nam je omogućio da pozajmimo neke od njihovih slika</i>
-                                <i>POSEBNO SE ZAHVALJUJEMO:</i>
-                                <i className="credits">David Mark iz Pixabay-a</i>
-                                <i className="credits">Dimitris Vetsikas iz Pixabay-a</i>
-                                <i className="credits">Pexels iz Pixabay-a</i>
-                                <i className="credits">Clker-Free-Vector-Images iz Pixabay-a</i>
-                                <i className="credits">mohamed Hassan iz Pixabay-a</i>
-                                <i className="credits">BedexpStock iz Pixabay-a</i>
-                                <i className="credits">OpenClipart-Vectors iz Pixabay-a </i>
                             </div>
                         </div>
                     </div>
@@ -283,10 +234,10 @@ class SRBHallOfFameTotalPointsList extends React.Component {
                     this.props.searchValue === "" &&
                     <div className="hall-of-fame-total-points-list-container">
                         <div className="hall-of-fame-total-points-list-wrapper d-flex flex-column align-items-center">
-                            {this.context.hallOfFameSelectedDay !== "all-days" &&
+                            {/* {this.context.hallOfFameSelectedDay !== "all-days" &&
                                 this.state.fantasyUsersSorted[0].summaSummarum != 0 &&
                                 <div className="made-it-trough"><i>Korisnici koji su se probili<br />u bitci za TD poene</i></div>
-                            }
+                            } */}
                             <div className="first-place-wrapper d-flex align-items-center" data-fantasy-user-sorted-index={0} onClick={this.depositUserDataForModal}>
                                 <div className="user-order-no" data-fantasy-user-sorted-index={0}>
                                     1.

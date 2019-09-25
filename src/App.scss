@@ -114,6 +114,9 @@ a:hover {
         }
 
         .powered-by-wrapper {
+            position: fixed;
+            right: 1vw;
+            bottom: 2.4vh;
             width: 36vw;
             margin-left: auto;
             .sportske {
@@ -154,23 +157,50 @@ a:hover {
 .loader-container-calculating {
     position: fixed;
     width: 100vw;
-    height: 93vh;
+    height: 100vh;
     left: 0;
     z-index: 1;
     background-color: #000000;
 
     h1 {
-        margin-bottom: 3vw;
-        font-size: 2.4vw;
+        margin-bottom: 0.5vw;
+        margin-top: 0.5vw;
+        font-size: 2vw;
         color: #ffffff;
+
+        i {
+            font-size: 1.5vw;
+            font-weight: 300;
+        }
     }
 
-    .spinner-border {
-        width: 4vw;
-        height: 5vw;
+    .spinner-grow {
+        width: 1vw;
+        height: 1vw;
+        margin-left: 1vw;
+    }
+
+    .club-logos-container {
+        width: 96vw;
+        height: 55vh;
+        border-radius: 4vw;
+        background-color: rgba(255, 255, 255, 0.79);
+
+        img {
+            max-width: 5vw;
+            max-height: 10vh;
+            transition: transform 0.2s;
+
+            &:hover {
+                transform: scale(1.1)
+            }
+        }
+
+
     }
 
     .credits-container {
+        width: 46%;
         font-size: 0.9vw;
         font-weight: 300;
         color: rgba(255, 255, 255, 0.79);
@@ -178,6 +208,58 @@ a:hover {
 
         .credits {
             margin-left: 9vw;
+        }
+
+        a {
+            color: #ffffff;
+            margin-bottom: 2vh;
+
+            b {
+                font-weight: 800;
+            }
+        }
+    }
+    .right-container {
+        width: 50vw;
+        margin-top: 1vw;
+
+        .trivia {
+            font-weight: 300;
+            font-size: 1.2vw;
+            color: rgba(255, 255, 255, 0.79);
+            text-shadow: 0px 0px 1vw rgba(255, 255, 255, 1);
+            text-align: center;
+        }
+
+        .powered-by-wrapper {
+            position: fixed;
+            right: 1vw;
+            bottom: 2.4vh;
+            width: 36vw;
+            margin-left: auto;
+            .sportske {
+                width: 32%;
+                i{
+                    font-size: 0.79vw;
+                    color: #ffffff;
+                }
+                img{
+                    width: 7.9vw;
+                }
+
+            }
+
+            .bit {
+                width: 36%;
+                i{
+                    font-size: 0.79vw;
+                    color: #ffffff;
+                }
+                img{
+                    width: 7.9vw;
+                }
+
+            }
         }
     }
 
@@ -292,4 +374,9 @@ a:hover {
     button {
         font-size: 1vw;
     }
+}
+
+.calc-logos{
+    background-image: url("./images//calcScreen.png");
+    background-size: cover;
 }
