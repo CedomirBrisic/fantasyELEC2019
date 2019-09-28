@@ -25,7 +25,7 @@ class SelectPlayer extends React.Component {
         const selectedTeam = this.context.teamSelected
         const selectedDay = this.context.selectedDay
         const players = this.context.basketballPlayers
-        const eligibleTeams = this.context.dropdowns[0].teamsByDay
+        const eligibleTeams = this.context.teamsByDay
         const outputPlayers = []
 
         //DON'T SHOW ALREADY SELECTED PLAYERS//

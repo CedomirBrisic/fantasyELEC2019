@@ -46,6 +46,10 @@
             height: 12vw;
             width: 8vw;
 
+            .scale-it {
+                transform: scale(1.4);
+                margin-bottom: 2.4vw;
+            }
 
 
             .not-selected-player {
@@ -160,7 +164,8 @@
             width: 12vw;
             padding: 0.5vw 0.2vw 0.2vw 0.5vw;
             position: relative;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
                 -webkit-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
                 -moz-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
@@ -172,7 +177,8 @@
                 font-size: 0.79vw;
                 bottom: -2.24vw;
                 z-index: 1;
-                @media (max-width:996px){
+
+                @media (max-width:996px) {
                     bottom: -3.6vw;
                     color: #ffffff;
                 }
@@ -218,7 +224,8 @@
             border-radius: 1vw;
             width: 10vw;
             padding: 0.5vw 0.2vw 0.2vw 0.5vw;
-            &:hover{
+
+            &:hover {
                 cursor: pointer;
                 -webkit-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
                 -moz-box-shadow: 0px 0px 2vw 0px rgba(255, 255, 255, 1);
@@ -230,7 +237,8 @@
                 font-size: 0.79vw;
                 top: -2vw;
                 z-index: 1;
-                @media (max-width:996px){
+
+                @media (max-width:996px) {
                     top: -2.5vw;
                     color: #ffffff;
                 }
@@ -276,7 +284,8 @@
         background-color: rgba(0, 0, 0, 0.79);
         margin-top: 0.5vw;
         width: 100%;
-        @media (max-width:996px){
+
+        @media (max-width:996px) {
             font-size: 1vw;
         }
 
@@ -301,8 +310,9 @@
         .points-not-good {
             color: rgba(255, 0, 0, 0.79);
         }
-        .darker{
-            background-color: rgba(0,0,0,0.96);
+
+        .darker {
+            background-color: rgba(0, 0, 0, 0.96);
         }
     }
 }

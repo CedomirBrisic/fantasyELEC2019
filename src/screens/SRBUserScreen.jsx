@@ -368,7 +368,9 @@ class SRBUserScreen extends React.Component {
                                 {/* vs */}
                                 {this.context.showSelectPlayer && <SRBSelectPlayer />}
                             </div>
-                            <SRBDashboardSelectTeam />
+                            {/* {this.context.teamsByDay !== null &&
+                            <DashboardSelectTeam />
+                            } */}
                         </div>
                         <div className="user-screen-dashboard-select-day-wrapper">
                             {!this.context.showSelectPlayer && <div className="select-round-button" onClick={this.toggleShowSelectDayDashboard}>{this.context.showSelectDayDashboard ? "sakrij Selektor rundi" : "prikaži Selektor rundi"}</div>}

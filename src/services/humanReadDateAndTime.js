@@ -5,7 +5,7 @@ const humanReadDateAndTime = () => {
     const mm = months[date.getUTCMonth()];
     const hh = date.getUTCHours();
     const min = date.getUTCMinutes()
-    const sec = date.getUTCSeconds()
+    // const sec = date.getUTCSeconds()
 
 
     const ddth = (function () {
@@ -20,14 +20,14 @@ const humanReadDateAndTime = () => {
         }
     })();
 
-    const sec00 = (function () {
-        const secStringify = sec.toString()
-        if (secStringify.length == 1) {
-            return "0"+secStringify
-        } else {
-            return secStringify
-        }
-    })();
+    // const sec00 = (function () {
+    //     const secStringify = sec.toString()
+    //     if (secStringify.length == 1) {
+    //         return "0"+secStringify
+    //     } else {
+    //         return secStringify
+    //     }
+    // })();
 
     const min00 = (function () {
         const minStringify = min.toString()
@@ -40,12 +40,12 @@ const humanReadDateAndTime = () => {
 
 
     const outputDate = `${dd}${ddth}-${mm}`
-    const outputTime = `${hh}:${min00}:${sec00}`
+    const outputTime = `${hh}:${min00}`
     const humanDateAndTime = {
-        humanDate: outputDate,
-        humanTime: outputTime
-        // humanDate: "18th-October",
+        // humanDate: outputDate,
         // humanTime: outputTime
+        humanDate: "8th-October",
+        humanTime: outputTime
     }
     return humanDateAndTime
 }

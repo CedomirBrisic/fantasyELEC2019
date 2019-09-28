@@ -1,5 +1,5 @@
 const getFantasyData = (qwe) => {
-    return fetch(`https://webhooks.mongodb-stitch.com/api/client/v2.0/app/basketball-fantasy-gpizn/service/http/incoming_webhook/GETfantasyData?secret=${qwe}`, {
+    return fetch(`https://webhooks.mongodb-stitch.com/api/client/v2.0/app/sportske-fantasy-elec2019-vvrgz/service/http/incoming_webhook/GETfantasyData?secret=${qwe}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

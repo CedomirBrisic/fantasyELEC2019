@@ -299,8 +299,8 @@ class PlayersOnField extends React.Component {
                             {this.context.teamPickData.Player1Id === null &&
                                 <div className="first-five-player-wrapper" data-player-position="Player 1" onClick={this.choosePlayer}>
                                     <div className="not-selected-player" data-player-position="Player 1">
-                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-1.png")} alt="player 1" data-player-position="Player 1" />
-                                        <div className="pick-player-title" data-player-position="Player 1">Pick player 1</div>
+                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-4.png")} alt="player 1" data-player-position="Player 1" />
+                                        <div className="pick-player-title" data-player-position="Player 1">Pick Forward</div>
                                     </div>
                                 </div>
                             }
@@ -312,8 +312,8 @@ class PlayersOnField extends React.Component {
                             {this.context.teamPickData.Player2Id === null &&
                                 <div className="first-five-player-wrapper" data-player-position="Player 2" onClick={this.choosePlayer}>
                                     <div className="not-selected-player" data-player-position="Player 2">
-                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-2.png")} alt="player 1" data-player-position="Player 2" />
-                                        <div className="pick-player-title" data-player-position="Player 2">Pick player 2</div>
+                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-1.png")} alt="player 1" data-player-position="Player 2" />
+                                        <div className="pick-player-title" data-player-position="Player 2">Pick Center</div>
                                     </div>
                                 </div>}
                             {this.context.teamPickData.Player2Id !== null &&
@@ -325,8 +325,8 @@ class PlayersOnField extends React.Component {
                             {this.context.teamPickData.Player3Id === null &&
                                 <div className="first-five-player-wrapper" data-player-position="Player 3" onClick={this.choosePlayer}>
                                     <div className="not-selected-player" data-player-position="Player 3">
-                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-3.png")} alt="player 1" data-player-position="Player 3" />
-                                        <div className="pick-player-title" data-player-position="Player 3">Pick player 3</div>
+                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-5.png")} alt="player 1" data-player-position="Player 3" />
+                                        <div className="pick-player-title" data-player-position="Player 3">Pick Forward</div>
                                     </div>
                                 </div>}
                             {this.context.teamPickData.Player3Id !== null &&
@@ -339,8 +339,8 @@ class PlayersOnField extends React.Component {
                             {this.context.teamPickData.Player4Id === null &&
                                 <div className="first-five-player-wrapper" data-player-position="Player 4" onClick={this.choosePlayer}>
                                     <div className="not-selected-player" data-player-position="Player 4">
-                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-4.png")} alt="player 1" data-player-position="Player 4" />
-                                        <div className="pick-player-title" data-player-position="Player 4">Pick player 4</div>
+                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-2.png")} alt="player 1" data-player-position="Player 4" />
+                                        <div className="pick-player-title" data-player-position="Player 4">Pick Guard</div>
                                     </div>
                                 </div>}
                             {this.context.teamPickData.Player4Id !== null &&
@@ -351,8 +351,8 @@ class PlayersOnField extends React.Component {
                             {this.context.teamPickData.Player5Id === null &&
                                 <div className="first-five-player-wrapper" data-player-position="Player 5" onClick={this.choosePlayer}>
                                     <div className="not-selected-player" data-player-position="Player 5">
-                                        <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-5.png")} alt="player 1" data-player-position="Player 5" />
-                                        <div className="pick-player-title" data-player-position="Player 5">Pick player 5</div>
+                                        <img className="img-fluid scale-it" src={require("../../images/basketballPlayers/basketball-player-3.png")} alt="player 1" data-player-position="Player 5" />
+                                        <div className="pick-player-title" data-player-position="Player 5">Pick Guard</div>
                                     </div>
                                 </div>}
                             {this.context.teamPickData.Player5Id !== null &&
@@ -366,7 +366,7 @@ class PlayersOnField extends React.Component {
                                     <div className="bench-player-wrapper" data-player-position="Player 6" onClick={this.choosePlayer}>
                                         <div className="not-selected-player-b-1" data-player-position="Player 6">
                                             <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-6.png")} alt="player 1" data-player-position="Player 6" />
-                                            <div className="pick-player-title" data-player-position="Player 6">Pick player 6</div>
+                                            <div className="pick-player-title" data-player-position="Player 6">Pick All-Around</div>
                                         </div>
                                     </div>}
                                 {this.context.teamPickData.Player6Id !== null &&
@@ -378,7 +378,7 @@ class PlayersOnField extends React.Component {
                                     <div className="bench-player-wrapper" data-player-position="Player 7" onClick={this.choosePlayer}>
                                         <div className="not-selected-player-b-2" data-player-position="Player 7">
                                             <img className="img-fluid" src={require("../../images/basketballPlayers/basketball-player-7.png")} alt="player 1" data-player-position="Player 7" />
-                                            <div className="pick-player-title" data-player-position="Player 7">Pick player 7</div>
+                                            <div className="pick-player-title" data-player-position="Player 7">Pick All-Around</div>
                                         </div>
                                     </div>}
                                 {this.context.teamPickData.Player7Id !== null &&

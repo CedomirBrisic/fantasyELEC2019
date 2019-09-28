@@ -9,9 +9,19 @@ import calculateNowRound from "./services/calculateNowRound";
 export default class AppStore extends Component {
     state = {
         selectedLeague: "",
-        // basketballPlayers: null,
-        // dropdowns: null,
-        // fantasyUsers: null,
+        basketballPlayers: null,
+        teamsByDay: null,
+        fantasyUsers: null,
+        euroLeagueData: {
+            basketballPlayers: null,
+            fantasyUsers: null,
+            teamsByDay: null
+        },
+        euroCupData: {
+            basketballPlayers: null,
+            fantasyUsers: null,
+            teamsByDay: null
+        },
         bitrulez: null,
         bitrulez2: null,
 
@@ -167,11 +177,18 @@ export default class AppStore extends Component {
     }
 
     getFantasyDataContext = () => {
-        getFantasyData("neKaRendOMSiFRaOdbAsaliBasbAsDostaKARAkterA123").then((response) => {
+        getFantasyData("neKaRendOMSiFRaOdbAsaliBasbAsDostaKARAkterA123plusMarsicNemaPojma").then((response) => {
             this.setState({
-                dropdowns: response.dropdowns,
-                basketballPlayers: response.basketballPlayers,
-                fantasyUsers: response.fantasyUsers,
+                euroLeagueData: {
+                    basketballPlayers: response.basketballPlayersEL,
+                    fantasyUsers: response.fantasyUsersEL,
+                    teamsByDay: response.teamsByRoundEL
+                },
+                euroCupData: {
+                    basketballPlayers: response.basketballPlayersEC,
+                    fantasyUsers: response.fantasyUsersEC,
+                    teamsByDay: response.teamsByRoundEC
+                },
                 isInitialLoading: false,
             })
             this.checkPlayersOnField()
@@ -254,7 +271,7 @@ export default class AppStore extends Component {
         let data3 = sessionStorage.getItem("bitrulez3")
 
         const nowDate = humanReadDateAndTime().humanDate
-        const nowRound = calculateNowRound(nowDate,data3)
+        const nowRound = calculateNowRound(nowDate, data3)
 
         this.setState({
             bitrulez: data,
@@ -268,7 +285,7 @@ export default class AppStore extends Component {
 
         this.interval = setInterval(
             () => this.clocify(),
-            1000
+            12000
         );
     }
 
@@ -279,33 +296,63 @@ export default class AppStore extends Component {
     }
 
     checkPlayersOnField = () => {
-        // const calculatedPickData = checkEligibilityForPickTeam(this.state.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.dropdowns[0].teamsByDay, this.state.basketballPlayers)
-        // this.setState({
-        //     teamPickData: calculatedPickData.teamPickData,
-        //     teamPickLockData: calculatedPickData.teamPickLockData,
-        //     teamPickDayTotal: calculatedPickData.totalSummaSummarum,
-        //     calculatedFirstFiveRealLifeStatsTotals: calculatedPickData.calculatedFirstFiveRealLifeStatsTotals,
-        //     calculatedFirstFiveFantasyPointsStatsTotals: calculatedPickData.calculatedFirstFiveFantasyPointsStatsTotals,
-        // })
+        if (this.state.selectedLeague == "euroLeague") {
+            const calculatedPickData = checkEligibilityForPickTeam(this.state.euroLeagueData.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.euroLeagueData.teamsByDay, this.state.euroLeagueData.basketballPlayers)
+            this.setState({
+                teamPickData: calculatedPickData.teamPickData,
+                teamPickLockData: calculatedPickData.teamPickLockData,
+                teamPickDayTotal: calculatedPickData.totalSummaSummarum,
+                calculatedFirstFiveRealLifeStatsTotals: calculatedPickData.calculatedFirstFiveRealLifeStatsTotals,
+                calculatedFirstFiveFantasyPointsStatsTotals: calculatedPickData.calculatedFirstFiveFantasyPointsStatsTotals,
+            })
+        } else if (this.state.selectedLeague == "euroCup") {
+            const calculatedPickData = checkEligibilityForPickTeam(this.state.euroCupData.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.euroCupData.teamsByDay, this.state.euroCupData.basketballPlayers)
+            this.setState({
+                teamPickData: calculatedPickData.teamPickData,
+                teamPickLockData: calculatedPickData.teamPickLockData,
+                teamPickDayTotal: calculatedPickData.totalSummaSummarum,
+                calculatedFirstFiveRealLifeStatsTotals: calculatedPickData.calculatedFirstFiveRealLifeStatsTotals,
+                calculatedFirstFiveFantasyPointsStatsTotals: calculatedPickData.calculatedFirstFiveFantasyPointsStatsTotals,
+            })
+        }
+
+    }
+    changeGameData = () => {
+        if (this.state.selectedLeague == "euroLeague") {
+            this.setState({
+                basketballPlayers: this.state.euroLeagueData.basketballPlayers,
+                teamsByDay: this.state.euroLeagueData.teamsByDay,
+                fantasyUsers: this.state.euroLeagueData.fantasyUsers,
+            })
+        } else if (this.state.selectedLeague == "euroCup") {
+            this.setState({
+                basketballPlayers: this.state.euroCupData.basketballPlayers,
+                teamsByDay: this.state.euroCupData.teamsByDay,
+                fantasyUsers: this.state.euroCupData.fantasyUsers,
+            })
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.selectedDay !== this.state.selectedDay && this.state.showTeam && !this.state.isInitialLoading) {
             this.checkPlayersOnField()
         }
-
-        if (prevState.dropdowns === null && this.state.dropdowns !== null) {
-            this.calculateUsersRoundPoints()
-        }
+        // if (prevState.dropdowns === null && this.state.dropdowns !== null) {
+        //     this.calculateUsersRoundPoints()
+        // }
         this.checkLandscape()
 
-        if (prevState.selectedLeague !== this.state.selectedLeague){
+        if (prevState.selectedLeague !== this.state.selectedLeague) {
             let data3 = this.state.selectedLeague
             const nowDate = humanReadDateAndTime().humanDate
-            const nowRound = calculateNowRound(nowDate,data3)
+            const nowRound = calculateNowRound(nowDate, data3)
             this.setState({
                 selectedDay: nowRound
             })
+            this.changeGameData()
+        }
+        if(prevState.isInitialLoading && !this.state.isInitialLoading){
+            this.changeGameData()
         }
     }
     checkLandscape = () => {
@@ -331,7 +378,6 @@ export default class AppStore extends Component {
     }
 
     render() {
-console.log("CONTEXT", this.state.selectedDay)
         return (
             <>
                 {this.state.isLandscape &&

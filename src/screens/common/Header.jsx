@@ -26,10 +26,10 @@ class Header extends React.Component {
                 {/* <div className="d-flex">
                     <TotalPointsByDay />
                 </div> */}
-                {this.context.selectedLeague == "euroLeague" &&
-                    <button type="button" className="btn btn-danger back-button" data-league="euroCup" onClick={this.selectLeague}>Switch to EuroCup edition</button>}
-                {this.context.selectedLeague == "euroCup" &&
-                    <button type="button" className="btn btn-danger back-button" data-league="euroLeague" onClick={this.selectLeague}>Switch to EuroLeague edition</button>}
+                        {this.context.selectedLeague == "euroLeague" && !this.context.showSelectPlayer &&
+                            <button type="button" className="btn btn-danger back-button" data-league="euroCup" onClick={this.selectLeague}>Switch to EuroCup edition</button>}
+                        {this.context.selectedLeague == "euroCup" && !this.context.showSelectPlayer &&
+                            <button type="button" className="btn btn-danger back-button" data-league="euroLeague" onClick={this.selectLeague}>Switch to EuroLeague edition</button>}
                 <Link className="hall-of-fame-wrapper" to={`hall-of-fame`}>
                     Hall of Fame
                 </Link>
