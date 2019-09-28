@@ -26,9 +26,9 @@ class SRBHeader extends React.Component {
                 {/* <div className="d-flex">
                     <SRBTotalPointsByDay />
                 </div> */}
-                  {this.context.selectedLeague == "euroLeague" &&
+                  {this.context.selectedLeague == "euroLeague" && !this.context.showSelectPlayer &&
                     <button type="button" className="btn btn-danger back-button" data-league="euroCup" onClick={this.selectLeague}>Promeni na EuroCup izdanje</button>}
-                {this.context.selectedLeague == "euroCup" &&
+                {this.context.selectedLeague == "euroCup" && !this.context.showSelectPlayer &&
                     <button type="button" className="btn btn-danger back-button" data-league="euroLeague" onClick={this.selectLeague}>Promeni na EuroLeague izdanje</button>}
                 <Link className="hall-of-fame-wrapper" to={`hall-of-fame`}>
                     Kuća slavnih

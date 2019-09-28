@@ -1,6 +1,4 @@
-import eligibleDays from "./eligibleDays"
-
-const calculateBasketballPlayerTDFantasyGrandTotalPoints = (inputPlayerData) => {
+const calculateBasketballPlayerTDFantasyGrandTotalPoints = (inputPlayerData, eligibleDays) => {
 
     let calculatedGrandFantasyTotal = 0
 
