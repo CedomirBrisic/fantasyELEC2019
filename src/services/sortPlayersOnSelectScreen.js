@@ -1,5 +1,4 @@
 const sortPlayersOnSelectScreen = (playersForRender, sortFilterName, selectPlayerSearchValue) => {
-
     const playersFilterDataValuesForSorting = []
     const playersFilterDataValuesForNotSorting = []
 

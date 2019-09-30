@@ -1,6 +1,5 @@
 import React from 'react';
-import { AppContext } from '../../screens/_context/AppContext';
-import serbischeNazivTima from "../../services/serbischeNazivTima";
+import { AppContext } from '../..//screens/_context/AppContext';
 
 class SRBDashboardSelectTeam extends React.Component {
     static contextType = AppContext;

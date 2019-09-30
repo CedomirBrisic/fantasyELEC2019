@@ -28,7 +28,7 @@ class RoundPointsCalc extends React.Component {
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Block</p>
-                            <p>+2 pt</p>
+                            <p>+1 pt</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Steal</p>
@@ -39,12 +39,8 @@ class RoundPointsCalc extends React.Component {
                             <p>-1 pt</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
-                            <p>1 Recived Foul</p>
-                            <p>+1 pt</p>
-                        </div>
-                        <div className="d-flex justify-content-between rule-item">
                             <p>Game won</p>
-                            <p>+3 pt</p>
+                            <p>+4 pt</p>
                         </div>
                     </div>
                     <div className="right-container">

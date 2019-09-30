@@ -4,6 +4,7 @@ import { Portal } from 'react-portal';
 import eligibleDays from "../../services/eligibleDays";
 import PlayerCardModal from "../modals/PlayerCardModal"
 import sortPlayersOnSelectScreen from "../../services/sortPlayersOnSelectScreen";
+import calculateTeamHref from "../../services/calculateTeamHref";
 import calculateBasketballPlayerTDFantasyGrandTotalPoints from "../../services/calculateBasketballPlayerTDFantasyGrandTotalPoints";
 
 class SelectPlayer extends React.Component {
@@ -65,7 +66,6 @@ class SelectPlayer extends React.Component {
                     return round
                 }
             })
-            // console.log(roundData[0])
             const possibleMonths = ["October", "November", "December", "January", "February", "March", "April", "May", "June", "July", "August", "September"]
             const roundMonth = roundData[0].date.split(" ")[0]
             const nowMonth = nowDateAndTime.humanDate.split("-")[1]
@@ -121,11 +121,6 @@ class SelectPlayer extends React.Component {
                         outputElements.push(team)
                     })
                     roundData[0].day2.forEach((team) => {
-                        outputElements.forEach((team) => {
-                            if (team.isEligible) {
-                                eligibleTeams.push(team)
-                            }
-                        })
                         let isEligible = true
                         const teamHour = parseInt(team.gameStart.split(":")[0])
                         const teamMinutes = parseInt(team.gameStart.split(":")[1])
@@ -140,6 +135,11 @@ class SelectPlayer extends React.Component {
                         }
                         team["isEligible"] = isEligible
                         outputElements.push(team)
+                    })
+                    outputElements.forEach((team) => {
+                        if (team.isEligible) {
+                            eligibleTeams.push(team)
+                        }
                     })
                 }
             } else {
@@ -327,7 +327,8 @@ class SelectPlayer extends React.Component {
                     }
                 })
             })
-            return outputPlayers
+            const sortedOutputPlayers = sortPlayersOnSelectScreen(outputPlayers, this.state.sortFilterValue, this.context.selectPlayerSearchValue)
+            return sortedOutputPlayers
         } else {
 
             players.forEach((player, index) => {
@@ -437,7 +438,9 @@ class SelectPlayer extends React.Component {
                     }
                 }
             })
-            return outputPlayers
+
+            const sortedOutputPlayers = sortPlayersOnSelectScreen(outputPlayers, this.state.sortFilterValue, this.context.selectPlayerSearchValue)
+            return sortedOutputPlayers
         }
     }
 
@@ -452,12 +455,15 @@ class SelectPlayer extends React.Component {
         return (
             <>
                 <div className="d-flex justify-content-between align-items-center w-100 select-player-label-wrapper">
-                    {this.context.teamSelected &&
-                        this.context.teamSelected === "Serbia" &&
-                        <a href={`https://www.sportske.net/vesti/kosarka/reprezentacija-srbije.html?utm_source=sportskeFantasy&utm_medium=game&utm_campaign=worldCup2019`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">{`Pročitaj više o našima`}</button></a>
+                    {this.context.teamSelected === "all-eligible-teams" && this.context.selectedLeague == "euroLeague" &&
+                        <a href={`https://www.euroleague.net?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">Find out more about EuroLeague</button></a>
                     }
-                    {this.context.teamSelected === "all-eligible-teams" &&
-                        <a href={`http://www.fiba.basketball/basketballworldcup/2019`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">Find out more about World Cup</button></a>
+                    {this.context.teamSelected === "all-eligible-teams" && this.context.selectedLeague == "euroCup" &&
+                        <a href={`https://www.eurocupbasketball.com/eurocup?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">Find out more about EuroCup</button></a>
+                    }
+
+                    {this.context.teamSelected !== "all-eligible-teams" &&
+                        <a href={calculateTeamHref(this.context.teamSelected, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">Find out more about {this.context.teamSelected}</button></a>
                     }
                     <div className="label-and-clock-wrapper d-flex justify-content-between align-items-center">
                         <div className="table-label">
@@ -502,7 +508,7 @@ class SelectPlayer extends React.Component {
                         {this.state.isTooLateMessage &&
                             <div className="too-late-message d-flex flex-column justify-content-center align-items-center">
                                 <span>All games for {this.context.selectedDay} already started...</span>
-                                <span className="too-late-message-2"><i>pick players for next round... nothing is over till 15th September</i></span>
+                                <span className="too-late-message-2"><i>pick players for next round... still nothing is over</i></span>
                             </div>
                         }
                         {this.state.gamesNotFinishedMessage &&

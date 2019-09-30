@@ -28,7 +28,7 @@ class SRBRoundPointsCalc extends React.Component {
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Blokada</p>
-                            <p>+2 poen</p>
+                            <p>+1 poen</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
                             <p>1 Ukradena lopta</p>
@@ -39,12 +39,8 @@ class SRBRoundPointsCalc extends React.Component {
                             <p>-1 poen</p>
                         </div>
                         <div className="d-flex justify-content-between rule-item">
-                            <p>1x Fauliran</p>
-                            <p>+1 poen</p>
-                        </div>
-                        <div className="d-flex justify-content-between rule-item">
                             <p>Pobeda</p>
-                            <p>+3 poena</p>
+                            <p>+4 poena</p>
                         </div>
                     </div>
                     <div className="right-container">

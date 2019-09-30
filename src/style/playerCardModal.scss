@@ -84,7 +84,11 @@
 
             .stats-tabs-container {
                 .select-days-container {
-                    width: 12vw;
+                    width: 15vw;
+                    height: 38vw;
+                    overflow-y: scroll;
+                    overflow-x: hidden;
+
 
                     .btn {
                         width: 100%;

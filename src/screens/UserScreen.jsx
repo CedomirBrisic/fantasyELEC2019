@@ -375,7 +375,7 @@ class UserScreen extends React.Component {
                         </div>
                         <div className="user-screen-dashboard-select-day-wrapper">
                             {!this.context.showSelectPlayer && <div className="select-round-button" onClick={this.toggleShowSelectDayDashboard}>{this.context.showSelectDayDashboard ? "hide Round-picker" : "show Round-picker"}</div>}
-                            {this.context.showSelectPlayer && <div className="select-round-button" onClick={this.goBackToTeamView}>{`Pick ${this.context.choosePlayerPosition} or click here to go back on Team View screen`}</div>}
+                            {this.context.showSelectPlayer && <div className="select-round-button" onClick={this.goBackToTeamView}>{`Pick player for your team or click here for going back on Team View screen`}</div>}
                         </div>
                     </div>
                 }
