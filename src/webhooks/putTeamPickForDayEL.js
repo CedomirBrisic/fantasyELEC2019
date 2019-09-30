@@ -1,5 +1,5 @@
-const putTeamPickForDay = (data, qwe) => {
-    return fetch(`https://webhooks.mongodb-stitch.com/api/client/v2.0/app/basketball-fantasy-gpizn/service/http/incoming_webhook/PUTteamPickForDay?secret=${qwe}`, {
+const putTeamPickForDayEL = (data, qwe) => {
+    return fetch(`https://webhooks.mongodb-stitch.com/api/client/v2.0/app/sportske-fantasy-elec2019-vvrgz/service/http/incoming_webhook/PUTteamPickForDayEL?secret=${qwe}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -22,4 +22,4 @@ const putTeamPickForDay = (data, qwe) => {
     })
 }
 
-export default putTeamPickForDay;
+export default putTeamPickForDayEL;

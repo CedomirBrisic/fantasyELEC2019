@@ -112,7 +112,7 @@ export default class AppStore extends Component {
     }
     depositSelectedLeague = (data) => {
         this.setState({
-            selectedLeague: data
+            selectedLeague: data,
         })
     }
     depositIsHallOfFame = () => {
@@ -257,7 +257,7 @@ export default class AppStore extends Component {
 
         let userTotalRoundPoints = 0;
         for (let i = 0; i < roundsPlayed; i++) {
-            userTotalRoundPoints += parseFloat(checkEligibilityForPickTeam(this.state.fantasyUsers, this.state.bitrulez, eligibleDays[i], this.state.nowDateAndTime, this.state.dropdowns[0].teamsByDay, this.state.basketballPlayers).totalSummaSummarum)
+            userTotalRoundPoints += parseFloat(checkEligibilityForPickTeam(this.state.selectedLeague, this.state.fantasyUsers, this.state.bitrulez, eligibleDays[i], this.state.nowDateAndTime, this.state.dropdowns[0].teamsByDay, this.state.basketballPlayers).totalSummaSummarum)
         }
         this.setState({
             userTotalRoundPoints,
@@ -297,7 +297,7 @@ export default class AppStore extends Component {
 
     checkPlayersOnField = () => {
         if (this.state.selectedLeague == "euroLeague") {
-            const calculatedPickData = checkEligibilityForPickTeam(this.state.euroLeagueData.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.euroLeagueData.teamsByDay, this.state.euroLeagueData.basketballPlayers)
+            const calculatedPickData = checkEligibilityForPickTeam(this.state.selectedLeague, this.state.euroLeagueData.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.euroLeagueData.teamsByDay, this.state.euroLeagueData.basketballPlayers)
             this.setState({
                 teamPickData: calculatedPickData.teamPickData,
                 teamPickLockData: calculatedPickData.teamPickLockData,
@@ -306,7 +306,7 @@ export default class AppStore extends Component {
                 calculatedFirstFiveFantasyPointsStatsTotals: calculatedPickData.calculatedFirstFiveFantasyPointsStatsTotals,
             })
         } else if (this.state.selectedLeague == "euroCup") {
-            const calculatedPickData = checkEligibilityForPickTeam(this.state.euroCupData.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.euroCupData.teamsByDay, this.state.euroCupData.basketballPlayers)
+            const calculatedPickData = checkEligibilityForPickTeam(this.state.selectedLeague, this.state.euroCupData.fantasyUsers, this.state.bitrulez, this.state.selectedDay, this.state.nowDateAndTime, this.state.euroCupData.teamsByDay, this.state.euroCupData.basketballPlayers)
             this.setState({
                 teamPickData: calculatedPickData.teamPickData,
                 teamPickLockData: calculatedPickData.teamPickLockData,
@@ -323,12 +323,56 @@ export default class AppStore extends Component {
                 basketballPlayers: this.state.euroLeagueData.basketballPlayers,
                 teamsByDay: this.state.euroLeagueData.teamsByDay,
                 fantasyUsers: this.state.euroLeagueData.fantasyUsers,
+                teamPickData: {
+                    Player1Id: null,
+                    Player2Id: null,
+                    Player3Id: null,
+                    Player4Id: null,
+                    Player5Id: null,
+                    Player6Id: null,
+                    Player7Id: null,
+                    isSubmitted: false
+                },
+                teamPickLockData: {
+                    Player1Id: null,
+                    Player2Id: null,
+                    Player3Id: null,
+                    Player4Id: null,
+                    Player5Id: null,
+                    Player6Id: null,
+                    Player7Id: null,
+                },
+                teamPickDayTotal: null,
+                userTotalRoundPoints: 0,
+                userAvgRoundPointsPerGame: 0,
             })
         } else if (this.state.selectedLeague == "euroCup") {
             this.setState({
                 basketballPlayers: this.state.euroCupData.basketballPlayers,
                 teamsByDay: this.state.euroCupData.teamsByDay,
                 fantasyUsers: this.state.euroCupData.fantasyUsers,
+                teamPickData: {
+                    Player1Id: null,
+                    Player2Id: null,
+                    Player3Id: null,
+                    Player4Id: null,
+                    Player5Id: null,
+                    Player6Id: null,
+                    Player7Id: null,
+                    isSubmitted: false
+                },
+                teamPickLockData: {
+                    Player1Id: null,
+                    Player2Id: null,
+                    Player3Id: null,
+                    Player4Id: null,
+                    Player5Id: null,
+                    Player6Id: null,
+                    Player7Id: null,
+                },
+                teamPickDayTotal: null,
+                userTotalRoundPoints: 0,
+                userAvgRoundPointsPerGame: 0,
             })
         }
     }
@@ -351,8 +395,11 @@ export default class AppStore extends Component {
             })
             this.changeGameData()
         }
-        if(prevState.isInitialLoading && !this.state.isInitialLoading){
+        if (prevState.isInitialLoading && !this.state.isInitialLoading) {
             this.changeGameData()
+        }
+        if (prevState.basketballPlayers !== this.state.basketballPlayers) {
+            this.checkPlayersOnField()
         }
     }
     checkLandscape = () => {

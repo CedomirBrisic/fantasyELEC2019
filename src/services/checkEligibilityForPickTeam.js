@@ -1,7 +1,7 @@
 import calculateBasketballPlayerTDFantasyPoints from "./calculateBasketballPlayerTDFantasyPoints";
 const possiblePlayerIds = ["Player1Id", "Player2Id", "Player3Id", "Player4Id", "Player5Id", "Player6Id", "Player7Id"]
 
-const checkEligibilityForPickTeam = (fantasyUsers, username, selectedDay, nowDateAndTime, teamsByDay, basketballPlayers) => {
+const checkEligibilityForPickTeam = (selectedLeague, fantasyUsers, username, selectedDay, nowDateAndTime, teamsByDay, basketballPlayers) => {
     const userData = fantasyUsers.filter((user) => {
         if (user.username === username) {
             return user
@@ -72,55 +72,126 @@ const checkEligibilityForPickTeam = (fantasyUsers, username, selectedDay, nowDat
                     return player
                 }
             })
-
             teamPickDataByPoints[index].summaSummarum = parseFloat(calculateBasketballPlayerTDFantasyPoints(playerData[0], selectedDay).summaSummarum)
             const playerTeam = playerData[0].team
-            const teamData = teamsByDay[selectedDay].filter((team, index) => {
-                if (team.name === playerTeam) {
-                    return team
+
+
+
+
+
+
+
+            // const teamData = teamsByDay[selectedDay].filter((team, index) => {
+            //     if (team.name === playerTeam) {
+            //         return team
+            //     }
+            // })
+            let roundData = null
+
+            teamsByDay.forEach((round) => {
+                if (round.roundName == selectedDay) {
+                    roundData = round
                 }
             })
-            if (teamData[0]){
-                // console.log("dobro je")
 
+
+            let teamGameStartData = null
+            let teamGameStartMonth = null
+            let teamGameStartDay = null
+            let teamGameStartHour = null
+            let teamGameStartMinute = null
+
+            roundData.day1.forEach((team) => {
+                if (team.name == playerTeam) {
+                    teamGameStartData = team
+                    teamGameStartMonth = roundData.date.split(" ")[0]
+                    teamGameStartDay = roundData.date.split(" ")[1].split("-")[0]
+                    teamGameStartHour = teamGameStartData.gameStart.split(":")[0]
+                    teamGameStartMinute = teamGameStartData.gameStart.split(":")[1]
+                }
+            })
+            roundData.day2.forEach((team) => {
+                if (team.name == playerTeam) {
+                    teamGameStartData = team
+                    teamGameStartMonth = roundData.date.split(" ")[0]
+                    teamGameStartDay = roundData.date.split(" ")[1].split("-")[1]
+                    teamGameStartHour = teamGameStartData.gameStart.split(":")[0]
+                    teamGameStartMinute = teamGameStartData.gameStart.split(":")[1]
+                }
+            })
+
+
+            const possibleMonths = ["October", "November", "December", "January", "February", "March", "April", "May", "June", "July", "August", "September"]
+            const nowMonth = nowDateAndTime.humanDate.split("-")[1]
+            const nowDayRaw = nowDateAndTime.humanDate.split("-")[0]
             const nowHour = parseInt(nowDateAndTime.humanTime.split(":")[0], 10)
             const nowMinutes = parseInt(nowDateAndTime.humanTime.split(":")[1], 10)
-            const teamGameStartHour = parseInt(teamData[0].gameStart.split(":")[0], 10)
-            const teamGameStartMinutes = parseInt(teamData[0].gameStart.split(":")[1], 10)
+            let nowDay = ""
+            if (nowDayRaw.length == 3) {
+                nowDay = nowDayRaw[0]
+            } else if (nowDayRaw.length == 4) {
+                nowDay = nowDayRaw[0] + nowDayRaw[1]
+            }
 
+            const teamMonthIndex = possibleMonths.indexOf(teamGameStartMonth)
+            const nowMonthIndex = possibleMonths.indexOf(nowMonth)
 
-            if (selectedDay == nowDateAndTime.humanDate) {
-                if (nowHour > teamGameStartHour) {
-                    teamPickLockData[playerId] = true
-                } else if (nowHour == teamGameStartHour && nowMinutes >= teamGameStartMinutes) {
-                    teamPickLockData[playerId] = true
-                } else {
+            if (selectedDay == "ROUND-6" && selectedLeague == "euroLeague") {
+                if (nowMonth == "October" && nowDay !== "31") {
                     teamPickLockData[playerId] = false
-                }
-            } else {
-                const possibleMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                if (possibleMonths.indexOf(selectedDay.split("-")[1]) < possibleMonths.indexOf(nowDateAndTime.humanDate.split("-")[1])) {
-                    teamPickLockData[playerId] = true
-                } else if (possibleMonths.indexOf(selectedDay.split("-")[1]) === possibleMonths.indexOf(nowDateAndTime.humanDate.split("-")[1])) {
-                    if (selectedDay.split("-")[0].length < nowDateAndTime.humanDate.split("-")[0].length) {
+                } else if (nowMonth == "October" && nowDay == "31") {
+                    if (nowHour < teamGameStartHour) {
+                        teamPickLockData[playerId] = false
+                    } else if (nowHour > teamGameStartHour) {
                         teamPickLockData[playerId] = true
-                    } else if (selectedDay.split("-")[0].length === nowDateAndTime.humanDate.split("-")[0].length && selectedDay.split("-")[0].length === 3) {
-                        if (selectedDay.split("-")[0][0] < nowDateAndTime.humanDate.split("-")[0][0]) {
-                            teamPickLockData[playerId] = true
-                        }
-                    } else if (selectedDay.split("-")[0].length === nowDateAndTime.humanDate.split("-")[0].length && selectedDay.split("-")[0].length === 4) {
-                        let selectedDayNumber = parseInt(selectedDay.split("-")[0][0] + selectedDay.split("-")[0][1], 10)
-                        let nowDateNumber = parseInt(nowDateAndTime.humanDate.split("-")[0][0] + nowDateAndTime.humanDate.split("-")[0][1], 10)
-                        if (selectedDayNumber < nowDateNumber) {
+                    } else if (nowHour == teamGameStartHour) {
+                        if (nowMinutes < teamGameStartMinute) {
+                            teamPickLockData[playerId] = false
+                        } else {
                             teamPickLockData[playerId] = true
                         }
                     }
+                } else if (nowMonth == "November" && nowDay == "1") {
+                    if (nowHour < teamGameStartHour) {
+                        teamPickLockData[playerId] = false
+                    } else if (nowHour > teamGameStartHour) {
+                        teamPickLockData[playerId] = true
+                    } else if (nowHour == teamGameStartHour) {
+                        if (nowMinutes < teamGameStartMinute) {
+                            teamPickLockData[playerId] = false
+                        } else {
+                            teamPickLockData[playerId] = true
+                        }
+                    }
+                } else {
+                    teamPickLockData[playerId] = true
                 }
-            }
-        }
-            else {
-                // console.log("puklo",username)
-                teamPickLockData[playerId] = true
+
+
+            } else {
+                if (nowMonthIndex < teamMonthIndex) {
+                    teamPickLockData[playerId] = false
+                } else if (nowMonthIndex > teamMonthIndex) {
+                    teamPickLockData[playerId] = true
+                } else if (nowMonthIndex == teamMonthIndex) {
+                    if (parseInt(nowDay, 10) < parseInt(teamGameStartDay, 10)) {
+                        teamPickLockData[playerId] = false
+                    } else if (parseInt(nowDay, 10) > parseInt(teamGameStartDay, 10)) {
+                        teamPickLockData[playerId] = true
+                    } else if (parseInt(nowDay, 10) == parseInt(teamGameStartDay, 10)) {
+                        if (nowHour < teamGameStartHour) {
+                            teamPickLockData[playerId] = false
+                        } else if (nowHour > teamGameStartHour) {
+                            teamPickLockData[playerId] = true
+                        } else if (nowHour == teamGameStartHour) {
+                            if (nowMinutes < teamGameStartMinute) {
+                                teamPickLockData[playerId] = false
+                            } else {
+                                teamPickLockData[playerId] = true
+                            }
+                        }
+                    }
+                }
             }
         })
     }
@@ -291,7 +362,7 @@ const checkEligibilityForPickTeam = (fantasyUsers, username, selectedDay, nowDat
             // }
 
             if (playerData[0][selectedDay].fieldGoalsScored !== "n") {
-                calculatedFirstFiveRealLifeStatsTotals.twoPoints += parseInt(playerData[0][selectedDay].fieldGoalsScored, 10)*2
+                calculatedFirstFiveRealLifeStatsTotals.twoPoints += parseInt(playerData[0][selectedDay].fieldGoalsScored, 10) * 2
             }
             // if (playerData[0][selectedDay].fieldGoalsAttempts !== "a") {
             //     calculatedFirstFiveRealLifeStatsTotals.twoPointsAttempts += parseInt(playerData[0][selectedDay].fieldGoalsAttempts, 10)
@@ -300,7 +371,7 @@ const checkEligibilityForPickTeam = (fantasyUsers, username, selectedDay, nowDat
             //     calculatedFirstFiveRealLifeStatsTotals.twoPointsScored += parseInt(playerData[0][selectedDay].fieldGoalsScored, 10)
             // }
             if (playerData[0][selectedDay].threePointsScored !== "n") {
-                calculatedFirstFiveRealLifeStatsTotals.threePoints += parseInt(playerData[0][selectedDay].threePointsScored, 10)*3
+                calculatedFirstFiveRealLifeStatsTotals.threePoints += parseInt(playerData[0][selectedDay].threePointsScored, 10) * 3
             }
             // if (playerData[0][selectedDay].threePointsAttempts !== "a") {
             //     calculatedFirstFiveRealLifeStatsTotals.threePointsAttempts += parseInt(playerData[0][selectedDay].threePointsAttempts, 10)

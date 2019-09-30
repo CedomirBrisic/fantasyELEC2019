@@ -3,7 +3,8 @@ import { AppContext } from '../_context/AppContext';
 import { Portal } from 'react-portal';
 import calculateBasketballPlayerTDFantasyPoints from "../../services/calculateBasketballPlayerTDFantasyPoints";
 import putCheckUsernameAndPassword from "../../webhooks/putCheckUsernameAndPassword";
-import putTeamPickForDay from "../../webhooks/putTeamPickForDay";
+import putTeamPickForDayEL from "../../webhooks/putTeamPickForDayEL";
+import putTeamPickForDayEC from "../../webhooks/putTeamPickForDayEC";
 import serbischeDatum from "../../services/serbischeDatum";
 import serbischeNazivTima from "../../services/serbischeNazivTima";
 import SRBTeamPickSuccessfullySubmited from "../modals/SRBTeamPickSuccessfullySubmited";
@@ -29,6 +30,10 @@ class SRBPlayersOnField extends React.Component {
         if (this.context.teamPickData.Player1Id !== null) {
             const playerId = this.context.teamPickData.Player1Id
             const playerData = this.context.basketballPlayers.filter((player) => playerId === player._id.$oid)
+            const vector = ["ASSECO ARKA GDYNIA", "BUDUCNOST VOLI PODGORICA", "DARUSSAFAKA TEKFEN ISTANBUL", "DOLOMITI ENERGIA TRENTO", "EWE BASKETS OLDENBURG", "GALATASARAY DOGA SIGORTA ISTANBUL", "LIMOGES CSP", "LOKOMOTIV KUBAN KRASNODAR", "PARTIZAN NIS BELGRADE", "RATIOPHARM ULM", "ALBA BERLIN", "ANADOLU EFES ISTANBUL", "AX ARMANI EXCHANGE MILAN", "CRVENA ZVEZDA MTS BELGRADE", "CSKA MOSCOW", "FC BARCELONA", "FC BAYERN MUNICH", "FENERBAHCE BEKO ISTANBUL", "MACCABI FOX TEL AVIV", "OLYMPIACOS PIRAEUS", "PANATHINAIKOS OPAP ATHENS", "REAL MADRID", "VALENCIA BASKET", "ZALGIRIS KAUNAS", "ZENIT ST PETERSBURG"]
+            const notVector = ["AS MONACO", "CEDEVITA OLIMPIJA LJUBLJANA", "GERMANI BRESCIA LEONESSA", "JOVENTUT BADALONA", "MACCABI RISHON LEZION", "MORABANC ANDORRA", "NANTERRE 92", "PROMITHEAS PATRAS", "RYTAS VILNIUS", "SEGAFREDO VIRTUS BOLOGNA", "TOFAS BURSA", "UMANA REYER VENICE", "UNICAJA MALAGA", "UNICS KAZAN", "KHIMKI MOSCOW REGION", "KIROLBET BASKONIA VITORIA-GASTEIZ", "LDLC ASVEL VILLEURBANNE"]
+            const isVector = vector.indexOf(playerData[0].team)
+            const isPng = notVector.indexOf(playerData[0].team)
             return <div key={playerData[0].shirtNumber + playerData[0].team} className={`first-five-player-wrapper-selected d-flex flex-column justify-content-between align-items-center ${this.context.showSelectDayDashboard ? "" : "glow"}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} onClick={this.context.showSinglePlayerModal}>
                 <div className="shirt-number d-flex" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     {this.calculatePlayerRoundPoints(playerData[0])}
@@ -39,7 +44,12 @@ class SRBPlayersOnField extends React.Component {
                 </div>
                 <div className="player-team-wrapper d-flex align-items-center" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     <span className="team-image-wrapper" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
-                        <img className="img-fluid" src={require(`../../images/flags/Flag of ${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        {isVector !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.svg`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
+                        {isPng !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
                     </span>
                     <span className="team-name" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                         {serbischeNazivTima(playerData[0].team)}
@@ -56,6 +66,10 @@ class SRBPlayersOnField extends React.Component {
         if (this.context.teamPickData.Player2Id !== null) {
             const playerId = this.context.teamPickData.Player2Id
             const playerData = this.context.basketballPlayers.filter((player) => playerId === player._id.$oid)
+            const vector = ["ASSECO ARKA GDYNIA", "BUDUCNOST VOLI PODGORICA", "DARUSSAFAKA TEKFEN ISTANBUL", "DOLOMITI ENERGIA TRENTO", "EWE BASKETS OLDENBURG", "GALATASARAY DOGA SIGORTA ISTANBUL", "LIMOGES CSP", "LOKOMOTIV KUBAN KRASNODAR", "PARTIZAN NIS BELGRADE", "RATIOPHARM ULM", "ALBA BERLIN", "ANADOLU EFES ISTANBUL", "AX ARMANI EXCHANGE MILAN", "CRVENA ZVEZDA MTS BELGRADE", "CSKA MOSCOW", "FC BARCELONA", "FC BAYERN MUNICH", "FENERBAHCE BEKO ISTANBUL", "MACCABI FOX TEL AVIV", "OLYMPIACOS PIRAEUS", "PANATHINAIKOS OPAP ATHENS", "REAL MADRID", "VALENCIA BASKET", "ZALGIRIS KAUNAS", "ZENIT ST PETERSBURG"]
+            const notVector = ["AS MONACO", "CEDEVITA OLIMPIJA LJUBLJANA", "GERMANI BRESCIA LEONESSA", "JOVENTUT BADALONA", "MACCABI RISHON LEZION", "MORABANC ANDORRA", "NANTERRE 92", "PROMITHEAS PATRAS", "RYTAS VILNIUS", "SEGAFREDO VIRTUS BOLOGNA", "TOFAS BURSA", "UMANA REYER VENICE", "UNICAJA MALAGA", "UNICS KAZAN", "KHIMKI MOSCOW REGION", "KIROLBET BASKONIA VITORIA-GASTEIZ", "LDLC ASVEL VILLEURBANNE"]
+            const isVector = vector.indexOf(playerData[0].team)
+            const isPng = notVector.indexOf(playerData[0].team)
             return <div key={playerData[0].shirtNumber + playerData[0].team} className={`first-five-player-wrapper-selected d-flex flex-column justify-content-between align-items-center ${this.context.showSelectDayDashboard ? "" : "glow"}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} onClick={this.context.showSinglePlayerModal}>
                 <div className="shirt-number d-flex" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     {this.calculatePlayerRoundPoints(playerData[0])}
@@ -66,7 +80,12 @@ class SRBPlayersOnField extends React.Component {
                 </div>
                 <div className="player-team-wrapper d-flex align-items-center" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     <span className="team-image-wrapper" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
-                        <img className="img-fluid" src={require(`../../images/flags/Flag of ${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        {isVector !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.svg`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
+                        {isPng !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
                     </span>
                     <span className="team-name" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                         {serbischeNazivTima(playerData[0].team)}
@@ -83,6 +102,10 @@ class SRBPlayersOnField extends React.Component {
         if (this.context.teamPickData.Player3Id !== null) {
             const playerId = this.context.teamPickData.Player3Id
             const playerData = this.context.basketballPlayers.filter((player) => playerId === player._id.$oid)
+            const vector = ["ASSECO ARKA GDYNIA", "BUDUCNOST VOLI PODGORICA", "DARUSSAFAKA TEKFEN ISTANBUL", "DOLOMITI ENERGIA TRENTO", "EWE BASKETS OLDENBURG", "GALATASARAY DOGA SIGORTA ISTANBUL", "LIMOGES CSP", "LOKOMOTIV KUBAN KRASNODAR", "PARTIZAN NIS BELGRADE", "RATIOPHARM ULM", "ALBA BERLIN", "ANADOLU EFES ISTANBUL", "AX ARMANI EXCHANGE MILAN", "CRVENA ZVEZDA MTS BELGRADE", "CSKA MOSCOW", "FC BARCELONA", "FC BAYERN MUNICH", "FENERBAHCE BEKO ISTANBUL", "MACCABI FOX TEL AVIV", "OLYMPIACOS PIRAEUS", "PANATHINAIKOS OPAP ATHENS", "REAL MADRID", "VALENCIA BASKET", "ZALGIRIS KAUNAS", "ZENIT ST PETERSBURG"]
+            const notVector = ["AS MONACO", "CEDEVITA OLIMPIJA LJUBLJANA", "GERMANI BRESCIA LEONESSA", "JOVENTUT BADALONA", "MACCABI RISHON LEZION", "MORABANC ANDORRA", "NANTERRE 92", "PROMITHEAS PATRAS", "RYTAS VILNIUS", "SEGAFREDO VIRTUS BOLOGNA", "TOFAS BURSA", "UMANA REYER VENICE", "UNICAJA MALAGA", "UNICS KAZAN", "KHIMKI MOSCOW REGION", "KIROLBET BASKONIA VITORIA-GASTEIZ", "LDLC ASVEL VILLEURBANNE"]
+            const isVector = vector.indexOf(playerData[0].team)
+            const isPng = notVector.indexOf(playerData[0].team)
             return <div key={playerData[0].shirtNumber + playerData[0].team} className={`first-five-player-wrapper-selected d-flex flex-column justify-content-between align-items-center ${this.context.showSelectDayDashboard ? "" : "glow"}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} onClick={this.context.showSinglePlayerModal}>
                 <div className="shirt-number d-flex" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     {this.calculatePlayerRoundPoints(playerData[0])}
@@ -93,7 +116,12 @@ class SRBPlayersOnField extends React.Component {
                 </div>
                 <div className="player-team-wrapper d-flex align-items-center" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     <span className="team-image-wrapper" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
-                        <img className="img-fluid" src={require(`../../images/flags/Flag of ${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        {isVector !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.svg`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
+                        {isPng !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
                     </span>
                     <span className="team-name" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                         {serbischeNazivTima(playerData[0].team)}
@@ -110,6 +138,10 @@ class SRBPlayersOnField extends React.Component {
         if (this.context.teamPickData.Player4Id !== null) {
             const playerId = this.context.teamPickData.Player4Id
             const playerData = this.context.basketballPlayers.filter((player) => playerId === player._id.$oid)
+            const vector = ["ASSECO ARKA GDYNIA", "BUDUCNOST VOLI PODGORICA", "DARUSSAFAKA TEKFEN ISTANBUL", "DOLOMITI ENERGIA TRENTO", "EWE BASKETS OLDENBURG", "GALATASARAY DOGA SIGORTA ISTANBUL", "LIMOGES CSP", "LOKOMOTIV KUBAN KRASNODAR", "PARTIZAN NIS BELGRADE", "RATIOPHARM ULM", "ALBA BERLIN", "ANADOLU EFES ISTANBUL", "AX ARMANI EXCHANGE MILAN", "CRVENA ZVEZDA MTS BELGRADE", "CSKA MOSCOW", "FC BARCELONA", "FC BAYERN MUNICH", "FENERBAHCE BEKO ISTANBUL", "MACCABI FOX TEL AVIV", "OLYMPIACOS PIRAEUS", "PANATHINAIKOS OPAP ATHENS", "REAL MADRID", "VALENCIA BASKET", "ZALGIRIS KAUNAS", "ZENIT ST PETERSBURG"]
+            const notVector = ["AS MONACO", "CEDEVITA OLIMPIJA LJUBLJANA", "GERMANI BRESCIA LEONESSA", "JOVENTUT BADALONA", "MACCABI RISHON LEZION", "MORABANC ANDORRA", "NANTERRE 92", "PROMITHEAS PATRAS", "RYTAS VILNIUS", "SEGAFREDO VIRTUS BOLOGNA", "TOFAS BURSA", "UMANA REYER VENICE", "UNICAJA MALAGA", "UNICS KAZAN", "KHIMKI MOSCOW REGION", "KIROLBET BASKONIA VITORIA-GASTEIZ", "LDLC ASVEL VILLEURBANNE"]
+            const isVector = vector.indexOf(playerData[0].team)
+            const isPng = notVector.indexOf(playerData[0].team)
             return <div key={playerData[0].shirtNumber + playerData[0].team} className={`first-five-player-wrapper-selected d-flex flex-column justify-content-between align-items-center ${this.context.showSelectDayDashboard ? "" : "glow"}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} onClick={this.context.showSinglePlayerModal}>
                 <div className="shirt-number d-flex" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     {this.calculatePlayerRoundPoints(playerData[0])}
@@ -120,7 +152,12 @@ class SRBPlayersOnField extends React.Component {
                 </div>
                 <div className="player-team-wrapper d-flex align-items-center" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     <span className="team-image-wrapper" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
-                        <img className="img-fluid" src={require(`../../images/flags/Flag of ${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        {isVector !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.svg`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
+                        {isPng !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
                     </span>
                     <span className="team-name" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                         {serbischeNazivTima(playerData[0].team)}
@@ -137,6 +174,10 @@ class SRBPlayersOnField extends React.Component {
         if (this.context.teamPickData.Player5Id !== null) {
             const playerId = this.context.teamPickData.Player5Id
             const playerData = this.context.basketballPlayers.filter((player) => playerId === player._id.$oid)
+            const vector = ["ASSECO ARKA GDYNIA", "BUDUCNOST VOLI PODGORICA", "DARUSSAFAKA TEKFEN ISTANBUL", "DOLOMITI ENERGIA TRENTO", "EWE BASKETS OLDENBURG", "GALATASARAY DOGA SIGORTA ISTANBUL", "LIMOGES CSP", "LOKOMOTIV KUBAN KRASNODAR", "PARTIZAN NIS BELGRADE", "RATIOPHARM ULM", "ALBA BERLIN", "ANADOLU EFES ISTANBUL", "AX ARMANI EXCHANGE MILAN", "CRVENA ZVEZDA MTS BELGRADE", "CSKA MOSCOW", "FC BARCELONA", "FC BAYERN MUNICH", "FENERBAHCE BEKO ISTANBUL", "MACCABI FOX TEL AVIV", "OLYMPIACOS PIRAEUS", "PANATHINAIKOS OPAP ATHENS", "REAL MADRID", "VALENCIA BASKET", "ZALGIRIS KAUNAS", "ZENIT ST PETERSBURG"]
+            const notVector = ["AS MONACO", "CEDEVITA OLIMPIJA LJUBLJANA", "GERMANI BRESCIA LEONESSA", "JOVENTUT BADALONA", "MACCABI RISHON LEZION", "MORABANC ANDORRA", "NANTERRE 92", "PROMITHEAS PATRAS", "RYTAS VILNIUS", "SEGAFREDO VIRTUS BOLOGNA", "TOFAS BURSA", "UMANA REYER VENICE", "UNICAJA MALAGA", "UNICS KAZAN", "KHIMKI MOSCOW REGION", "KIROLBET BASKONIA VITORIA-GASTEIZ", "LDLC ASVEL VILLEURBANNE"]
+            const isVector = vector.indexOf(playerData[0].team)
+            const isPng = notVector.indexOf(playerData[0].team)
             return <div key={playerData[0].shirtNumber + playerData[0].team} className={`first-five-player-wrapper-selected d-flex flex-column justify-content-between align-items-center ${this.context.showSelectDayDashboard ? "" : "glow"}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} onClick={this.context.showSinglePlayerModal}>
                 <div className="shirt-number d-flex" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     {this.calculatePlayerRoundPoints(playerData[0])}
@@ -147,7 +188,12 @@ class SRBPlayersOnField extends React.Component {
                 </div>
                 <div className="player-team-wrapper d-flex align-items-center" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     <span className="team-image-wrapper" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
-                        <img className="img-fluid" src={require(`../../images/flags/Flag of ${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        {isVector !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.svg`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
+                        {isPng !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
                     </span>
                     <span className="team-name" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                         {serbischeNazivTima(playerData[0].team)}
@@ -164,6 +210,10 @@ class SRBPlayersOnField extends React.Component {
         if (this.context.teamPickData.Player6Id !== null) {
             const playerId = this.context.teamPickData.Player6Id
             const playerData = this.context.basketballPlayers.filter((player) => playerId === player._id.$oid)
+            const vector = ["ASSECO ARKA GDYNIA", "BUDUCNOST VOLI PODGORICA", "DARUSSAFAKA TEKFEN ISTANBUL", "DOLOMITI ENERGIA TRENTO", "EWE BASKETS OLDENBURG", "GALATASARAY DOGA SIGORTA ISTANBUL", "LIMOGES CSP", "LOKOMOTIV KUBAN KRASNODAR", "PARTIZAN NIS BELGRADE", "RATIOPHARM ULM", "ALBA BERLIN", "ANADOLU EFES ISTANBUL", "AX ARMANI EXCHANGE MILAN", "CRVENA ZVEZDA MTS BELGRADE", "CSKA MOSCOW", "FC BARCELONA", "FC BAYERN MUNICH", "FENERBAHCE BEKO ISTANBUL", "MACCABI FOX TEL AVIV", "OLYMPIACOS PIRAEUS", "PANATHINAIKOS OPAP ATHENS", "REAL MADRID", "VALENCIA BASKET", "ZALGIRIS KAUNAS", "ZENIT ST PETERSBURG"]
+            const notVector = ["AS MONACO", "CEDEVITA OLIMPIJA LJUBLJANA", "GERMANI BRESCIA LEONESSA", "JOVENTUT BADALONA", "MACCABI RISHON LEZION", "MORABANC ANDORRA", "NANTERRE 92", "PROMITHEAS PATRAS", "RYTAS VILNIUS", "SEGAFREDO VIRTUS BOLOGNA", "TOFAS BURSA", "UMANA REYER VENICE", "UNICAJA MALAGA", "UNICS KAZAN", "KHIMKI MOSCOW REGION", "KIROLBET BASKONIA VITORIA-GASTEIZ", "LDLC ASVEL VILLEURBANNE"]
+            const isVector = vector.indexOf(playerData[0].team)
+            const isPng = notVector.indexOf(playerData[0].team)
             return <div key={playerData[0].shirtNumber + playerData[0].team} className={`bench-player-wrapper-selected d-flex flex-column justify-content-between align-items-center ${this.context.showSelectDayDashboard ? "" : "glow"}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} onClick={this.context.showSinglePlayerModal}>
                 <div className="shirt-number d-flex" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     {this.calculatePlayerRoundPoints(playerData[0])}
@@ -174,7 +224,12 @@ class SRBPlayersOnField extends React.Component {
                 </div>
                 <div className="player-team-wrapper d-flex align-items-center" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     <span className="team-image-wrapper" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
-                        <img className="img-fluid" src={require(`../../images/flags/Flag of ${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        {isVector !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.svg`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
+                        {isPng !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
                     </span>
                     <span className="team-name" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                         {serbischeNazivTima(playerData[0].team)}
@@ -191,6 +246,10 @@ class SRBPlayersOnField extends React.Component {
         if (this.context.teamPickData.Player7Id !== null) {
             const playerId = this.context.teamPickData.Player7Id
             const playerData = this.context.basketballPlayers.filter((player) => playerId === player._id.$oid)
+            const vector = ["ASSECO ARKA GDYNIA", "BUDUCNOST VOLI PODGORICA", "DARUSSAFAKA TEKFEN ISTANBUL", "DOLOMITI ENERGIA TRENTO", "EWE BASKETS OLDENBURG", "GALATASARAY DOGA SIGORTA ISTANBUL", "LIMOGES CSP", "LOKOMOTIV KUBAN KRASNODAR", "PARTIZAN NIS BELGRADE", "RATIOPHARM ULM", "ALBA BERLIN", "ANADOLU EFES ISTANBUL", "AX ARMANI EXCHANGE MILAN", "CRVENA ZVEZDA MTS BELGRADE", "CSKA MOSCOW", "FC BARCELONA", "FC BAYERN MUNICH", "FENERBAHCE BEKO ISTANBUL", "MACCABI FOX TEL AVIV", "OLYMPIACOS PIRAEUS", "PANATHINAIKOS OPAP ATHENS", "REAL MADRID", "VALENCIA BASKET", "ZALGIRIS KAUNAS", "ZENIT ST PETERSBURG"]
+            const notVector = ["AS MONACO", "CEDEVITA OLIMPIJA LJUBLJANA", "GERMANI BRESCIA LEONESSA", "JOVENTUT BADALONA", "MACCABI RISHON LEZION", "MORABANC ANDORRA", "NANTERRE 92", "PROMITHEAS PATRAS", "RYTAS VILNIUS", "SEGAFREDO VIRTUS BOLOGNA", "TOFAS BURSA", "UMANA REYER VENICE", "UNICAJA MALAGA", "UNICS KAZAN", "KHIMKI MOSCOW REGION", "KIROLBET BASKONIA VITORIA-GASTEIZ", "LDLC ASVEL VILLEURBANNE"]
+            const isVector = vector.indexOf(playerData[0].team)
+            const isPng = notVector.indexOf(playerData[0].team)
             return <div key={playerData[0].shirtNumber + playerData[0].team} className={`bench-player-wrapper-selected d-flex flex-column justify-content-between align-items-center ${this.context.showSelectDayDashboard ? "" : "glow"}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} onClick={this.context.showSinglePlayerModal}>
                 <div className="shirt-number d-flex" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     {this.calculatePlayerRoundPoints(playerData[0])}
@@ -201,7 +260,12 @@ class SRBPlayersOnField extends React.Component {
                 </div>
                 <div className="player-team-wrapper d-flex align-items-center" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                     <span className="team-image-wrapper" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
-                        <img className="img-fluid" src={require(`../../images/flags/Flag of ${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        {isVector !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.svg`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
+                        {isPng !== -1 &&
+                            <img className="img-fluid" src={require(`../../images/flags/${playerData[0].team}.png`)} alt={`${playerData[0].team}`} data-player-name={playerData[0].name} data-player-team={playerData[0].team} />
+                        }
                     </span>
                     <span className="team-name" data-player-name={playerData[0].name} data-player-team={playerData[0].team}>
                         {serbischeNazivTima(playerData[0].team)}
@@ -235,8 +299,14 @@ class SRBPlayersOnField extends React.Component {
                 alert(`Too many players online right now...
                 server can't handle it...
                 try again a little bit later`)
-            } else {
-                putTeamPickForDay(data, "opETBasNekaDugaCkaSIfraOdmnogOKARAkterAMalaIVelikaSlovaSve").then((response) => {
+            } else if (this.context.selectedLeague == "euroLeague") {
+                putTeamPickForDayEL(data, "opETBasNekaDugaCkaSIfraOdmnogOKARAkterAMalaIVelikaSlovaSve12").then((response) => {
+                    this.setState({
+                        showTeamPickSuccessfullySubmited: true
+                    })
+                })
+            } else if (this.context.selectedLeague == "euroCup") {
+                putTeamPickForDayEC(data, "opETBasNekaDugaCkaSIfraOdmnogOKARAkterAMalaIVelikaSlovaSve12").then((response) => {
                     this.setState({
                         showTeamPickSuccessfullySubmited: true
                     })
