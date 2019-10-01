@@ -54,6 +54,9 @@
                 .select-days-container {
                     width: 12vw;
                     margin-top: 2vw;
+                    height: 72vh;
+                    overflow-x: hidden;
+                    overflow-y: scroll;
 
                     .btn {
                         width: 100%;

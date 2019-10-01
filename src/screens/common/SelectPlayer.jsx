@@ -253,10 +253,9 @@ class SelectPlayer extends React.Component {
 
                             const outputPlayer =
                                 <tr key={player.name + index} className="single-player-item" data-player-name={player.name} data-player-team={player.team} onClick={this.context.showSinglePlayerModal}>
-                                    <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player) / gamesPlayed).toFixed(2)}`}</td>
+                                    <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed).toFixed(2)}`}</td>
                                     <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.name}`}</td>
                                     <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.team}`}</td>
-                                    <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(assistsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (assistsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(reboundsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (reboundsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(blocksSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (blocksSum / gamesPlayed).toFixed(2)}`}</td>
@@ -265,6 +264,7 @@ class SelectPlayer extends React.Component {
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(freeThrowsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (freeThrowsScoredSum / gamesPlayed).toFixed(2)}/${(freeThrowsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (freeThrowsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(fieldGoalsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (fieldGoalsScoredSum / gamesPlayed).toFixed(2)}/${(fieldGoalsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (fieldGoalsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(threePointsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (threePointsScoredSum / gamesPlayed).toFixed(2)}/${(threePointsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (threePointsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
+                                    <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                                 </tr>
 
                             const indx = selectedPlayersIds.indexOf(player._id.$oid)
@@ -305,10 +305,9 @@ class SelectPlayer extends React.Component {
 
                             const outputPlayer =
                                 <tr key={player.name + index} className="single-player-item" data-player-name={player.name} data-player-team={player.team} onClick={this.context.showSinglePlayerModal}>
-                                    <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player) / gamesPlayed).toFixed(2)}`}</td>
+                                    <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed).toFixed(2)}`}</td>
                                     <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.name}`}</td>
                                     <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.team}`}</td>
-                                    <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(assistsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (assistsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(reboundsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (reboundsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(blocksSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (blocksSum / gamesPlayed).toFixed(2)}`}</td>
@@ -317,6 +316,7 @@ class SelectPlayer extends React.Component {
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(freeThrowsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (freeThrowsScoredSum / gamesPlayed).toFixed(2)}/${(freeThrowsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (freeThrowsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(fieldGoalsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (fieldGoalsScoredSum / gamesPlayed).toFixed(2)}/${(fieldGoalsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (fieldGoalsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                     <td data-player-name={player.name} data-player-team={player.team}>{`${(threePointsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (threePointsScoredSum / gamesPlayed).toFixed(2)}/${(threePointsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (threePointsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
+                                    <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                                 </tr>
 
                             const indx = selectedPlayersIds.indexOf(player._id.$oid)
@@ -365,10 +365,9 @@ class SelectPlayer extends React.Component {
 
                         const outputPlayer =
                             <tr key={player.name + index} className="single-player-item" data-player-name={player.name} data-player-team={player.team} onClick={this.context.showSinglePlayerModal}>
-                                <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player) / gamesPlayed).toFixed(2)}`}</td>
+                                <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed).toFixed(2)}`}</td>
                                 <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.name}`}</td>
                                 <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.team}`}</td>
-                                <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(assistsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (assistsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(reboundsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (reboundsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(blocksSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (blocksSum / gamesPlayed).toFixed(2)}`}</td>
@@ -377,6 +376,7 @@ class SelectPlayer extends React.Component {
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(freeThrowsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (freeThrowsScoredSum / gamesPlayed).toFixed(2)}/${(freeThrowsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (freeThrowsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(fieldGoalsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (fieldGoalsScoredSum / gamesPlayed).toFixed(2)}/${(fieldGoalsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (fieldGoalsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(threePointsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (threePointsScoredSum / gamesPlayed).toFixed(2)}/${(threePointsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (threePointsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
+                                <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                             </tr>
 
                         const indx = selectedPlayersIds.indexOf(player._id.$oid)
@@ -417,10 +417,9 @@ class SelectPlayer extends React.Component {
 
                         const outputPlayer =
                             <tr key={player.name + index} className="single-player-item" data-player-name={player.name} data-player-team={player.team} onClick={this.context.showSinglePlayerModal}>
-                                <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player) / gamesPlayed).toFixed(2)}`}</td>
+                                <td data-player-name={player.name} data-player-team={player.team}>{` ${isNaN((calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed)) ? "0" : (calculateBasketballPlayerTDFantasyGrandTotalPoints(player, eligibleDaysSelectedCompetition) / gamesPlayed).toFixed(2)}`}</td>
                                 <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.name}`}</td>
                                 <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.team}`}</td>
-                                <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(assistsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (assistsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(reboundsSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (reboundsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(blocksSum / gamesPlayed).toFixed(2) === "NaN" ? "n/a" : (blocksSum / gamesPlayed).toFixed(2)}`}</td>
@@ -429,6 +428,7 @@ class SelectPlayer extends React.Component {
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(freeThrowsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (freeThrowsScoredSum / gamesPlayed).toFixed(2)}/${(freeThrowsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (freeThrowsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(fieldGoalsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (fieldGoalsScoredSum / gamesPlayed).toFixed(2)}/${(fieldGoalsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (fieldGoalsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
                                 <td data-player-name={player.name} data-player-team={player.team}>{`${(threePointsScoredSum / gamesPlayed).toFixed(2) === "NaN" ? "n" : (threePointsScoredSum / gamesPlayed).toFixed(2)}/${(threePointsAttemptsSum / gamesPlayed).toFixed(2) === "NaN" ? "a" : (threePointsAttemptsSum / gamesPlayed).toFixed(2)}`}</td>
+                                <td data-player-name={player.name} data-player-team={player.team}>{`${player.position}`}</td>
                             </tr>
 
                         const indx = selectedPlayersIds.indexOf(player._id.$oid)
@@ -490,7 +490,6 @@ class SelectPlayer extends React.Component {
                                     <th data-sort-filter-value="ptPerGame" onClick={this.depositSortFilterValue}><button data-sort-filter-value="ptPerGame" type="button" className={`btn ${this.state.sortFilterValue === "ptPerGame" ? "btn-success" : "btn-outline-dark"}`}>Fantasy points</button></th>
                                     <th className="not-centered" data-sort-filter-value="playerName" onClick={this.depositSortFilterValue}><button data-sort-filter-value="playerName" type="button" className={`btn ${this.state.sortFilterValue === "playerName" ? "btn-success" : "btn-outline-dark"}`}>Player name</button></th>
                                     <th className="not-centered" data-sort-filter-value="playerTeam" onClick={this.depositSortFilterValue}><button data-sort-filter-value="playerTeam" type="button" className={`btn ${this.state.sortFilterValue === "playerTeam" ? "btn-success" : "btn-outline-dark"}`}>Team</button></th>
-                                    <th><button className={`btn btn-outline-dark`}>Position</button></th>
                                     <th data-sort-filter-value="assists" onClick={this.depositSortFilterValue}><button data-sort-filter-value="assists" type="button" className={`btn ${this.state.sortFilterValue === "assists" ? "btn-success" : "btn-outline-dark"}`}>Assists</button></th>
                                     <th data-sort-filter-value="rebounds" onClick={this.depositSortFilterValue}><button data-sort-filter-value="rebounds" type="button" className={`btn ${this.state.sortFilterValue === "rebounds" ? "btn-success" : "btn-outline-dark"}`}>Rebounds</button></th>
                                     <th data-sort-filter-value="blocks" onClick={this.depositSortFilterValue}><button data-sort-filter-value="blocks" type="button" className={`btn ${this.state.sortFilterValue === "blocks" ? "btn-success" : "btn-outline-dark"}`}>Blocks</button></th>
@@ -499,6 +498,7 @@ class SelectPlayer extends React.Component {
                                     <th data-sort-filter-value="freeThrows" onClick={this.depositSortFilterValue}><button data-sort-filter-value="freeThrows" type="button" className={`btn ${this.state.sortFilterValue === "freeThrows" ? "btn-success" : "btn-outline-dark"}`}>Free throws</button></th>
                                     <th data-sort-filter-value="twoPoints" onClick={this.depositSortFilterValue}><button data-sort-filter-value="twoPoints" type="button" className={`btn ${this.state.sortFilterValue === "twoPoints" ? "btn-success" : "btn-outline-dark"}`}>Two points</button></th>
                                     <th data-sort-filter-value="threePoints" onClick={this.depositSortFilterValue}><button data-sort-filter-value="threePoints" type="button" className={`btn ${this.state.sortFilterValue === "threePoints" ? "btn-success" : "btn-outline-dark"}`}>Three points</button></th>
+                                    <th><button className={`btn btn-outline-dark`}>Position</button></th>
                                 </tr>
                             </thead>
                             <tbody className="players-data-container">

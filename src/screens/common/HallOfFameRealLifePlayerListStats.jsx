@@ -26,6 +26,7 @@ class HallOfFamePlayerListStats extends React.Component {
         const outputPlayers = []
 
         if (this.context.hallOfFameSelectedDay === "all-days" && basketballPlayers !== null) {
+            const selectedLeague = this.context.selectedLeague
             basketballPlayers.forEach((player, index) => {
                 let assistsSum = 0;
                 let reboundsSum = 0;
@@ -38,7 +39,7 @@ class HallOfFamePlayerListStats extends React.Component {
                 let fieldGoalsAttemptsSum = 0;
                 let threePointsScoredSum = 0;
                 let threePointsAttemptsSum = 0;
-                eligibleDays.forEach((day) => {
+                eligibleDays[selectedLeague].forEach((day) => {
                     if (player[day].assists !== "n/a") {
                         assistsSum = !isNaN(parseInt(player[day].assists, 10)) ? assistsSum + parseInt(player[day].assists, 10) : assistsSum
                         reboundsSum = !isNaN(parseInt(player[day].rebounds, 10)) ? reboundsSum + parseInt(player[day].rebounds, 10) : reboundsSum
@@ -57,7 +58,7 @@ class HallOfFamePlayerListStats extends React.Component {
 
                 const outputPlayer =
                     <tr key={player.name + index} className="single-player-item" data-player-name={player.name} data-player-team={player.team} onClick={this.context.showSinglePlayerModal}>
-                        <td data-player-name={player.name} data-player-team={player.team}>{` ${(calculateBasketballPlayerTDFantasyGrandTotalPoints(player)).toFixed(2)}`}</td>
+                        <td data-player-name={player.name} data-player-team={player.team}>{` ${(calculateBasketballPlayerTDFantasyGrandTotalPoints(player,  eligibleDays[selectedLeague])).toFixed(2)}`}</td>
                         <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.name}`}</td>
                         <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.team}`}</td>
                         <td data-player-name={player.name} data-player-team={player.team}>{`${(assistsSum).toFixed(0) === "NaN" ? "n/a" : (assistsSum).toFixed(0)}`}</td>
@@ -76,7 +77,7 @@ class HallOfFamePlayerListStats extends React.Component {
                 }
             })
         }
-        else if (basketballPlayers !== null) {
+        else if (basketballPlayers !== null && this.context.hallOfFameSelectedDay) {
             basketballPlayers.forEach((player, index) => {
                 let assists = 0;
                 let rebounds = 0;

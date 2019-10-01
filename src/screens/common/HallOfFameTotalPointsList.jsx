@@ -18,14 +18,18 @@ class HallOfFameTotalPointsList extends React.Component {
     calculateAllUsers = () => {
         let output = null
         const fantasyUsers = this.context.fantasyUsers
+        const selectedLeague = this.context.selectedLeague
         const hallOfFameSelectedDay = this.context.hallOfFameSelectedDay
         const nowDateAndTime = this.context.nowDateAndTime
-        const teamsByDay = this.context.dropdowns[0].teamsByDay
+        const teamsByDay = this.context.teamsByDay
+        // this.context.teamsByDay.forEach((round) => {
+        //     teamsByDay.push(round.roundName)
+        // })
         const basketballPlayers = this.context.basketballPlayers
         if (hallOfFameSelectedDay !== "all-days") {
             const fantasyUsersCalculatedPointsForOneDay = []
             fantasyUsers.forEach((user) => {
-                const calculatedData = checkEligibilityForPickTeam(fantasyUsers, user.username, hallOfFameSelectedDay, nowDateAndTime, teamsByDay, basketballPlayers)
+                const calculatedData = checkEligibilityForPickTeam(selectedLeague, fantasyUsers, user.username, hallOfFameSelectedDay, nowDateAndTime, teamsByDay, basketballPlayers)
                 const userData = {
                     username: user.username,
                     summaSummarum: calculatedData.totalSummaSummarum,
@@ -41,14 +45,15 @@ class HallOfFameTotalPointsList extends React.Component {
             }
         } else {
             const fantasyUsersCalculatedPointsForAllDays = []
+            const selectedLeague = this.context.selectedLeague
             this.context.fantasyUsers.forEach((user) => {
                 const calculatedPointsForOneUser = {
                     username: user.username,
                     summaSummarum: 0,
                     data: []
                 }
-                eligibleDays.forEach((day) => {
-                    const calculatedData = checkEligibilityForPickTeam(fantasyUsers, user.username, day, nowDateAndTime, teamsByDay, basketballPlayers)
+                eligibleDays[selectedLeague].forEach((day) => {
+                    const calculatedData = checkEligibilityForPickTeam(selectedLeague,fantasyUsers, user.username, day, nowDateAndTime, teamsByDay, basketballPlayers)
                     const userData = {
                         roundDate: day,
                         totalDaySummaSummarum: calculatedData.totalSummaSummarum,
@@ -247,7 +252,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                     </div>
                                     {this.context.hallOfFameSelectedDay !== "all-days" &&
                                         <div className="bottom-bottom" data-fantasy-user-sorted-index={0}>
-                                            <i data-fantasy-user-sorted-index={0}>TD Points:</i>25<sup data-fantasy-user-sorted-index={0}>pt</sup>
                                         </div>
                                     }
                                 </div>
@@ -272,7 +276,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={1}>
-                                                18<sup data-fantasy-user-sorted-index={1}>pt</sup>
                                             </div>}
                                     </div>
                                     <div className="silhouette-wrapper" data-fantasy-user-sorted-index={1}>
@@ -294,7 +297,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={2}>
-                                                15<sup data-fantasy-user-sorted-index={2}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -318,7 +320,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={3}>
-                                                12<sup data-fantasy-user-sorted-index={3}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -344,7 +345,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={4}>
-                                                10<sup data-fantasy-user-sorted-index={4}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -368,7 +368,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={5}>
-                                                8<sup data-fantasy-user-sorted-index={5}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -390,7 +389,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={6}>
-                                                6<sup data-fantasy-user-sorted-index={6}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -415,7 +413,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={7}>
-                                                4<sup data-fantasy-user-sorted-index={7}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -437,7 +434,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={8}>
-                                                2<sup data-fantasy-user-sorted-index={8}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -460,7 +456,6 @@ class HallOfFameTotalPointsList extends React.Component {
                                         </div>
                                         {this.context.hallOfFameSelectedDay !== "all-days" &&
                                             <div className="bottom-bottom" data-fantasy-user-sorted-index={9}>
-                                                1<sup data-fantasy-user-sorted-index={9}>pt</sup>
                                             </div>
                                         }
                                     </div>
@@ -480,7 +475,7 @@ class HallOfFameTotalPointsList extends React.Component {
                                             <tr className="w-100">
                                                 <th className="orer-no">Position No.</th>
                                                 <th>Username</th>
-                                                <th className="td-points">TD Fantasy points</th>
+                                                <th className="td-points">Sportske Fantasy points</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -511,7 +506,7 @@ class HallOfFameTotalPointsList extends React.Component {
                                         <tr className="w-100">
                                             <th className="orer-no">Position No.</th>
                                             <th>Username</th>
-                                            <th className="td-points">TD Fantasy points</th>
+                                            <th className="td-points">Sportske Fantasy points</th>
                                         </tr>
                                     </thead>
                                     <tbody>

@@ -26,6 +26,7 @@ class HallOfFameFantasyPlayersList extends React.Component {
         const outputPlayers = []
 
         if (this.context.hallOfFameSelectedDay === "all-days" && basketballPlayers !== null) {
+            const selectedLeague = this.context.selectedLeague
             basketballPlayers.forEach((player, index) => {
 
                 let gameWinSum = 0;
@@ -40,7 +41,7 @@ class HallOfFameFantasyPlayersList extends React.Component {
                 let bonusesSum = 0;
                 let penaltiesSum = 0;
 
-                eligibleDays.forEach((day) => {
+                eligibleDays[selectedLeague].forEach((day) => {
                     if (player[day].assists !== "n/a") {
                         gameWinSum = !isNaN(parseFloat(calculateBasketballPlayerTDFantasyPoints(player, day).gameWin)) ? gameWinSum + parseFloat(calculateBasketballPlayerTDFantasyPoints(player, day).gameWin) : gameWinSum
                         assistsSum = !isNaN(parseFloat(calculateBasketballPlayerTDFantasyPoints(player, day).assists)) ? assistsSum + parseFloat(calculateBasketballPlayerTDFantasyPoints(player, day).assists) : assistsSum
@@ -58,7 +59,7 @@ class HallOfFameFantasyPlayersList extends React.Component {
 
                 const outputPlayer =
                     <tr key={player.name + index} className="single-player-item" data-player-name={player.name} data-player-team={player.team} onClick={this.context.showSinglePlayerModal}>
-                        <td data-player-name={player.name} data-player-team={player.team}>{` ${(calculateBasketballPlayerTDFantasyGrandTotalPoints(player)).toFixed(2)}`}</td>
+                        <td data-player-name={player.name} data-player-team={player.team}>{` ${(calculateBasketballPlayerTDFantasyGrandTotalPoints(player,  eligibleDays[selectedLeague])).toFixed(2)}`}</td>
                         <td className="not-centered" data-player-name={player.name} data-player-team={player.team}>{`${player.name}`}</td>
                         <td data-player-name={player.name} data-player-team={player.team}>{`${(gameWinSum).toFixed(0) === "NaN" ? "n/a" : (gameWinSum).toFixed(0)}`}</td>
                         <td data-player-name={player.name} data-player-team={player.team}>{`${(assistsSum).toFixed(0) === "NaN" ? "n/a" : (assistsSum).toFixed(0)}`}</td>

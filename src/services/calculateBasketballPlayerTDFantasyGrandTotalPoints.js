@@ -1,6 +1,5 @@
 const calculateBasketballPlayerTDFantasyGrandTotalPoints = (inputPlayerData, eligibleDays) => {
     let calculatedGrandFantasyTotal = 0
-
     eligibleDays.forEach((day) => {
         ////////////////////////////////////////////////////////////////////////
         if (inputPlayerData[day].teamWin == "yes") {

@@ -87,7 +87,6 @@ const checkEligibilityForPickTeam = (selectedLeague, fantasyUsers, username, sel
             //     }
             // })
             let roundData = null
-
             teamsByDay.forEach((round) => {
                 if (round.roundName == selectedDay) {
                     roundData = round
@@ -100,7 +99,6 @@ const checkEligibilityForPickTeam = (selectedLeague, fantasyUsers, username, sel
             let teamGameStartDay = null
             let teamGameStartHour = null
             let teamGameStartMinute = null
-
             roundData.day1.forEach((team) => {
                 if (team.name == playerTeam) {
                     teamGameStartData = team

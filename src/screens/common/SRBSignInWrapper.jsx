@@ -16,6 +16,7 @@ class SRBSignInWrapper extends React.Component {
     }
     selectLeague = (event) => {
         const selectedLeague = event.target.getAttribute("data-league")
+        sessionStorage.setItem("bitrulez3", selectedLeague)
         this.context.depositSelectedLeague(selectedLeague)
         this.setState({
             askLeague: false,

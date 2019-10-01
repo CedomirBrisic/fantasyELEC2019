@@ -71,14 +71,14 @@ class SRBPlayerCardModal extends React.Component {
                 <div className="selected-day-info">Statistika za {serbischeDatum(this.state.selectedDay)}</div>
 
                 <div className="stats-tabs-container d-flex">
-                {this.context.selectedLeague == "euroLeague" &&
+                    {this.context.selectedLeague == "euroLeague" &&
                         <div className="select-days-container d-flex flex-column justify-conten-around align-items-center">
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-1" ? "is-selected" : ""}`} data-day-to-select="ROUND-1" onClick={this.depositSelectedDay}>ROUND 1<br /><i data-day-to-select="ROUND-1">October 3-4, 2019</i></button>
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-2" ? "is-selected" : ""}`} data-day-to-select="ROUND-2" onClick={this.depositSelectedDay}>ROUND 2<br /><i data-day-to-select="ROUND-2">October 10-11, 2019</i></button>
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-3" ? "is-selected" : ""}`} data-day-to-select="ROUND-3" onClick={this.depositSelectedDay}>ROUND 3<br /><i data-day-to-select="ROUND-3">October 17-18, 2019</i></button>
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-4" ? "is-selected" : ""}`} data-day-to-select="ROUND-4" onClick={this.depositSelectedDay}>ROUND 4<br /><i data-day-to-select="ROUND-4">October 24-25, 2019</i></button>
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-5" ? "is-selected" : ""}`} data-day-to-select="ROUND-5" onClick={this.depositSelectedDay}>ROUND 5<br /><i data-day-to-select="ROUND-5">October 29-30, 2019</i></button>
-                            <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-6" ? "is-selected" : ""}`} data-day-to-select="ROUND-6" onClick={this.depositSelectedDay}>ROUND 6<br /><i data-day-to-select="ROUND-6">October 31 -<br/> November 1, 2019</i></button>
+                            <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-6" ? "is-selected" : ""}`} data-day-to-select="ROUND-6" onClick={this.depositSelectedDay}>ROUND 6<br /><i data-day-to-select="ROUND-6">October 31 -<br /> November 1, 2019</i></button>
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-7" ? "is-selected" : ""}`} data-day-to-select="ROUND-7" onClick={this.depositSelectedDay}>ROUND 7<br /><i data-day-to-select="ROUND-7">November 7-8, 2019</i></button>
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-8" ? "is-selected" : ""}`} data-day-to-select="ROUND-8" onClick={this.depositSelectedDay}>ROUND 8<br /><i data-day-to-select="ROUND-8">November 14-15, 2019</i></button>
                             <button type="button" className={`btn btn-outline-dark ${this.context.selectedDay === "ROUND-9" ? "is-selected" : ""}`} data-day-to-select="ROUND-9" onClick={this.depositSelectedDay}>ROUND 9<br /><i data-day-to-select="ROUND-9">November 19-20, 2019</i></button>
@@ -364,9 +364,16 @@ class SRBPlayerCardModal extends React.Component {
                             <div className="label">
                                 Ukupan zbir Sportske Fantazi poena za sada:
                         </div>
-                            <div className="data">
-                                {calculateBasketballPlayerTDFantasyGrandTotalPoints(this.context.selectedPlayerForPlayerCardModal).toFixed(2)} Poena
-                        </div>
+                            {this.context.selectedLeague == "euroLeague" &&
+                                <div className="data">
+                                    {calculateBasketballPlayerTDFantasyGrandTotalPoints(this.context.selectedPlayerForPlayerCardModal, eligibleDays.euroLeague).toFixed(2)} Points
+                                </div>
+                            }
+                            {this.context.selectedLeague == "euroCup" &&
+                                <div className="data">
+                                    {calculateBasketballPlayerTDFantasyGrandTotalPoints(this.context.selectedPlayerForPlayerCardModal, eligibleDays.euroCup).toFixed(2)} Points
+                                </div>
+                            }
                         </div>
                         {this.context.showSelectPlayer && !this.context.isHallOfFame &&
                             <button type="button" className="btn btn-success" data-picked-player-id={`${this.context.selectedPlayerForPlayerCardModal._id.$oid}`} onClick={this.pickThisPlayerForTeam}>Želim ovog igrača u svojoj ekipi za rundu {serbischeDatum(this.context.selectedDay)}</button>

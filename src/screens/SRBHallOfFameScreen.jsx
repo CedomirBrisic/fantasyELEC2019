@@ -2,6 +2,8 @@ import React from 'react';
 import { AppContext } from '../screens/_context/AppContext';
 import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import calculateNowRound from "../services/calculateNowRound";
+import humanReadDateAndTime from "../services/humanReadDateAndTime";
 import SRBHallOfFameRealLifePlayerListStats from "./common/SRBHallOfFameRealLifePlayerListStats";
 import SRBHallOfFameFantasyPlayersList from "./common/SRBHallOfFameFantasyPlayersList";
 // import SRBHallOfFameF1WCList from './common/SRBHallOfFameF1WCList';
@@ -59,6 +61,7 @@ class SRBHallOfFameScreen extends React.Component {
     componentDidMount() {
         let data = sessionStorage.getItem("bitrulez")
         let data2 = sessionStorage.getItem("bitrulez2")
+        let data3 = sessionStorage.getItem("bitrulez3")
         if (data === null && data2 === null) {
             this.setState({
                 redirect: true,
@@ -72,6 +75,13 @@ class SRBHallOfFameScreen extends React.Component {
             }
             this.context.depositIsHallOfFame()
         }
+
+
+        const nowDate = humanReadDateAndTime().humanDate
+        const nowRound = calculateNowRound(nowDate, data3)
+        this.context.depositHallOfFameSelectedDay(nowRound)
+
+
         this.trivia()
         this.interval = setInterval(
             () => this.trivia(),
@@ -355,28 +365,28 @@ class SRBHallOfFameScreen extends React.Component {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-between w-100">
-                            <div className="credits-container w-100 d-flex flex-column">
-                            <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank" rel="noopener noreferrer"><b>Fair Use</b> of teams' logos.</a>
-                                <i>Zahvaljujemo se PIXABAY-u što nam je omogućio da pozajmimo neke od njihovih slika</i>
-                                <i>POSEBNO SE ZAHVALJUJEMO:</i>
-                                <i className="credits">David Mark iz Pixabay-a</i>
-                                <i className="credits">Dimitris Vetsikas iz Pixabay-a</i>
-                                <i className="credits">Pexels iz Pixabay-a</i>
-                                <i className="credits">Clker-Free-Vector-Images iz Pixabay-a</i>
-                                <i className="credits">mohamed Hassan iz Pixabay-a</i>
-                                <i className="credits">BedexpStock iz Pixabay-a</i>
-                                <i className="credits">OpenClipart-Vectors iz Pixabay-a </i>
-                            </div>
+                                <div className="credits-container w-100 d-flex flex-column">
+                                    <a href="https://www.inta.org/TrademarkBasics/FactSheets/Pages/Fair-Use-of-TrademarksNL.aspx" target="_blank" rel="noopener noreferrer"><b>Fair Use</b> of teams' logos.</a>
+                                    <i>Zahvaljujemo se PIXABAY-u što nam je omogućio da pozajmimo neke od njihovih slika</i>
+                                    <i>POSEBNO SE ZAHVALJUJEMO:</i>
+                                    <i className="credits">David Mark iz Pixabay-a</i>
+                                    <i className="credits">Dimitris Vetsikas iz Pixabay-a</i>
+                                    <i className="credits">Pexels iz Pixabay-a</i>
+                                    <i className="credits">Clker-Free-Vector-Images iz Pixabay-a</i>
+                                    <i className="credits">mohamed Hassan iz Pixabay-a</i>
+                                    <i className="credits">BedexpStock iz Pixabay-a</i>
+                                    <i className="credits">OpenClipart-Vectors iz Pixabay-a </i>
+                                </div>
                                 <div className="right-container d-flex flex-column justify-content-between">
                                     <div className="trivia">
                                         {this.state.trivia}
                                     </div>
                                     <div className="powered-by-wrapper d-flex justify-content-between">
                                         <div className="sportske d-flex justify-content-between align-items-end">
-                                            <i>Napravili</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer"><img src={require("../images/logo-sportske.png")} alt="Belgrade Institute of Technology"/></a>
+                                            <i>Napravili</i> <a href="https://sportske.net/?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy" target="_blank" rel="noopener noreferrer"><img src={require("../images/logo-sportske.png")} alt="Belgrade Institute of Technology" /></a>
                                         </div>
                                         <div className="bit d-flex justify-content-between align-items-end">
-                                           <i>Powered by</i> <a href="https://www.bgit.rs/en/" target="_blank" rel="noopener noreferrer"><img src={require("../images/logo-bit.png")} alt="Belgrade Institute of Technology"/></a>
+                                            <i>Powered by</i> <a href="https://www.bgit.rs/en/" target="_blank" rel="noopener noreferrer"><img src={require("../images/logo-bit.png")} alt="Belgrade Institute of Technology" /></a>
                                         </div>
                                     </div>
                                 </div>
@@ -389,26 +399,68 @@ class SRBHallOfFameScreen extends React.Component {
                         <div className="d-flex">
                             {this.state.listView !== "f1wc" &&
                                 <div className="dashboard-select-day-container move-it-down d-flex flex-column justify align-items-center show-selected-day">
-                                    <p><i>Izaberi rundu</i></p>
-                                    <div className="dashboard-select-day-list-wrapper d-md-flex flex-md-column justify-content-md-between">
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "all-days" ? "is-selected" : ""}`} data-day-to-select="all-days" onClick={this.depositSelectedDay}>Sve runde <br className="d-block d-md-none" />- Ukupno</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "31st-August" ? "is-selected" : ""}`} data-day-to-select="31st-August" onClick={this.depositSelectedDay}>31. <br className="d-block d-md-none" />Avgust</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "1st-September" ? "is-selected" : ""}`} data-day-to-select="1st-September" onClick={this.depositSelectedDay}>1. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "2nd-September" ? "is-selected" : ""}`} data-day-to-select="2nd-September" onClick={this.depositSelectedDay}>2. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "3rd-September" ? "is-selected" : ""}`} data-day-to-select="3rd-September" onClick={this.depositSelectedDay}>3. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "4th-September" ? "is-selected" : ""}`} data-day-to-select="4th-September" onClick={this.depositSelectedDay}>4. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "5th-September" ? "is-selected" : ""}`} data-day-to-select="5th-September" onClick={this.depositSelectedDay}>5. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "6th-September" ? "is-selected" : ""}`} data-day-to-select="6th-September" onClick={this.depositSelectedDay}>6. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "7th-September" ? "is-selected" : ""}`} data-day-to-select="7th-September" onClick={this.depositSelectedDay}>7. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "8th-September" ? "is-selected" : ""}`} data-day-to-select="8th-September" onClick={this.depositSelectedDay}>8. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "9th-September" ? "is-selected" : ""}`} data-day-to-select="9th-September" onClick={this.depositSelectedDay}>9. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "10th-September" ? "is-selected" : ""}`} data-day-to-select="10th-September" onClick={this.depositSelectedDay}>10. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "11th-September" ? "is-selected" : ""}`} data-day-to-select="11th-September" onClick={this.depositSelectedDay}>11. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "12th-September" ? "is-selected" : ""}`} data-day-to-select="12th-September" onClick={this.depositSelectedDay}>12. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "13th-September" ? "is-selected" : ""}`} data-day-to-select="13th-September" onClick={this.depositSelectedDay}>13. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "14th-September" ? "is-selected" : ""}`} data-day-to-select="14th-September" onClick={this.depositSelectedDay}>14. <br className="d-block d-md-none" />Septembar</button>
-                                        <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "15th-September" ? "is-selected" : ""}`} data-day-to-select="15th-September" onClick={this.depositSelectedDay}>15. <br className="d-block d-md-none" />Septembar</button>
-                                    </div>
+                                    {this.context.selectedLeague == "euroLeague" &&
+                                        <section className={`dashboard-select-day-container d-flex flex-column justify align-items-center ${this.context.showSelectDayDashboard ? "show-selected-day" : ""}`}>
+                                            <p className="stick-it"><i>Izaberi Rundu</i></p>
+                                            <div className="dashboard-select-day-list-wrapper d-md-flex flex-md-column justify-content-md-between ">
+                                                <button type="button" className={`btn btn-outline-light pt-4 pb-4 ${this.context.hallOfFameSelectedDay === "all-days" ? "is-selected" : ""}`} data-day-to-select="all-days" onClick={this.depositSelectedDay}>SVE RUNDE</button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-1" ? "is-selected" : ""}`} data-day-to-select="ROUND-1" onClick={this.depositSelectedDay}>RUNDA 1<br /><i data-day-to-select="ROUND-1">Oktobar 3-4, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-2" ? "is-selected" : ""}`} data-day-to-select="ROUND-2" onClick={this.depositSelectedDay}>RUNDA 2<br /><i data-day-to-select="ROUND-2">Oktobar 10-11, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-3" ? "is-selected" : ""}`} data-day-to-select="ROUND-3" onClick={this.depositSelectedDay}>RUNDA 3<br /><i data-day-to-select="ROUND-3">Oktobar 17-18, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-4" ? "is-selected" : ""}`} data-day-to-select="ROUND-4" onClick={this.depositSelectedDay}>RUNDA 4<br /><i data-day-to-select="ROUND-4">Oktobar 24-25, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-5" ? "is-selected" : ""}`} data-day-to-select="ROUND-5" onClick={this.depositSelectedDay}>RUNDA 5<br /><i data-day-to-select="ROUND-5">Oktobar 29-30, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-6" ? "is-selected" : ""}`} data-day-to-select="ROUND-6" onClick={this.depositSelectedDay}>RUNDA 6<br /><i data-day-to-select="ROUND-6">Oktobar 31 / Novembar 1, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-7" ? "is-selected" : ""}`} data-day-to-select="ROUND-7" onClick={this.depositSelectedDay}>RUNDA 7<br /><i data-day-to-select="ROUND-7">Novembar 7-8, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-8" ? "is-selected" : ""}`} data-day-to-select="ROUND-8" onClick={this.depositSelectedDay}>RUNDA 8<br /><i data-day-to-select="ROUND-8">Novembar 14-15, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-9" ? "is-selected" : ""}`} data-day-to-select="ROUND-9" onClick={this.depositSelectedDay}>RUNDA 9<br /><i data-day-to-select="ROUND-9">Novembar 19-20, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-10" ? "is-selected" : ""}`} data-day-to-select="ROUND-10" onClick={this.depositSelectedDay}>RUNDA 10<br /><i data-day-to-select="ROUND-10">Novembar 21-22, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-11" ? "is-selected" : ""}`} data-day-to-select="ROUND-11" onClick={this.depositSelectedDay}>RUNDA 11<br /><i data-day-to-select="ROUND-11">Novembar 28-29, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-12" ? "is-selected" : ""}`} data-day-to-select="ROUND-12" onClick={this.depositSelectedDay}>RUNDA 12<br /><i data-day-to-select="ROUND-12">Decembar 5-6, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-13" ? "is-selected" : ""}`} data-day-to-select="ROUND-13" onClick={this.depositSelectedDay}>RUNDA 13<br /><i data-day-to-select="ROUND-13">Decembar 12-13, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-14" ? "is-selected" : ""}`} data-day-to-select="ROUND-14" onClick={this.depositSelectedDay}>RUNDA 14<br /><i data-day-to-select="ROUND-14">Decembar 17-18, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-15" ? "is-selected" : ""}`} data-day-to-select="ROUND-15" onClick={this.depositSelectedDay}>RUNDA 15<br /><i data-day-to-select="ROUND-15">Decembar 19-20, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-16" ? "is-selected" : ""}`} data-day-to-select="ROUND-16" onClick={this.depositSelectedDay}>RUNDA 16<br /><i data-day-to-select="ROUND-16">Decembar 26-27, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-17" ? "is-selected" : ""}`} data-day-to-select="ROUND-17" onClick={this.depositSelectedDay}>RUNDA 17<br /><i data-day-to-select="ROUND-17">Januar 2-3, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-18" ? "is-selected" : ""}`} data-day-to-select="ROUND-18" onClick={this.depositSelectedDay}>RUNDA 18<br /><i data-day-to-select="ROUND-18">Januar 9-10, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-19" ? "is-selected" : ""}`} data-day-to-select="ROUND-19" onClick={this.depositSelectedDay}>RUNDA 19<br /><i data-day-to-select="ROUND-19">Januar 14-15, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-20" ? "is-selected" : ""}`} data-day-to-select="ROUND-20" onClick={this.depositSelectedDay}>RUNDA 20<br /><i data-day-to-select="ROUND-20">Januar 16-17, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-21" ? "is-selected" : ""}`} data-day-to-select="ROUND-21" onClick={this.depositSelectedDay}>RUNDA 21<br /><i data-day-to-select="ROUND-21">Januar 23-24, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-22" ? "is-selected" : ""}`} data-day-to-select="ROUND-22" onClick={this.depositSelectedDay}>RUNDA 22<br /><i data-day-to-select="ROUND-22">Januar 30-31, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-23" ? "is-selected" : ""}`} data-day-to-select="ROUND-23" onClick={this.depositSelectedDay}>RUNDA 23<br /><i data-day-to-select="ROUND-23">Februar 4-5, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-24" ? "is-selected" : ""}`} data-day-to-select="ROUND-24" onClick={this.depositSelectedDay}>RUNDA 24<br /><i data-day-to-select="ROUND-24">Februar 6-7, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-25" ? "is-selected" : ""}`} data-day-to-select="ROUND-25" onClick={this.depositSelectedDay}>RUNDA 25<br /><i data-day-to-select="ROUND-25">Februar 20-21, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-26" ? "is-selected" : ""}`} data-day-to-select="ROUND-26" onClick={this.depositSelectedDay}>RUNDA 26<br /><i data-day-to-select="ROUND-26">Februar 27-28, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-27" ? "is-selected" : ""}`} data-day-to-select="ROUND-27" onClick={this.depositSelectedDay}>RUNDA 27<br /><i data-day-to-select="ROUND-27">Mart 3-4, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-28" ? "is-selected" : ""}`} data-day-to-select="ROUND-28" onClick={this.depositSelectedDay}>RUNDA 28<br /><i data-day-to-select="ROUND-28">Mart 5-6, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-29" ? "is-selected" : ""}`} data-day-to-select="ROUND-29" onClick={this.depositSelectedDay}>RUNDA 29<br /><i data-day-to-select="ROUND-29">Mart 12-13, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-30" ? "is-selected" : ""}`} data-day-to-select="ROUND-30" onClick={this.depositSelectedDay}>RUNDA 30<br /><i data-day-to-select="ROUND-30">Mart 19-20, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-31" ? "is-selected" : ""}`} data-day-to-select="ROUND-31" onClick={this.depositSelectedDay}>RUNDA 31<br /><i data-day-to-select="ROUND-31">Mart 24-25, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-32" ? "is-selected" : ""}`} data-day-to-select="ROUND-32" onClick={this.depositSelectedDay}>RUNDA 32<br /><i data-day-to-select="ROUND-32">Mart 26-27, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-33" ? "is-selected" : ""}`} data-day-to-select="ROUND-33" onClick={this.depositSelectedDay}>RUNDA 33<br /><i data-day-to-select="ROUND-33">April 2-3, 2020</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-34" ? "is-selected" : ""}`} data-day-to-select="ROUND-34" onClick={this.depositSelectedDay}>RUNDA 34<br /><i data-day-to-select="ROUND-34">April 9-10, 2020</i></button>
+                                            </div>
+                                        </section>
+                                    }
+
+
+                                    {this.context.selectedLeague == "euroCup" &&
+                                        <section className={`dashboard-select-day-container d-flex flex-column justify align-items-center ${this.context.showSelectDayDashboard ? "show-selected-day" : ""}`}>
+                                            <p className="stick-it"><i>Select Round</i></p>
+                                            <div className="dashboard-select-day-list-wrapper d-md-flex flex-md-column justify-content-md-between ">
+                                                <button type="button" className={`btn btn-outline-light pt-4 pb-4 ${this.context.hallOfFameSelectedDay === "all-days" ? "is-selected" : ""}`} data-day-to-select="all-days" onClick={this.depositSelectedDay}>SVE RUNDE</button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-1" ? "is-selected" : ""}`} data-day-to-select="ROUND-1" onClick={this.depositSelectedDay}>RUNDA 1<br /><i data-day-to-select="ROUND-1">Oktobar 1-2, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-2" ? "is-selected" : ""}`} data-day-to-select="ROUND-2" onClick={this.depositSelectedDay}>RUNDA 2<br /><i data-day-to-select="ROUND-2">Oktobar 8-9, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-3" ? "is-selected" : ""}`} data-day-to-select="ROUND-3" onClick={this.depositSelectedDay}>RUNDA 3<br /><i data-day-to-select="ROUND-3">Oktobar 15-16, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-4" ? "is-selected" : ""}`} data-day-to-select="ROUND-4" onClick={this.depositSelectedDay}>RUNDA 4<br /><i data-day-to-select="ROUND-4">Oktobar 22-23, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-5" ? "is-selected" : ""}`} data-day-to-select="ROUND-5" onClick={this.depositSelectedDay}>RUNDA 5<br /><i data-day-to-select="ROUND-5">Oktobar 29-30, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-6" ? "is-selected" : ""}`} data-day-to-select="ROUND-6" onClick={this.depositSelectedDay}>RUNDA 6<br /><i data-day-to-select="ROUND-6">Novembar 5-6, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-7" ? "is-selected" : ""}`} data-day-to-select="ROUND-7" onClick={this.depositSelectedDay}>RUNDA 7<br /><i data-day-to-select="ROUND-7">Novembar 12-13, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-8" ? "is-selected" : ""}`} data-day-to-select="ROUND-8" onClick={this.depositSelectedDay}>RUNDA 8<br /><i data-day-to-select="ROUND-8">Novembar 19-20, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-9" ? "is-selected" : ""}`} data-day-to-select="ROUND-9" onClick={this.depositSelectedDay}>RUNDA 9<br /><i data-day-to-select="ROUND-9">Decembar 10-11, 2019</i></button>
+                                                <button type="button" className={`btn btn-outline-light ${this.context.hallOfFameSelectedDay === "ROUND-10" ? "is-selected" : ""}`} data-day-to-select="ROUND-10" onClick={this.depositSelectedDay}>RUNDA 10<br /><i data-day-to-select="ROUND-10">Decembar 17-18, 2019</i></button>
+                                            </div>
+                                        </section>
+                                    }
                                 </div>}
 
                             {!this.context.isInitialLoading &&
@@ -419,11 +471,11 @@ class SRBHallOfFameScreen extends React.Component {
                                     <div className="hall-of-fame-links-wrapper d-flex justify-content-around">
                                         {/* <button className="btn btn-outline-dark" disabled>(računa se, biće...)</button>
                                         <button className="btn btn-outline-dark" disabled>(računa se, biće...)</button> */}
-                                        <button type="button" className={`btn btn-outline-dark ${this.state.listView === "leagues" ? "active" : ""}`} data-view="leagues" onClick={this.depositSelectedList}>Lige</button>
+                                        <button type="button" className={`btn btn-outline-dark ${this.state.listView === "leagues" ? "active" : ""}`} disabled data-view="leagues" onClick={this.depositSelectedList}>Lige (uskoro...)</button>
                                         <button type="button" className={`btn btn-outline-dark ${this.state.listView === "round-points" ? "active" : ""}`} data-view="round-points" onClick={this.depositSelectedList}>Globalna liga</button>
                                         <button type="button" className={`btn btn-outline-dark ${this.state.listView === "basketball-players-fantasy-points" ? "active" : ""}`} data-view="basketball-players-fantasy-points" onClick={this.depositSelectedList}>Košarkaši - fantazi poeni</button>
                                         <button type="button" className={`btn btn-outline-dark ${this.state.listView === "basketball-players-real-life-stats" ? "active" : ""}`} data-view="basketball-players-real-life-stats" onClick={this.depositSelectedList}>Košarkaši - statistika u stvarnosti</button>
-                                        <input type="search" placeholder={this.state.searchPlaceholder} value={this.state.searchValue} onChange={this.depositSearchValue} onKeyDown={this.checkBlur}/>
+                                        <input type="search" placeholder={this.state.searchPlaceholder} value={this.state.searchValue} onChange={this.depositSearchValue} onKeyDown={this.checkBlur} />
                                     </div>
                                     {/* {this.state.listView === "f1wc" &&
                                         <SRBHallOfFameF1WCList searchValue={this.state.searchValue} clearSearchValue={this.clearSearchValue} />
