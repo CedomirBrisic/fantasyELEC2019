@@ -7,6 +7,8 @@ import calculateBasketballPlayerTDFantasyPoints from "../../services/calculateBa
 import calculateBasketballPlayerTDFantasyGrandTotalPoints from "../../services/calculateBasketballPlayerTDFantasyGrandTotalPoints";
 import eligibleDays from "../../services/eligibleDays";
 import calculateTeamHref from "../../services/calculateTeamHref";
+import putIncPlayersEC from "../../webhooks/putIncPlayersEC";
+import putIncPlayersEL from "../../webhooks/putIncPlayersEL";
 
 
 class SRBPlayerCardModal extends React.Component {
@@ -54,6 +56,13 @@ class SRBPlayerCardModal extends React.Component {
             return "da"
         } else return this.context.selectedPlayerForPlayerCardModal[this.state.selectedDay].teamWin
     }
+    incLinks = () => {
+        if (this.context.selectedLeague == "euroCup"){
+            putIncPlayersEC("opetNekaDugAckaSIFRAsaMalimIVELIKImslovimaItakoO")
+        } else if (this.context.selectedLeague == "euroLeague"){
+            putIncPlayersEL("opetNekaDugAckaSIFRAsaMalimIVELIKImslovimaItakoO")
+        }
+    }
 
     componentDidMount() {
         this.depositTdFantasyPoints(this.context.selectedPlayerForPlayerCardModal, this.state.selectedDay)
@@ -65,7 +74,7 @@ class SRBPlayerCardModal extends React.Component {
                 <div className="close" onClick={this.context.closeSinglePlayerModal}>&times;</div>
                 <div className="player-general-info-container d-flex justify-content-between align-items-center">
                     <span><i>Košarkaš:</i> {this.context.selectedPlayerForPlayerCardModal.name}</span>
-                    <a href={calculateTeamHref(this.context.selectedPlayerForPlayerCardModal.team, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer" className="fiba-player-link">Proveri zvaničnu statistiku</a>
+                    <a href={calculateTeamHref(this.context.selectedPlayerForPlayerCardModal.team, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer" className="fiba-player-link" onClick={this.incLinks}>Proveri zvaničnu statistiku</a>
                     <span><i>Ekipa:</i> {serbischeNazivTima(this.context.selectedPlayerForPlayerCardModal.team)}</span>
                 </div>
                 <div className="selected-day-info">Statistika za {serbischeDatum(this.state.selectedDay)}</div>

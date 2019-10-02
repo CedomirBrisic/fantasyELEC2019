@@ -5,6 +5,8 @@ import eligibleDays from "../../services/eligibleDays";
 import PlayerCardModal from "../modals/PlayerCardModal"
 import sortPlayersOnSelectScreen from "../../services/sortPlayersOnSelectScreen";
 import calculateTeamHref from "../../services/calculateTeamHref";
+import putIncClubsEC from "../../webhooks/putIncClubsEC";
+import putIncClubsEL from "../../webhooks/putIncClubsEL";
 import calculateBasketballPlayerTDFantasyGrandTotalPoints from "../../services/calculateBasketballPlayerTDFantasyGrandTotalPoints";
 
 class SelectPlayer extends React.Component {
@@ -444,6 +446,14 @@ class SelectPlayer extends React.Component {
         }
     }
 
+    incEuroCupLeagueLinks = () => {
+        if (this.context.selectedLeague == "euroCup"){
+
+            putIncClubsEC("opetNekaDugAckaSIFRAsaMalimIVELIKImslovimaItakoO")
+        } else if (this.context.selectedLeague == "euroLeague"){
+            putIncClubsEL("opetNekaDugAckaSIFRAsaMalimIVELIKImslovimaItakoO")
+        }
+    }
 
     depositSortFilterValue = (event) => {
         const sortFilterValue = event.target.getAttribute("data-sort-filter-value")
@@ -456,14 +466,14 @@ class SelectPlayer extends React.Component {
             <>
                 <div className="d-flex justify-content-between align-items-center w-100 select-player-label-wrapper">
                     {this.context.teamSelected === "all-eligible-teams" && this.context.selectedLeague == "euroLeague" &&
-                        <a href={`https://www.euroleague.net?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">Find out more about EuroLeague</button></a>
+                        <a href={`https://www.euroleague.net?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light" onClick={this.incEuroCupLeagueLinks}>Find out more about EuroLeague</button></a>
                     }
                     {this.context.teamSelected === "all-eligible-teams" && this.context.selectedLeague == "euroCup" &&
-                        <a href={`https://www.eurocupbasketball.com/eurocup?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">Find out more about EuroCup</button></a>
+                        <a href={`https://www.eurocupbasketball.com/eurocup?utm_source=Sportske%20Fantasy&utm_medium=banner&utm_campaign=Fantasy`} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light" onClick={this.incEuroCupLeagueLinks}>Find out more about EuroCup</button></a>
                     }
 
                     {this.context.teamSelected !== "all-eligible-teams" &&
-                        <a href={calculateTeamHref(this.context.teamSelected, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light">Find out more about {this.context.teamSelected}</button></a>
+                        <a href={calculateTeamHref(this.context.teamSelected, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-outline-light" onClick={this.incEuroCupLeagueLinks}>Find out more about {this.context.teamSelected}</button></a>
                     }
                     <div className="label-and-clock-wrapper d-flex justify-content-between align-items-center">
                         <div className="table-label">

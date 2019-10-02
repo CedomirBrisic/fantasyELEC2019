@@ -5,6 +5,8 @@ import calculateBasketballPlayerTDFantasyPoints from "../../services/calculateBa
 import calculateBasketballPlayerTDFantasyGrandTotalPoints from "../../services/calculateBasketballPlayerTDFantasyGrandTotalPoints";
 import eligibleDays from "../../services/eligibleDays";
 import calculateTeamHref from "../../services/calculateTeamHref";
+import putIncPlayersEC from "../../webhooks/putIncPlayersEC";
+import putIncPlayersEL from "../../webhooks/putIncPlayersEL";
 
 class PlayerCardModal extends React.Component {
     static contextType = AppContext;
@@ -44,6 +46,13 @@ class PlayerCardModal extends React.Component {
         const pickedPlayerId = event.target.getAttribute("data-picked-player-id")
         this.context.pickPlayerForTeam(this.context.choosePlayerPosition, pickedPlayerId)
     }
+    incLinks = () => {
+        if (this.context.selectedLeague == "euroCup"){
+            putIncPlayersEC("opetNekaDugAckaSIFRAsaMalimIVELIKImslovimaItakoO")
+        } else if (this.context.selectedLeague == "euroLeague"){
+            putIncPlayersEL("opetNekaDugAckaSIFRAsaMalimIVELIKImslovimaItakoO")
+        }
+    }
 
     componentDidMount() {
         this.depositTdFantasyPoints(this.context.selectedPlayerForPlayerCardModal, this.state.selectedDay)
@@ -55,7 +64,7 @@ class PlayerCardModal extends React.Component {
                 <div className="close" onClick={this.context.closeSinglePlayerModal}>&times;</div>
                 <div className="player-general-info-container d-flex justify-content-between align-items-center">
                     <span><i>Player name:</i> {this.context.selectedPlayerForPlayerCardModal.name}</span>
-                        <a href={calculateTeamHref(this.context.selectedPlayerForPlayerCardModal.team, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer" className="fiba-player-link">Check Official Stats</a>
+                        <a href={calculateTeamHref(this.context.selectedPlayerForPlayerCardModal.team, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer" className="fiba-player-link" onClick={this.incLinks}>Check Official Stats</a>
                     <span><i>Team:</i> {this.context.selectedPlayerForPlayerCardModal.team}</span>
                 </div>
                 <div className="selected-day-info">Player stats for {this.state.selectedDay}</div>
