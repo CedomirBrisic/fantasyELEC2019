@@ -32,7 +32,7 @@ const humanReadDateAndTime = () => {
     const min00 = (function () {
         const minStringify = min.toString()
         if (minStringify.length == 1) {
-            return "0"+minStringify
+            return "0" + minStringify
         } else {
             return minStringify
         }
@@ -44,6 +44,8 @@ const humanReadDateAndTime = () => {
     const humanDateAndTime = {
         humanDate: outputDate,
         humanTime: outputTime
+        // humanDate: "1st-October",
+        // humanTime: "09:00"
     }
     return humanDateAndTime
 }

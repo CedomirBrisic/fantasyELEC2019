@@ -256,7 +256,7 @@ class DashboardSelectTeam extends React.Component {
                                 </span>
                             </button>
                         })
-                    } else if (parseInt(nowDay, 10) > parseInt(roundDays[0], 10)) {
+                    } else if (parseInt(nowDay, 10) > parseInt(roundDays[1], 10)) {
                         const outputElements = []
 
                         roundData[0].day1.forEach((team) => {
