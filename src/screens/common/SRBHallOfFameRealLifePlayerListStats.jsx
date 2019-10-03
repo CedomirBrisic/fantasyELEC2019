@@ -78,7 +78,7 @@ class SRBHallOfFamePlayerListStats extends React.Component {
                 }
             })
         }
-        else if (basketballPlayers !== null) {
+        else if (basketballPlayers !== null && this.context.hallOfFameSelectedDay) {
             basketballPlayers.forEach((player, index) => {
                 let assists = 0;
                 let rebounds = 0;
@@ -149,8 +149,8 @@ class SRBHallOfFamePlayerListStats extends React.Component {
                                 <thead className="w-100">
                                     <tr className="w-100">
                                         <th data-sort-filter-value="ptPerGame" onClick={this.depositSortFilterValue}><button data-sort-filter-value="ptPerGame" type="button" className={`btn ${this.state.sortFilterValue === "ptPerGame" ? "btn-success" : "btn-outline-dark"}`}>Fantazi poeni</button></th>
-                                        <th className="not-centered">Ime</th>
-                                        <th className="not-centered">Reprezentacija</th>
+                                        <th>Ime</th>
+                                        <th>Tim</th>
                                         <th data-sort-filter-value="assists" onClick={this.depositSortFilterValue}><button data-sort-filter-value="assists" type="button" className={`btn ${this.state.sortFilterValue === "assists" ? "btn-success" : "btn-outline-dark"}`}>Asistencije</button></th>
                                         <th data-sort-filter-value="rebounds" onClick={this.depositSortFilterValue}><button data-sort-filter-value="rebounds" type="button" className={`btn ${this.state.sortFilterValue === "rebounds" ? "btn-success" : "btn-outline-dark"}`}>Skokovi</button></th>
                                         <th data-sort-filter-value="blocks" onClick={this.depositSortFilterValue}><button data-sort-filter-value="blocks" type="button" className={`btn ${this.state.sortFilterValue === "blocks" ? "btn-success" : "btn-outline-dark"}`}>Blokade</button></th>

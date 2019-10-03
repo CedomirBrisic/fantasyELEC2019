@@ -77,7 +77,7 @@ class SRBPlayerCardModal extends React.Component {
                     <a href={calculateTeamHref(this.context.selectedPlayerForPlayerCardModal.team, this.context.selectedLeague)} target="_blank" rel="noopener noreferrer" className="fiba-player-link" onClick={this.incLinks}>Proveri zvaničnu statistiku</a>
                     <span><i>Ekipa:</i> {serbischeNazivTima(this.context.selectedPlayerForPlayerCardModal.team)}</span>
                 </div>
-                <div className="selected-day-info">Statistika za RUNDU - {this.context.selectedDay.split("-")[1]}</div>
+                <div className="selected-day-info">Statistika za RUNDU - {this.state.selectedDay.split("-")[1]}</div>
 
                 <div className="stats-tabs-container d-flex">
                     {this.context.selectedLeague == "euroLeague" &&

@@ -153,7 +153,7 @@ class SRBHallOfFameFantasyPlayersList extends React.Component {
                                 <thead className="w-100">
                                     <tr className="w-100">
                                         <th data-sort-filter-value="ptPerGame" onClick={this.depositSortFilterValue}><button data-sort-filter-value="ptPerGame" type="button" className={`btn ${this.state.sortFilterValue === "ptPerGame" ? "btn-success" : "btn-outline-dark"}`}>Fantazi poeni</button></th>
-                                        <th className="not-centered">Ime</th>
+                                        <th>Ime</th>
                                         {/* <th className="not-centered">Team</th> */}
                                         <th data-sort-filter-value="gamesWon" onClick={this.depositSortFilterValue}><button data-sort-filter-value="gamesWon" type="button" className={`btn ${this.state.sortFilterValue === "gamesWon" ? "btn-success" : "btn-outline-dark"}`}>Pobede</button></th>
                                         <th data-sort-filter-value="assists" onClick={this.depositSortFilterValue}><button data-sort-filter-value="assists" type="button" className={`btn ${this.state.sortFilterValue === "assists" ? "btn-success" : "btn-outline-dark"}`}>Asistencije</button></th>

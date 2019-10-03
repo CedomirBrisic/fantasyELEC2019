@@ -188,7 +188,7 @@ class HallOfFameTotalPointsList extends React.Component {
                     <div className="loader-container-calculating d-flex justify-content-center align-items-start">
                         <div className="d-flex flex-column align-items-center">
                             <div className="d-flex align-items-center">
-                                <h1>Calculating Sportske Fantasy points of {this.context.fantasyUsers.length} Users for {this.context.hallOfFameSelectedDay}</h1>
+                                <h1>Calculating Sportske Fantasy points for {this.context.fantasyUsers.length} Users {this.context.hallOfFameSelectedDay !== "all-days"? ` - ${this.context.hallOfFameSelectedDay}`:""}</h1>
                                 <div className="spinner-grow text-light" role="status">
                                     <span className="sr-only">Loading...</span>
                                 </div>

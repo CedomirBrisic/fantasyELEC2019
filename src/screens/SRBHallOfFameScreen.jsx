@@ -79,7 +79,7 @@ class SRBHallOfFameScreen extends React.Component {
 
         const nowDate = humanReadDateAndTime().humanDate
         const nowRound = calculateNowRound(nowDate, data3)
-        this.context.depositHallOfFameSelectedDay(nowRound)
+        this.context.depositHallOfFameSelectedDay("all-days")
 
 
         this.trivia()

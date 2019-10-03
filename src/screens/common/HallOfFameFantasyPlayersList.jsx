@@ -154,7 +154,7 @@ class HallOfFameFantasyPlayersList extends React.Component {
                                 <thead className="w-100">
                                     <tr className="w-100">
                                         <th data-sort-filter-value="ptPerGame" onClick={this.depositSortFilterValue}><button data-sort-filter-value="ptPerGame" type="button" className={`btn ${this.state.sortFilterValue === "ptPerGame" ? "btn-success" : "btn-outline-dark"}`}>Fantasy points</button></th>
-                                        <th className="not-centered">Player name</th>
+                                        <th>Player name</th>
                                         {/* <th className="not-centered">Team</th> */}
                                         <th data-sort-filter-value="gamesWon" onClick={this.depositSortFilterValue}><button data-sort-filter-value="gamesWon" type="button" className={`btn ${this.state.sortFilterValue === "gamesWon" ? "btn-success" : "btn-outline-dark"}`}>Game wins</button></th>
                                         <th data-sort-filter-value="assists" onClick={this.depositSortFilterValue}><button data-sort-filter-value="assists" type="button" className={`btn ${this.state.sortFilterValue === "assists" ? "btn-success" : "btn-outline-dark"}`}>Assists</button></th>

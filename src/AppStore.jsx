@@ -278,7 +278,7 @@ export default class AppStore extends Component {
             bitrulez2: data2,
             selectedDay: nowRound,
             selectedLeague: data3,
-            hallOfFameSelectedDay: nowRound
+            hallOfFameSelectedDay: "all-days"
         })
 
         this.checkLandscape()

@@ -186,7 +186,7 @@ class SRBHallOfFameTotalPointsList extends React.Component {
                     <div className="loader-container-calculating d-flex justify-content-center align-items-start">
                         <div className="d-flex flex-column align-items-center">
                             <div className="d-flex align-items-center">
-                                <h1>Računanje Sportske Fantazi poena {this.context.fantasyUsers.length} korisnika za {this.context.hallOfFameSelectedDay}</h1>
+                                <h1>Računanje Sportske Fantazi poena za {this.context.fantasyUsers.length} korisnika {this.context.hallOfFameSelectedDay !== "all-days"? ` - ${this.context.hallOfFameSelectedDay}`:""}</h1>
                                 <div className="spinner-grow text-light" role="status">
                                     <span className="sr-only">Loading...</span>
                                 </div>
